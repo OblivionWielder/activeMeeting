@@ -12,7 +12,7 @@
 		<div class="wrapper col1">
 		  <div id="header">
 			<div id="logo">
-			  <h1><a href="#">Active Meeting</a></h1>
+			  <h1><a href="#">Active Meeting V2</a></h1>
 			  <p>Crea juntas f&aacute;cil y r&aacute;pido</p>
 			</div>
 			<div id="topnav">
