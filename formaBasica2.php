@@ -155,6 +155,7 @@
 				<fieldset>
 					<b>Fechas a elegir:</b>
 					<br /><br />
+					<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
 					<div id="fechas">
 					<p>
 						<input type="text" id="fechaElegir" size="20" name="fechaElegir"/>
