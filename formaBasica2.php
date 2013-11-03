@@ -128,26 +128,43 @@
 		<!--Div de Fechas-->
 		<div id="seleccionFechas" hidden>
 			<p> Soy seleccionFechas</p>
+			<script type="text/javascript">
+			$(function() {
+				var scntDiv = $('#fechas');
+				var i = $('#fechas p').size() + 1;
+        
+				$('#agregafecha').live('click', function() {
+					$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" />'
+					+'<input type="text" id="horaInicio' + i +'" size="20" name="horaInicio' + i +'" />'
+					+'<input type="text" id="horaFin' + i +'" size="20" name="horaFin' + i +'" />'
+					+'<button type="button" href="#" id="borrafecha">Borrar Fecha</button></p>').appendTo(scntDiv);
+					i++;
+					return false;
+				});
+        
+				$('#borrafecha').live('click', function() { 
+					if( i > 2 ) {
+                        $(this).parents('p').remove();
+                        i--;
+					}
+					return false;
+				});
+			});
+			</script>
 			<form id="seleccionFechasForm" action="javascript:alert( 'successOMG!' );">
 				<fieldset>
 					<b>Fechas a elegir:</b>
 					<br /><br />
-					<label for="fechaElegir">Fecha: </label>
-					<input type="text" name="fechaElegir" id="fechaElegir" />
-					<label for="horaInicio"> Hora de inicio: </label>
-					<input type="text" name="horaInicio" id="horaInicio" />
-					<label for="horaFin"> Hora final: </label>
-					<input type="text" name="horaFin" id="horaFin" />
+					<div id="fechas">
+					<p>
+						<input type="text" id="fechaElegir" size="20" name="fechaElegir"/>
+						<input type="text" id="horaInicio" size="20" name="horaInicio"/>
+						<input type="text" id="horaFin" size="20" name="horaFin"/>
+					</p>
+					</div>
 					<br />
-					<label for="fechaElegir2">Fecha: </label>
-					<input type="text" name="fechaElegir2" id="fechaElegir2" />
-					<label for="horaInicio2"> Hora de inicio: </label>
-					<input type="text" name="horaInicio2" id="horaInicio2" />
-					<label for="horaFin2"> Hora final: </label>
-					<input type="text" name="horaFin2" id="horaFin2" />
-					<button type="button" onclick="">Agregar Fecha</button>
+					<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
 					<br />
-					<button type="button" onclick="">Eliminar Fecha</button>
 				</fieldset>
 				<button type="button" onclick="loadCreacionJunta()">Anterior</button>
 				<input type="submit" value="Siguiente">
