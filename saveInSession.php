@@ -74,7 +74,7 @@ function crearJunta($id = 'default'){
 	var nombreDeJunta = ''; 
 	var emailDelCreador = '';
 	var fechaDeCierre = '';
-	var horaDeCierre = '';
+	var horaDeCierre = ''; 
 	var descipcionDeJunta = ''; 
 	
 	//variable de la segunda pantalla
