@@ -40,7 +40,15 @@ a{
 .fl_left{float:left;}
 .fl_right{float:right;}
 
+/*
+VERDE
 .imgl, .imgr{border:1px solid #999999; padding:5px;}
+.imgl{float:left; margin:0 8px 8px 0; clear:left;}
+.imgr{float:right; margin:0 0 8px 8px; clear:right;}
+*/
+
+/* AZUL */
+.imgl, .imgr{border:1px solid #DFDFDF; padding:5px;}
 .imgl{float:left; margin:0 8px 8px 0; clear:left;}
 .imgr{float:right; margin:0 0 8px 8px; clear:right;}
 
@@ -59,9 +67,10 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	font-size:20px;
 	font-weight:normal;
 	line-height:normal;
-	font-family:Georgia, "Times New Roman", Times, serif;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	}
 
+/*
 .col1{color:#CCCCCC; background-color:#000000;}
 .col2, .col2 a{color:#FFFFFF; background-color:#B2C629;}
 .col3{color:#777777; background-color:#FFFFFF;}
@@ -69,6 +78,15 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .col4{color:#FFFFFF; background-color:#000000;}
 .col4 a{color:#95AD19; background-color:#000000;}
 .col5, .col5 a{color:#333333; background-color:#95AD19;}
+*/
+
+.col1{color:#000000; background-color:#E3F1F9;}
+.col2, .col2 a{color:#FFFFFF; background-color:#FFFFFF;}
+.col3{color:#666666; background-color:#FFFFFF;}
+.col3 a{color:#95AD19; background-color:#FFFFFF;}
+.col4{color:#999999; background-color:#000000;}
+.col4 a{color:#2684B7; background-color:#000000;}
+.col5, .col5 a{color:#FFFFFF; background-color:#29313C;}
 
 /* ----------------------------------------------Generalise-------------------------------------*/
 
@@ -103,10 +121,16 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	font-size:36px;
 	text-transform:uppercase;
 	}
-
+/*
 #header h1 a{
 	color:#B2C629;
 	background-color:#000000;
+	}
+*/
+
+#header h1 a{
+	color:#2684B7;
+	background-color:#E3F1F9;
 	}
 
 /* ----------------------------------------------BreadCrumb-------------------------------------*/
@@ -154,9 +178,10 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .homepage li{
 	display:block;
 	float:left;
-	width:300px;
+	width:280px;
 	margin:0 30px 0 0;
-	padding:0;
+	padding: 10px;
+	background-color:#EFEFEF;
 	}
 
 .homepage li.last{margin-right:0;}
@@ -174,7 +199,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 .homepage li h2 img{
 	float:left;
-	margin:-15px 8px 0 0;
+	margin:-5px 8px 0 0;
 	padding:5px;
 	border:1px solid #999999;
 	}
@@ -195,7 +220,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .homepage p.readmore a{
 	padding:8px 15px 10px;
 	color:#FFFFFF;
-	background-color:#95AD19;
+	background-color:#1C5E82;
 	}
 
 /* ----------------------------------------------Content Block-------------------------------------*/
