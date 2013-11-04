@@ -158,9 +158,9 @@
 					<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
 					<div id="fechas">
 					<p>
-						<input type="text" id="fechaElegir" size="20" name="fechaElegir"/>
-						<input type="text" id="horaInicio" size="20" name="horaInicio"/>
-						<input type="text" id="horaFin" size="20" name="horaFin"/>
+						<input type="text" id="fechaElegir1" size="20" name="fechaElegir"/>
+						<input type="text" id="horaInicio1" size="20" name="horaInicio"/>
+						<input type="text" id="horaFin1" size="20" name="horaFin"/>
 					</p>
 					</div>
 					<br />
