@@ -108,6 +108,7 @@
 		<div class="wrapper col3">
 			<div id="container">
 				<div id="content">
+					<h3>Generar Junta</h3>
 					<div id="creacionJunta" hidden>
 						<p> Soy creacionJunta</p>
 						<!--<form id="creacionJuntaForm" method="post">-->
@@ -377,13 +378,6 @@
 				<br class="clear" />
 				</div>
 			</div>
-		</div>
-		
-		<div class="wrapper col4">
-			<div id="footer">
-				<h3>Test</h3>
-			</div>
-			<br class="clear" />
 		</div>
 		
 	</body>
