@@ -382,6 +382,7 @@
 		
 		<div class="wrapper col4">
 			<div id="footer">
+				<h3>Test</h3>
 			</div>
 			<br class="clear" />
 		</div>
