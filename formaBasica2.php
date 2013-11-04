@@ -161,7 +161,11 @@
 							$(function() {
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size() + 1;			
+<<<<<<< HEAD
 								
+=======
+					
+>>>>>>> 714acd227fad90f1d2c61c5e5f98b918b8edc390
 								$('#agregafecha').live('click', function() {
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" />'
 										+'<input type="text" id="horaInicio' + i +'" size="20" name="horaInicio' + i +'" />'
@@ -170,7 +174,11 @@
 									i++;
 									return false;
 								});
+<<<<<<< HEAD
 								
+=======
+					
+>>>>>>> 714acd227fad90f1d2c61c5e5f98b918b8edc390
 								$('#borrafecha').live('click', function() { 
 									if( i > 2 ) {
 										$(this).parents('p').remove();
@@ -182,6 +190,7 @@
 						</script>
 						<form id="seleccionFechasForm" action="javascript:alert( 'successOMG!' );">
 							<fieldset>
+<<<<<<< HEAD
 							<b>Fechas a elegir:</b>
 							<br /><br />
 							<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
@@ -195,6 +204,21 @@
 							<br />
 							<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
 							<br />
+=======
+								<b>Fechas a elegir:</b>
+								<br /><br />
+								<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
+								<div id="fechas">
+									<p>
+										<input type="text" id="fechaElegir1" size="20" name="fechaElegir"/>
+										<input type="text" id="horaInicio1" size="20" name="horaInicio"/>
+										<input type="text" id="horaFin1" size="20" name="horaFin"/>
+									</p>
+								</div>
+								<br />
+								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
+								<br />
+>>>>>>> 714acd227fad90f1d2c61c5e5f98b918b8edc390
 							</fieldset>
 							<button type="button" onclick="loadCreacionJunta()">Anterior</button>
 							<input type="submit" value="Siguiente">
@@ -203,6 +227,7 @@
 							$( "#seleccionFechasForm" ).submit(function(event) {
 								console.log( JSON.stringify($( this ).serializeArray() ));
 								event.preventDefault();
+<<<<<<< HEAD
 								$.ajax({
 										type: "POST",
 										dataType: "json",
@@ -215,6 +240,21 @@
 										error: function(e){
 											console.log(e.message);
 										}
+=======
+					
+								$.ajax({
+									type: "POST",
+									dataType: "json",
+									url: "saveInSession.php",
+									//data: {myData:JSON.stringify($( this ).serializeArray() )},
+									data: {myData:$( this ).serializeArray() },
+									success: function(data){
+										alert('Llegue!');
+									},
+									error: function(e){
+										console.log(e.message);
+									}
+>>>>>>> 714acd227fad90f1d2c61c5e5f98b918b8edc390
 								});
 								loadSeleccionInvitados();
 							});
