@@ -218,7 +218,6 @@
 					loadSeleccionInvitados();
 				});
 			</script>
-
 		</div>
 
 					<!--Div de Invitados-->
