@@ -371,13 +371,12 @@
 
 					<!--Div de Cierre-->
 					<div id="juntaCreada" hidden>
-						<p> Soy juntaCreada</p>
+						<p>Soy juntaCreada</p>
 						<button type="button" onclick="hideEveryone()">OK</button>
 					</div>
 				<br class="clear" />
 				</div>
 			</div>
-			
 		</div>
 		
 		<div class="wrapper col4">
