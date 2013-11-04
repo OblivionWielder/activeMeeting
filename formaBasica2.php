@@ -79,8 +79,33 @@
 
 	<body onload="loadCreacionJunta()">
 	<!--Divs Varios-->
-		<!--Div de creacion de junta-->
 		<div class="wrapper col1">
+		  <div id="header">
+			<div id="logo">
+			  <h1 title="version 2"><a href="#">Active Meeting</a></h1>
+			  <p>Crea juntas f&aacute;cil y r&aacute;pido</p>
+			</div>
+			<div id="topnav">
+			  <ul>
+				<li><a href="index.php">Inicio</a></li>
+				<li><a href="style-demo.html">Crear Junta</a></li>
+				<li><a href="#">Link 1</a></li>
+				<li><a href="#">Link 2</a></li>
+				<li><a href="#">DropDown</a>
+				  <ul>
+					<li><a href="#">Link 1</a></li>
+					<li><a href="#">Link 2</a></li>
+					<li><a href="#">Link 3</a></li>
+				  </ul>
+				</li>
+			  </ul>
+			</div>
+			<br class="clear" />
+		  </div>
+		</div>
+	
+		<!--Div de creacion de junta-->
+		<div class="wrapper col2">
 			<div id="creacionJunta" hidden>
 				<p> Soy creacionJunta</p>
 				<!--<form id="creacionJuntaForm" method="post">-->
