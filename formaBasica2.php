@@ -383,6 +383,7 @@
 		<div class="wrapper col4">
 			<div id="footer">
 			</div>
+			<br class="clear" />
 		</div>
 		
 		<div class="wrapper col5">
