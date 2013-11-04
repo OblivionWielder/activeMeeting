@@ -104,11 +104,11 @@
 		  </div>
 		</div>
 	
-		<!--Div de creacion de junta-->
 		<div class="wrapper col3">
 			<div id="container">
 				<div id="content">
 					<h3>Generar Junta</h3>
+					<!--Div de creacion de junta-->
 					<div id="creacionJunta" hidden>
 						<p> Soy creacionJunta</p>
 						<!--<form id="creacionJuntaForm" method="post">-->
@@ -154,72 +154,72 @@
 						</script>
 					</div>
 
-		<!--Div de Fechas-->
-		<div id="seleccionFechas" hidden>
-			<p> Soy seleccionFechas</p>
-			<script type="text/javascript">
-				$(function() {
-					var scntDiv = $('#fechas');
-					var i = $('#fechas p').size() + 1;			
-					
-					$('#agregafecha').live('click', function() {
-						$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" />'
-							+'<input type="text" id="horaInicio' + i +'" size="20" name="horaInicio' + i +'" />'
-							+'<input type="text" id="horaFin' + i +'" size="20" name="horaFin' + i +'" />'
-							+'<button type="button" href="#" id="borrafecha">Borrar Fecha</button></p>').appendTo(scntDiv);
-						i++;
-						return false;
-					});
-					
-					$('#borrafecha').live('click', function() { 
-						if( i > 2 ) {
-							$(this).parents('p').remove();
-							i--;
-						}
-						return false;
-					});
-				});
-			</script>
-			<form id="seleccionFechasForm" action="javascript:alert( 'successOMG!' );">
-				<fieldset>
-				<b>Fechas a elegir:</b>
-				<br /><br />
-				<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
-				<div id="fechas">
-					<p>
-						<input type="text" id="fechaElegir1" size="20" name="fechaElegir"/>
-						<input type="text" id="horaInicio1" size="20" name="horaInicio"/>
-						<input type="text" id="horaFin1" size="20" name="horaFin"/>
-					</p>
-				</div>
-				<br />
-				<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
-				<br />
-				</fieldset>
-				<button type="button" onclick="loadCreacionJunta()">Anterior</button>
-				<input type="submit" value="Siguiente">
-			</form>
-			<script>
-				$( "#seleccionFechasForm" ).submit(function(event) {
-					console.log( JSON.stringify($( this ).serializeArray() ));
-					event.preventDefault();
-					$.ajax({
-							type: "POST",
-							dataType: "json",
-							url: "saveInSession.php",
-							//data: {myData:JSON.stringify($( this ).serializeArray() )},
-							data: {myData:$( this ).serializeArray() },
-							success: function(data){
-								alert('Llegue!');
-							},
-							error: function(e){
-								console.log(e.message);
-							}
-					});
-					loadSeleccionInvitados();
-				});
-			</script>
-		</div>
+					<!--Div de Fechas-->
+					<div id="seleccionFechas" hidden>
+						<p> Soy seleccionFechas</p>
+						<script type="text/javascript">
+							$(function() {
+								var scntDiv = $('#fechas');
+								var i = $('#fechas p').size() + 1;			
+								
+								$('#agregafecha').live('click', function() {
+									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" />'
+										+'<input type="text" id="horaInicio' + i +'" size="20" name="horaInicio' + i +'" />'
+										+'<input type="text" id="horaFin' + i +'" size="20" name="horaFin' + i +'" />'
+										+'<button type="button" href="#" id="borrafecha">Borrar Fecha</button></p>').appendTo(scntDiv);
+									i++;
+									return false;
+								});
+								
+								$('#borrafecha').live('click', function() { 
+									if( i > 2 ) {
+										$(this).parents('p').remove();
+										i--;
+									}
+									return false;
+								});
+							});
+						</script>
+						<form id="seleccionFechasForm" action="javascript:alert( 'successOMG!' );">
+							<fieldset>
+							<b>Fechas a elegir:</b>
+							<br /><br />
+							<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
+							<div id="fechas">
+								<p>
+									<input type="text" id="fechaElegir1" size="20" name="fechaElegir"/>
+									<input type="text" id="horaInicio1" size="20" name="horaInicio"/>
+									<input type="text" id="horaFin1" size="20" name="horaFin"/>
+								</p>
+							</div>
+							<br />
+							<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
+							<br />
+							</fieldset>
+							<button type="button" onclick="loadCreacionJunta()">Anterior</button>
+							<input type="submit" value="Siguiente">
+						</form>
+						<script>
+							$( "#seleccionFechasForm" ).submit(function(event) {
+								console.log( JSON.stringify($( this ).serializeArray() ));
+								event.preventDefault();
+								$.ajax({
+										type: "POST",
+										dataType: "json",
+										url: "saveInSession.php",
+										//data: {myData:JSON.stringify($( this ).serializeArray() )},
+										data: {myData:$( this ).serializeArray() },
+										success: function(data){
+											alert('Llegue!');
+										},
+										error: function(e){
+											console.log(e.message);
+										}
+								});
+								loadSeleccionInvitados();
+							});
+						</script>
+					</div>
 
 					<!--Div de Invitados-->
 					<div id="seleccionInvitados" hidden>
@@ -375,9 +375,18 @@
 						<p>Soy juntaCreada</p>
 						<button type="button" onclick="hideEveryone()">OK</button>
 					</div>
-				<br class="clear" />
 				</div>
+				<div id="column">
+				</div>
+				<br class="clear" />
 			</div>
+		</div>
+		<div class="wrapper col4">
+		  <div id="copyright">
+			<p class="fl_left">Copyright &copy; 2013 - Todos los derechos reservados - <a href="#">Active Meeting</a></p>
+			<p class="fl_right">Plantilla original de <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+			<br class="clear" />
+		  </div>
 		</div>
 		
 	</body>
