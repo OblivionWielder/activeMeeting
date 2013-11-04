@@ -80,49 +80,51 @@
 	<body onload="loadCreacionJunta()">
 	<!--Divs Varios-->
 		<!--Div de creacion de junta-->
-		<div id="creacionJunta" hidden>
-			<p> Soy creacionJunta</p>
-			<!--<form id="creacionJuntaForm" method="post">-->
-			<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );">
-			  <fieldset>
-				<label for="nombreJunta">Nombre De La Junta: </label>
-				<input type="text" name="nombreJunta" id="nombreJunta" />
-				<br />
-				<label for="emailCreador">Email: </label>
-				<input type="text" name="emailCreador" id="emailCreador" />
-				<br />
-				<label for="cierreVotacion">Fecha De Cierre De Votaci&oacute;n: </label>
-				<input type="text" name="cierreVotacion" id="cierreVotacion" />
-				<label for="horaCierreVotacion"> Hora: </label>
-				<input type="text" name="horaCierreVotacion" id="horaCierreVotacion" />
-				<br />
-				<label for="descripcionJunta">Descripci&oacute;n: </label>
-				<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50">
-				</textarea>
-			  </fieldset>
-				<input type="submit" value="Siguiente">
-			<!--<input type="submit" id="creacionJuntaFormButton" name="Submit" value="Siguiente (Fechas)" />-->
-			</form>
-			<span></span>
-			<script>
-				$( "#creacionJuntaForm" ).submit(function(event) {
-				console.log( JSON.stringify($( this ).serializeArray() ));
-				event.preventDefault();
-				 $.ajax({
-						type: "POST",
-						dataType: "json",
-						url: "saveInSession2.php",
-						data: {myData:JSON.stringify($( this ).serializeArray() )},
-						success: function(data){
-							alert('Llegue!');
-						},
-						error: function(e){
-							console.log(e.message);
-						}
-				});
-				loadSeleccionFechas();
-				});
-			</script>
+		<div class="wrapper col1">
+			<div id="creacionJunta" hidden>
+				<p> Soy creacionJunta</p>
+				<!--<form id="creacionJuntaForm" method="post">-->
+				<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );">
+				  <fieldset>
+					<label for="nombreJunta">Nombre De La Junta: </label>
+					<input type="text" name="nombreJunta" id="nombreJunta" />
+					<br />
+					<label for="emailCreador">Email: </label>
+					<input type="text" name="emailCreador" id="emailCreador" />
+					<br />
+					<label for="cierreVotacion">Fecha De Cierre De Votaci&oacute;n: </label>
+					<input type="text" name="cierreVotacion" id="cierreVotacion" />
+					<label for="horaCierreVotacion"> Hora: </label>
+					<input type="text" name="horaCierreVotacion" id="horaCierreVotacion" />
+					<br />
+					<label for="descripcionJunta">Descripci&oacute;n: </label>
+					<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50">
+					</textarea>
+				  </fieldset>
+					<input type="submit" value="Siguiente">
+				<!--<input type="submit" id="creacionJuntaFormButton" name="Submit" value="Siguiente (Fechas)" />-->
+				</form>
+				<span></span>
+				<script>
+					$( "#creacionJuntaForm" ).submit(function(event) {
+					console.log( JSON.stringify($( this ).serializeArray() ));
+					event.preventDefault();
+					 $.ajax({
+							type: "POST",
+							dataType: "json",
+							url: "saveInSession2.php",
+							data: {myData:JSON.stringify($( this ).serializeArray() )},
+							success: function(data){
+								alert('Llegue!');
+							},
+							error: function(e){
+								console.log(e.message);
+							}
+					});
+					loadSeleccionFechas();
+					});
+				</script>
+			</div>
 		</div>
 
 		<!--Div de Fechas-->
