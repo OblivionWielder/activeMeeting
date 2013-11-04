@@ -374,11 +374,11 @@
 						<p> Soy juntaCreada</p>
 						<button type="button" onclick="hideEveryone()">OK</button>
 					</div>
+				<br class="clear" />
 				</div>
 			</div>
 			
 		</div>
-		<br class="clear" />
 		<div class="wrapper col4">
 			<div id="copyright">
 				<p class="fl_left">Copyright &copy; 2013 - Todos los derechos reservados - <a href="#">Active Meeting</a></p>
