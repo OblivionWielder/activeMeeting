@@ -71,7 +71,11 @@ function echo3($var = 'default'){
 function crearJunta($id = 'default'){ 
 	
 	//variables de la primera pantalla
-	var nombreDeJunta, emailDelCreador, fechaDeCierre, horaDeCierre, descipcionDeJunta = ''; 
+	var nombreDeJunta = ''; 
+	var emailDelCreador = '';
+	var fechaDeCierre = '';
+	var horaDeCierre = '';
+	var descipcionDeJunta = ''; 
 	
 	//variable de la segunda pantalla
 	/*
