@@ -129,7 +129,7 @@
 							<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50">
 							</textarea>
 						  </fieldset>
-							<input type="submit" class="submit" value="Siguiente">
+							<button type="submit">Siguiente</button>
 						<!--<input type="submit" id="creacionJuntaFormButton" name="Submit" value="Siguiente (Fechas)" />-->
 						</form>
 						<span></span>
@@ -197,7 +197,7 @@
 								<br />
 							</fieldset>
 							<button type="button" onclick="loadCreacionJunta()">Anterior</button>
-							<input type="submit" class="submit" value="Siguiente">
+							<button type="submit">Siguiente</button>
 						</form>
 						<script>
 							$( "#seleccionFechasForm" ).submit(function(event) {
@@ -283,7 +283,7 @@
 								<br /><br />
 							</fieldset>
 							<button type="button" onclick="loadSeleccionFechas()">Anterior</button>
-							<input type="submit" class="submit" value="Siguiente">
+							<button type="submit">Siguiente</button>
 						</form>
 						<script>
 							$( "#seleccionInvitadosForm" ).submit(function(event) {
@@ -325,7 +325,7 @@
 								<input type="text" id="numVetos" name="numVetos" size="1" value="0" />
 							</fieldset>
 							<button type="button" onclick="loadSeleccionInvitados()">Anterior</button>
-							<input type="submit" class="submit" value="Siguiente">
+							<button type="submit">Siguiente</button>
 						</form>
 						<script>
 							$( "#distribucionAInvitadosForm" ).submit(function(event) {

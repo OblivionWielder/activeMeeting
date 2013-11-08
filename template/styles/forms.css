@@ -8,7 +8,7 @@ Licence: <a href="http://www.os-templates.com/template-terms">Website Template L
 
 form, fieldset, legend{margin:0; padding:0; border:none;}
 legend{display:none;}
-input, textarea, select{font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif;}
+input, textarea, select, button{font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif;}
 
 /* ----------------------------------------------Forms in Content Area-------------------------------------*/
 
@@ -20,7 +20,16 @@ input, textarea, select{font-size:12px; font-family:Verdana, Arial, Helvetica, s
 	
 #container #respond p{margin:5px 0;}
 
-input[type=submit]{
+#container #respond #submit, #container #respond #reset{
+	margin:0;
+	padding:5px;
+	color:#666666;
+	background-color:#F7F7F7;
+	border:1px solid #CCCCCC;
+	cursor:pointer;
+	}
+
+button {
 	margin:0;
 	padding:5px;
 	color:#666666;
