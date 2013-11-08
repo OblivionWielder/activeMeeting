@@ -134,26 +134,26 @@
 						</form>
 						<span></span>
 						<script>
-    $( "#creacionJuntaForm" ).submit(function(event) {
-    console.log( JSON.stringify($( this ).serializeArray() ));
-    event.preventDefault();
-     $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "saveInSession.php",
-		 //data: {myData:JSON.stringify($( this ).serializeArray() )},
-		 	data: {myData:$( this ).serializeArray() },
-            success: function(data){
-                alert('Llegue!');
-            },
-            error: function(e){
-                console.log(e.message);
-            }
-    });
-   loadSeleccionFechas();
-    });
-    </script>
-									</div>
+							$( "#creacionJuntaForm" ).submit(function(event) {
+								console.log( JSON.stringify($( this ).serializeArray() ));
+								event.preventDefault();
+								$.ajax({
+									type: "POST",
+									dataType: "json",
+									url: "saveInSession.php",
+									//data: {myData:JSON.stringify($( this ).serializeArray() )},
+									data: {myData:$( this ).serializeArray() },
+									success: function(data){
+										alert('Llegue!');
+									},
+									error: function(e){
+										console.log(e.message);
+									}
+								});
+								loadSeleccionFechas();
+							});
+						</script>
+					</div>
 
 					<!--Div de Fechas-->
 					<div id="seleccionFechas" hidden>
