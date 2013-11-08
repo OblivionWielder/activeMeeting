@@ -162,12 +162,20 @@
 							$(function() {
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size() + 1;			
-					
+								
+								var fechas = new Array();
+								var calendario = new Array();
+								
+								fechas = [document.getElementbyID("fechaElegir1"), document.getElementbyID("horaInicio1"), document.getElementbyID("horaFin1")];
+								calendario.push(fechas);
+								
 								$('#agregafecha').live('click', function() {
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" />'
 										+'<input type="text" id="horaInicio' + i +'" size="20" name="horaInicio' + i +'" />'
 										+'<input type="text" id="horaFin' + i +'" size="20" name="horaFin' + i +'" />'
 										+'<button type="button" href="#" id="borrafecha">Borrar Fecha</button></p>').appendTo(scntDiv);
+									fechas = [document.getElementbyID('fechaElegir'+i), document.getElementbyID('horaInicio'+i), document.getElementbyID('horaFin'+i)];
+									calendario.push(fechas);
 									i++;
 									return false;
 								});
@@ -175,7 +183,9 @@
 								$('#borrafecha').live('click', function() { 
 									if( i > 2 ) {
 										$(this).parents('p').remove();
+										calendario.pop()
 										i--;
+										
 									}
 									return false;
 								});
