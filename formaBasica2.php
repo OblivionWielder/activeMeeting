@@ -276,11 +276,11 @@
 							<fieldset>
 								<label for="emailInv">Email invitado: </label>
 								<input type="email" name="emailParticipante" id="emailParticipante" />
-								<input type="button" name="agregarParticipante" id="agregarParticipante" value="Agregar participante" onclick="agregarPartic()" />
+								<button type="button" name="agregarParticipante" id="agregarParticipante" onclick="agregarPartic()">Agregar participante</button>
 								<br /><br />
 								<label for="listaInvitados">Invitados: </label>
 								<select name="participantes" id="participantes" multiple="multiple" size="3"></select>
-								<input type="button" name="eliminarParticipante" id="eliminarParticipante" value="Eliminar participante" onclick="eliminarPartic()" />
+								<button type="button" name="eliminarParticipante" id="eliminarParticipante" onclick="eliminarPartic()" />Eliminar participante</button>
 								<br /><br />
 							</fieldset>
 							<button type="button" onclick="loadSeleccionFechas()">Anterior</button>
