@@ -166,7 +166,7 @@
 								var fechas = new Array();
 								var calendario = new Array();
 								
-								fechas = [document.getElementbyId("fechaElegir1"), document.getElementbyId("horaInicio1"), document.getElementbyId("horaFin1")];
+								fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")];
 								calendario.push(fechas);
 								
 								$('#agregafecha').live('click', function() {
@@ -174,7 +174,7 @@
 										+'<input type="text" id="horaInicio' + i +'" size="20" name="horaInicio' + i +'" />'
 										+'<input type="text" id="horaFin' + i +'" size="20" name="horaFin' + i +'" />'
 										+'<button type="button" href="#" id="borrafecha">Borrar Fecha</button></p>').appendTo(scntDiv);
-									fechas = [document.getElementbyId("fechaElegir"+i), document.getElementbyId("horaInicio"+i), document.getElementbyId("horaFin"+i)];
+									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 									calendario.push(fechas);
 									i++;
 									return false;
@@ -183,7 +183,7 @@
 								$('#borrafecha').live('click', function() { 
 									if( i > 2 ) {
 										$(this).parents('p').remove();
-										var fechaBorrar = [document.getElementbyId("fechaElegir"+i), document.getElementbyId("horaInicio"+i), document.getElementbyId("horaFin"+i)];
+										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 										var indice = calendario.indexOf(fechaBorrar);
 										calendario.splice(indice,1);
 										i--;
