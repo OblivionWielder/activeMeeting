@@ -136,9 +136,14 @@
 						<script>
 							$( "#creacionJuntaForm" ).submit(function(event) {
 							    //agregado para que pueda votar el creador
-								var email = document.getElementById("emailCreador");
+								var inputEmail = document.getElementById("emailCreador");
 								var distPart = document.getElementById("participantesDist");
-								distPart.add(email, null);
+								
+								if(inputEmail.value != "") {
+									var email = document.createElement("option");
+									email.text = inputEmail.value;
+									distPart.add(email, null);
+								}
 								
 								console.log( JSON.stringify($( this ).serializeArray() ));
 								event.preventDefault();
