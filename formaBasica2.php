@@ -183,7 +183,9 @@
 								$('#borrafecha').live('click', function() { 
 									if( i > 2 ) {
 										$(this).parents('p').remove();
-										calendario.pop()
+										var fechaBorrar = [document.getElementbyID('fechaElegir'+i), document.getElementbyID('horaInicio'+i), document.getElementbyID('horaFin'+i)];
+										var indice = calendario.indexOf(fechaBorrar);
+										calendario.splice(indice,1);
 										i--;
 										
 									}
