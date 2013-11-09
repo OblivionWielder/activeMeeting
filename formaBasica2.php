@@ -245,7 +245,9 @@
 								var listaParticipantes = document.getElementById("participantes"); // Obtener la referencia del select
 								var distPart = document.getElementById("participantesDist"); // Lista para el siguiente div
 								var inputEmail = document.getElementById("emailParticipante"); // Obtener la referencia del mail que se recibe como input
-
+								
+								var arregloParticipantes = new Array(); //Arreglo para mandar a los participantes a procesador
+								
 								if(inputEmail.value != "")
 								{
 									/* Validar que el inputEmail sea una email valido */
@@ -258,6 +260,8 @@
 									listaParticipantes.add(email, null); // Agregar el option al final de la lista
 									distPart.add(email2, null); // Agregar el option al final de la lista del otro div
 
+									arregloParticipantes.push(email.text); //Se mete al participante en el arreglo
+									
 									// Al ponerlo asi no funciona, aunque no deberia de haber problemas D=
 									/*try
 									{
@@ -280,6 +284,7 @@
 								var seleccionado = listaParticipantes.selectedIndex;
 								listaParticipantes.remove(seleccionado);
 								distPart.remove(seleccionado);
+								arregloParticipantes.splice(seleccionado,1); //Borra del arreglo al participante seleccionado
 							}
 
 							// -->
