@@ -135,6 +135,11 @@
 						<span></span>
 						<script>
 							$( "#creacionJuntaForm" ).submit(function(event) {
+							    //agregado para que pueda votar el creador
+								var email = document.getElementById("emailCreador");
+								var distPart = document.getElementById("participantesDist");
+								distPart.add(email, null);
+								
 								console.log( JSON.stringify($( this ).serializeArray() ));
 								event.preventDefault();
 								$.ajax({
@@ -283,7 +288,7 @@
 								var distPart = document.getElementById("participantesDist"); // Obtener referencia del select del div siguiente
 								var seleccionado = listaParticipantes.selectedIndex;
 								listaParticipantes.remove(seleccionado);
-								distPart.remove(seleccionado);
+								distPart.remove(seleccionado+1);
 								arregloParticipantes.splice(seleccionado,1); //Borra del arreglo al participante seleccionado
 							}
 
