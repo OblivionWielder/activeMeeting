@@ -46,7 +46,7 @@ switch ($_SESSION["action"]) {
         echo "none";
         break;
     case 1:
-        echo1();
+        crearJunta();
         break;
     case 2:
         echo2();
@@ -71,11 +71,12 @@ function echo3($var = 'default'){
 function crearJunta($id = 'default'){ 
 	
 	//variables de la primera pantalla
-	var $nombreDeJunta = ''; 
-	var $emailDelCreador = '';
-	var $fechaDeCierre = '';
-	var $horaDeCierre = ''; 
-	var $descipcionDeJunta = ''; 
+	echo "PRIMER SECCION"
+	var $nombreDeJunta = $_SESSION['nombreJunta']; 
+	var $emailDelCreador = $_SESSION['emailCreador']; 
+	var $fechaDeCierre = $_SESSION['cierreVotacion']; 
+	var $horaDeCierre = $_SESSION['horaCierreVotacion']; 
+	var $descipcionDeJunta = $_SESSION['descripcionJunta']; 
 	
 	//variable de la segunda pantalla
 	/*
