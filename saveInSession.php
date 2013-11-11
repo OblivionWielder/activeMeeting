@@ -72,12 +72,14 @@ function crearJunta($id = 'default'){
 	
 	//variables de la primera pantalla
 	echo "PRIMER SECCION";
-	$nombreDeJunta = $_SESSION['nombreJunta']; 
+	//FILTER_SANITIZE_FULL_SPECIAL_CHARS
+
+	$nombreDeJunta = filter_var($_SESSION['nombreJunta'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
 	$emailDelCreador = $_SESSION['emailCreador']; 
 	$fechaDeCierre = $_SESSION['cierreVotacion']; 
 	$horaDeCierre = $_SESSION['horaCierreVotacion']; 
 	$descipcionDeJunta = $_SESSION['descripcionJunta']; 
-	
+	echo $nombreDeJunta;
 	//variable de la segunda pantalla
 	/*
 	Tenemos que revisar:
