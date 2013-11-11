@@ -71,7 +71,7 @@ function echo3($var = 'default'){
 function crearJunta($id = 'default'){ 
 	
 	//variables de la primera pantalla
-	echo "PRIMER SECCION"
+	echo "PRIMER SECCION";
 	var $nombreDeJunta = $_SESSION['nombreJunta']; 
 	var $emailDelCreador = $_SESSION['emailCreador']; 
 	var $fechaDeCierre = $_SESSION['cierreVotacion']; 
