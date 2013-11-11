@@ -41,7 +41,7 @@ $output = $output . $key. ": ".$val. "<br>";
 //$output = print_r($objeto."", true);
 file_put_contents('file2.txt', $output);
 
-switch ($_SESSION["action"]) {
+switch ($_SESSION["accion"]) {
     case 0:
         echo "none";
         break;
