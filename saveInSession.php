@@ -46,7 +46,7 @@ switch ($_SESSION["action"]) {
         echo "none";
         break;
     case 1:
-        crearJunta();
+        crearJunta('something');
         break;
     case 2:
         echo2();
