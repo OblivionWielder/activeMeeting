@@ -98,7 +98,7 @@ function crearJunta($id = 'default'){
 		[inicio]
 		[final]
 	*/
-	var horariosSeleccionados = array(); //sobre este habra nombres de numero
+	$horariosSeleccionados = array(); //sobre este habra nombres de numero
 	//sobre cada opcion que nos venga, asignamos 3 campos: fecha, horaInicial y horaFinal.
 	
 	
@@ -110,7 +110,7 @@ function crearJunta($id = 'default'){
 	3. Los correos tienen que ser correctos en forma
 	4. No es posible eliminar el creador
 	*/
-	var listaDeInvitados = array(); 
+	$listaDeInvitados = array(); 
 	
 	
 	
@@ -120,7 +120,7 @@ function crearJunta($id = 'default'){
 	podemos usar luego eso con array(0 => 'zero_a', 2 => 'two_a', 3 => 'three_a'); para asignar votos positivos,
 	negativos y vetos
 	*/
-	var pointDistribution = array();
+	$pointDistribution = array();
 	
 	
 	/* 
