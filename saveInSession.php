@@ -4,7 +4,7 @@
 * @author mofugeek
 * @copyright 2012
 */
-/* var $objeto = "";
+/* $objeto = "";
 for($i = 0; $i < count($_POST['myData']); ++$i) {
 	if($_POST['myData'][i]["name"]="nombreJunta")
 		$objeto = $_POST['myData'][i]["value"];
@@ -72,11 +72,11 @@ function crearJunta($id = 'default'){
 	
 	//variables de la primera pantalla
 	echo "PRIMER SECCION";
-	var $nombreDeJunta = $_SESSION['nombreJunta']; 
-	var $emailDelCreador = $_SESSION['emailCreador']; 
-	var $fechaDeCierre = $_SESSION['cierreVotacion']; 
-	var $horaDeCierre = $_SESSION['horaCierreVotacion']; 
-	var $descipcionDeJunta = $_SESSION['descripcionJunta']; 
+	$nombreDeJunta = $_SESSION['nombreJunta']; 
+	$emailDelCreador = $_SESSION['emailCreador']; 
+	$fechaDeCierre = $_SESSION['cierreVotacion']; 
+	$horaDeCierre = $_SESSION['horaCierreVotacion']; 
+	$descipcionDeJunta = $_SESSION['descripcionJunta']; 
 	
 	//variable de la segunda pantalla
 	/*
