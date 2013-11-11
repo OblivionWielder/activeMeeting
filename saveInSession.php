@@ -73,8 +73,8 @@ function crearJunta($id = 'default'){
 	//variables de la primera pantalla
 	echo "PRIMER SECCION";
 	//FILTER_SANITIZE_FULL_SPECIAL_CHARS
-
-	$nombreDeJunta = filter_var($_SESSION['nombreJunta'], FILTER_SANITIZE_SPECIAL_CHARS); 
+echo $_SESSION['nombreJunta'];
+	$nombreDeJunta = filter_var($_SESSION['nombreJunta'], FILTER_SANITIZE_STRING); 
 	$emailDelCreador = $_SESSION['emailCreador']; 
 	$fechaDeCierre = $_SESSION['cierreVotacion']; 
 	$horaDeCierre = $_SESSION['horaCierreVotacion']; 
