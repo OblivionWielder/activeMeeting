@@ -22,6 +22,9 @@
 
 			function loadCreacionJunta()
 			{
+				var distPart = document.getElementById("participantesDist");
+				distPart.remove(0);
+				
 				$("#creacionJunta").show();
 				$("#seleccionFechas").hide();
 				$("#seleccionInvitados").hide();
@@ -129,27 +132,38 @@
 							<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50">
 							</textarea>
 						  </fieldset>
-							<input type="submit" value="Siguiente">
+							<button type="submit">Siguiente</button>
 						<!--<input type="submit" id="creacionJuntaFormButton" name="Submit" value="Siguiente (Fechas)" />-->
 						</form>
 						<span></span>
 						<script>
 							$( "#creacionJuntaForm" ).submit(function(event) {
-							console.log( JSON.stringify($( this ).serializeArray() ));
-							event.preventDefault();
-							 $.ajax({
+							    //agregado para que pueda votar el creador
+								var inputEmail = document.getElementById("emailCreador");
+								var distPart = document.getElementById("participantesDist");
+								
+								if(inputEmail.value != "") {
+									var email = document.createElement("option");
+									email.text = inputEmail.value;
+									distPart.add(email, null);
+								}
+								
+								console.log( JSON.stringify($( this ).serializeArray() ));
+								event.preventDefault();
+								$.ajax({
 									type: "POST",
 									dataType: "json",
 									url: "saveInSession.php",
-									data: {myData:JSON.stringify($( this ).serializeArray() )},
+									//data: {myData:JSON.stringify($( this ).serializeArray() )},
+									data: {myData:$( this ).serializeArray() },
 									success: function(data){
 										alert('Llegue!');
 									},
 									error: function(e){
 										console.log(e.message);
 									}
-							});
-							loadSeleccionFechas();
+								});
+								loadSeleccionFechas();
 							});
 						</script>
 					</div>
@@ -161,12 +175,20 @@
 							$(function() {
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size() + 1;			
-					
+								
+								var fechas = new Array();
+								var calendario = new Array();
+								
+								fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")];
+								calendario.push(fechas);
+								
 								$('#agregafecha').live('click', function() {
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" />'
 										+'<input type="text" id="horaInicio' + i +'" size="20" name="horaInicio' + i +'" />'
 										+'<input type="text" id="horaFin' + i +'" size="20" name="horaFin' + i +'" />'
 										+'<button type="button" href="#" id="borrafecha">Borrar Fecha</button></p>').appendTo(scntDiv);
+									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
+									calendario.push(fechas);
 									i++;
 									return false;
 								});
@@ -174,7 +196,11 @@
 								$('#borrafecha').live('click', function() { 
 									if( i > 2 ) {
 										$(this).parents('p').remove();
+										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
+										var indice = calendario.indexOf(fechaBorrar);
+										calendario.splice(indice,1);
 										i--;
+										
 									}
 									return false;
 								});
@@ -194,10 +220,10 @@
 								</div>
 								<br />
 								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
-								<br />e
+								<br />
 							</fieldset>
-							<button type="button" class="anterior" onclick="loadCreacionJunta()">Anterior</button>
-							<input type="submit" value="Siguiente">
+							<button type="button" onclick="loadCreacionJunta()">Anterior</button>
+							<button type="submit">Siguiente</button>
 						</form>
 						<script>
 							$( "#seleccionFechasForm" ).submit(function(event) {
@@ -232,7 +258,9 @@
 								var listaParticipantes = document.getElementById("participantes"); // Obtener la referencia del select
 								var distPart = document.getElementById("participantesDist"); // Lista para el siguiente div
 								var inputEmail = document.getElementById("emailParticipante"); // Obtener la referencia del mail que se recibe como input
-
+								
+								var arregloParticipantes = new Array(); //Arreglo para mandar a los participantes a procesador
+								
 								if(inputEmail.value != "")
 								{
 									/* Validar que el inputEmail sea una email valido */
@@ -245,6 +273,8 @@
 									listaParticipantes.add(email, null); // Agregar el option al final de la lista
 									distPart.add(email2, null); // Agregar el option al final de la lista del otro div
 
+									arregloParticipantes.push(email.text); //Se mete al participante en el arreglo
+									
 									// Al ponerlo asi no funciona, aunque no deberia de haber problemas D=
 									/*try
 									{
@@ -266,7 +296,8 @@
 								var distPart = document.getElementById("participantesDist"); // Obtener referencia del select del div siguiente
 								var seleccionado = listaParticipantes.selectedIndex;
 								listaParticipantes.remove(seleccionado);
-								distPart.remove(seleccionado);
+								distPart.remove(seleccionado+1);
+								arregloParticipantes.splice(seleccionado,1); //Borra del arreglo al participante seleccionado
 							}
 
 							// -->
@@ -275,15 +306,15 @@
 							<fieldset>
 								<label for="emailInv">Email invitado: </label>
 								<input type="email" name="emailParticipante" id="emailParticipante" />
-								<input type="button" name="agregarParticipante" id="agregarParticipante" value="Agregar participante" onclick="agregarPartic()" />
+								<button type="button" name="agregarParticipante" id="agregarParticipante" onclick="agregarPartic()">Agregar participante</button>
 								<br /><br />
 								<label for="listaInvitados">Invitados: </label>
 								<select name="participantes" id="participantes" multiple="multiple" size="3"></select>
-								<input type="button" name="eliminarParticipante" id="eliminarParticipante" value="Eliminar participante" onclick="eliminarPartic()" />
+								<button type="button" name="eliminarParticipante" id="eliminarParticipante" onclick="eliminarPartic()" />Eliminar participante</button>
 								<br /><br />
 							</fieldset>
-							<button type="button" class="anterior" onclick="loadSeleccionFechas()">Anterior</button>
-							<input type="submit"  value="Siguiente">
+							<button type="button" onclick="loadSeleccionFechas()">Anterior</button>
+							<button type="submit">Siguiente</button>
 						</form>
 						<script>
 							$( "#seleccionInvitadosForm" ).submit(function(event) {
@@ -324,8 +355,8 @@
 								<label for="numVetos">Vetos(x): </label>
 								<input type="text" id="numVetos" name="numVetos" size="1" value="0" />
 							</fieldset>
-							<button type="button" class="anterior" onclick="loadSeleccionInvitados()">Anterior</button>
-							<input type="submit"  value="Siguiente">
+							<button type="button" onclick="loadSeleccionInvitados()">Anterior</button>
+							<button type="submit">Siguiente</button>
 						</form>
 						<script>
 							$( "#distribucionAInvitadosForm" ).submit(function(event) {
@@ -366,7 +397,7 @@
 								<br />
 								<label for="lInvitados">Invitados: </label>
 							</fieldset>
-						<button type="button" class="anterior" onclick="loadDistribucionAInvitados()">Anterior</button>
+						<button type="button" onclick="loadDistribucionAInvitados()">Anterior</button>
 						<button type="button" onclick="loadJuntaCreada()">Terminar</button>
 						</form>
 					</div>
