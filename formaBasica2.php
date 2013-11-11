@@ -132,6 +132,7 @@
 							<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50">
 							</textarea>
 						  </fieldset>
+						  <input type ="hidden" value=1 id="accion" name ="accion"/>
 							<button type="submit">Siguiente</button>
 						<!--<input type="submit" id="creacionJuntaFormButton" name="Submit" value="Siguiente (Fechas)" />-->
 						</form>
