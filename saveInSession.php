@@ -63,6 +63,49 @@ function randomDate($start_date, $end_date)
     return date('Y-m-d H:i:s', $val);
 }
 
+function randomDay($start_date, $end_date)
+{
+    // Convert to timetamps
+    $min = strtotime($start_date);
+    $max = strtotime($end_date);
+
+    // Generate random number using above bounds
+    $val = rand($min, $max);
+
+    // Convert back to desired date format
+    return date('Y-m-d', $val);
+}
+function randomTime($start_date, $end_date)
+{
+    // Convert to timetamps
+    $min = strtotime($start_date);
+    $max = strtotime($end_date);
+
+    // Generate random number using above bounds
+    $val = rand($min, $max);
+
+    // Convert back to desired date format
+    return date('H:i:s', $val);
+}
+//echo randomDay("1970-01-01 01:01","2013-12-30 23:30");
+//echo "<br />";
+$uno = randomTime("01:01","23:30");
+$dos = date('H:i:s', strtotime($uno) + 1800);
+
+
+function getUno()
+{
+	return $uno = randomTime("01:01","23:30");
+}
+
+function getDos()
+{
+	return $dos = date('H:i:s', strtotime($uno) + 1800);
+}
+
+//echo $uno."%%%".$dos;
+
+
 
 
 if($testing)
@@ -73,11 +116,27 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
  echo "<br/>"; 
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 
+//primera seccion - detalles de la 
 $_SESSION["accion"] = 1;
 $_SESSION["nombreJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5); //nombre de la junta
 $_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"; //nombre de la junta
 $_SESSION["fechaDeCierre"] = randomDate("1970-01-01 01:01","2013-12-30 23:30");
-$_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50)."@yopmail.com"; //nombre de la junta
+$_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50); //nombre de la junta
+
+//segunda seccion - detalles de diferentes horas de eleccion
+$_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30");,
+													"horaInicio"=> getUno(),
+													"horaFin"	=> getDos()),
+										1 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30");,
+													"horaInicio"=> getUno(),
+													"horaFin"	=> getDos()),
+										2 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30");,
+													"horaInicio"=> getUno(),
+													"horaFin"	=> getDos()),
+										3 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30");,
+													"horaInicio"=> getUno(),
+													"horaFin"	=> getDos())
+										);
 
  echo "<br/>"; 
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
@@ -152,6 +211,7 @@ function crearJunta($id = 'default'){
 		[inicio]
 		[final]
 	*/
+
 	$horariosSeleccionados = array(); //sobre este habra nombres de numero
 	//sobre cada opcion que nos venga, asignamos 3 campos: fecha, horaInicial y horaFinal.
 	
