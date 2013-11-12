@@ -68,7 +68,9 @@ function randomDate($start_date, $end_date)
 if($testing)
 {
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
+ echo "<br/>"; 
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
+ echo "<br/>"; 
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 
 $_SESSION["accion"] = 1;
@@ -77,11 +79,18 @@ $_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."
 $_SESSION["fechaDeCierre"] = randomDate("1970-01-01 01:01","2013-12-30 23:30");
 $_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50)."@yopmail.com"; //nombre de la junta
 
+ echo "<br/>"; 
+echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
+ echo "<br/>"; 
+echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
+ echo "<br/>"; 
+echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 
-echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
-echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
-echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 
+
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 }
 switch ($_SESSION["accion"]) {
     case 0:
@@ -115,16 +124,14 @@ function crearJunta($id = 'default'){
 	//variables de la primera pantalla
 	echo "PRIMER SECCION";
 	//FILTER_SANITIZE_FULL_SPECIAL_CHARS
-echo $_SESSION['nombreJunta'];
-echo 'segunda Seccion';
+
 	$nombreDeJunta = filter_var($_SESSION['nombreJunta'], FILTER_SANITIZE_SPECIAL_CHARS); 
 	$emailDelCreador = filter_var($_SESSION['emailCreador'], FILTER_SANITIZE_EMAIL); //FILTER_SANITIZE_EMAIL
 	$fechaDeCierre = $_SESSION['cierreVotacion']; //2012-12-23
 	$horaDeCierre = $_SESSION['horaCierreVotacion']; //19:56
 	//$dateSrc = '2007-04-19 12:50 GMT'; 
-    $dateTime = new DateTime($fechaDeCierre." ".$horaDeCierre); 
+   // $dateTime = new DateTime($fechaDeCierre." ".$horaDeCierre); 
 	$descipcionDeJunta = filter_var($_SESSION['descripcionJunta'], FILTER_SANITIZE_SPECIAL_CHARS); //blablabla
-	echo $nombreDeJunta;
 	//variable de la segunda pantalla
 	/*
 	Tenemos que revisar:
