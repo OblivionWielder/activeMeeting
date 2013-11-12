@@ -124,16 +124,16 @@ $_SESSION["fechaDeCierre"] = randomDate("1970-01-01 01:01","2013-12-30 23:30");
 $_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50); //nombre de la junta
 
 //segunda seccion - detalles de diferentes horas de eleccion
-$_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30");,
+$_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
 													"horaInicio"=> getUno(),
 													"horaFin"	=> getDos()),
-										1 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30");,
+										1 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
 													"horaInicio"=> getUno(),
 													"horaFin"	=> getDos()),
-										2 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30");,
+										2 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
 													"horaInicio"=> getUno(),
 													"horaFin"	=> getDos()),
-										3 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30");,
+										3 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
 													"horaInicio"=> getUno(),
 													"horaFin"	=> getDos())
 										);
