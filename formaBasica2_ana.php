@@ -115,7 +115,7 @@
 					<div id="creacionJunta" hidden>
 						<p>Soy creacionJunta</p>
 						<!--<form id="creacionJuntaForm" method="post">-->
-						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );">
+						<form id="creacionJuntaForm" action="javascript:alert('successOMG!');">
 						  <fieldset>
 							<label for="nombreJunta">Nombre De La Junta: </label>
 							<input type="text" name="nombreJunta" id="nombreJunta" />
@@ -275,7 +275,7 @@
 
 									arregloParticipantes.push(email.text); //Se mete al participante en el arreglo
 									
-									// Al ponerlo asi no funciona, aunque no deberia de haber problemas D=
+									// Al ponerlo asi no funciona, aunque no deberia de haber problemas
 									/*try
 									{
 										// Para IE de version 7 para abajo
@@ -310,6 +310,9 @@
 								<br /><br />
 								<label for="listaInvitados">Invitados: </label>
 								<select name="participantes" id="participantes" multiple="multiple" size="3"></select>
+								
+								<input type="hidden" name="arregloInvitados" />
+								
 								<button type="button" name="eliminarParticipante" id="eliminarParticipante" onclick="eliminarPartic()" />Eliminar participante</button>
 								<br /><br />
 							</fieldset>
