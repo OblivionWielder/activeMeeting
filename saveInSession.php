@@ -159,24 +159,11 @@ switch ($_SESSION["accion"]) {
         crearJunta('something');
         break;
     case 2:
-        echo2();
+        echo "dos";
         break;
 }
 
-function echo1($var = 'default'){ 
-   echo "one <br/>"; 
-   echo "<br/>"; 
-} 
 
-function echo2($var = 'default'){ 
-   echo "two <br/>"; 
-   echo "<br/>"; 
-} 
-
-function echo3($var = 'default'){ 
-   echo "three <br/>"; 
-   echo "<br/>"; 
-} 
 
 function crearJunta($id = 'default'){ 
 	
