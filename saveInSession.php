@@ -242,7 +242,7 @@ function crearJunta($id = 'default'){
 		[final]
 	*/
 
-	$horariosSeleccionados = array(); //sobre este habra nombres de numero
+	$horariosSeleccionados = $_SESSION["opcionesDeHorario"]; //sobre este habra nombres de numero
 	//sobre cada opcion que nos venga, asignamos 3 campos: fecha, horaInicial y horaFinal.
 	
 	
@@ -254,7 +254,7 @@ function crearJunta($id = 'default'){
 	3. Los correos tienen que ser correctos en forma
 	4. No es posible eliminar el creador
 	*/
-	$listaDeInvitados = array(); 
+	$listaDeInvitados = $_SESSION["opcionesDeInvitados"]; 
 	
 	
 	
@@ -264,12 +264,23 @@ function crearJunta($id = 'default'){
 	podemos usar luego eso con array(0 => 'zero_a', 2 => 'two_a', 3 => 'three_a'); para asignar votos positivos,
 	negativos y vetos
 	*/
-	$pointDistribution = array();
+	$pointDistribution = $_SESSION["votosDeInvitados"];
 	
 	
 	/* 
 	primero creamos al asistente que es el duenio de la junta
 	obtenemos su id y lo guardamos en una variable idasistente
+	// Connecting, selecting database
+$link = mysql_connect('mysql_host', 'mysql_user', 'mysql_password')
+    or die('Could not connect: ' . mysql_error());
+echo 'Connected successfully';
+mysql_select_db('my_database') or die('Could not select database'); */ 
+$link = mysql_connect('lethedwellers.com', 'lethedw2_aMeet', 'pesViS7g')
+or die('Could not connect: ' . mysql_error());
+echo 'Connected successfully';
+mysql_select_db('my_database') or die('Could not select database');
+
+/*
 	
 	despues creamos la junta
 	insert into junta nombre Descripcion finalvotacion
