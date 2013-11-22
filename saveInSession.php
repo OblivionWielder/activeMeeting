@@ -275,7 +275,7 @@ $link = mysql_connect('mysql_host', 'mysql_user', 'mysql_password')
     or die('Could not connect: ' . mysql_error());
 echo 'Connected successfully';
 mysql_select_db('my_database') or die('Could not select database'); */ 
-$link = mysql_connect('lethedwellers.com', 'lethedw2_aMeet', 'pesViS7g')
+$link = mysql_connect('www.lethedwellers.com', 'lethedw2_aMeet', 'pesViS7g')
 or die('Could not connect: ' . mysql_error());
 echo 'Connected successfully';
 mysql_select_db('my_database') or die('Could not select database');
