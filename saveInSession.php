@@ -100,7 +100,7 @@ function getUno()
 
 function getDos()
 {
-	return $dos = date('H:i:s', strtotime($uno) + 1800);
+	return $dos = randomTime($uno,"23:30");
 }
 
 //echo $uno."%%%".$dos;
