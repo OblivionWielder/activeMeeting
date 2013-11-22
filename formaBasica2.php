@@ -342,10 +342,20 @@
 					<!--Div de Distribucion herramientas para invitados-->
 					<div id="distribucionAInvitados" hidden>
 						<p> Soy distribucionAInvitados</p>
+						<script>
+						<!--
+							function displayResult(selTag) { 
+								var x=selTag.options[selTag.selectedIndex].text;
+								document.getElementById("numPos").value=0;
+								document.getElementById("numNeg").value=0;
+								document.getElementById("numVetos").value=0;								
+							}
+							// -->
+						</script>
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
 							<fieldset>
 								<label for="listaInvitados">Invitados: </label>
-								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3"></select>
+								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="displayResult(this)"></select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
 								<input type="text" id="numPos" name="numPos" size="1" value="0" />
