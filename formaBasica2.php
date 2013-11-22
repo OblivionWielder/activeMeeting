@@ -343,31 +343,28 @@
 					<div id="distribucionAInvitados" hidden>
 						<p> Soy distribucionAInvitados</p>
 						<script>
-						<!--	
-							var positivos = new Array();
-							var negativos = new Array();
-							var vetos = new Array();
-							positivos.length = document.getElementById("participantesDist").length;
-							negativos.length = document.getElementById("participantesDist").length;
-							vetos.length = document.getElementById("participantesDist").length;
-							
+						<!--								
 							function asignar(mismo) { 
 								var listaParticipantes = document.getElementById("participantesDist");
 								var seleccionado = listaParticipantes.selectedIndex;
+								var positivos = new Array();
+								var negativos = new Array();
+								var vetos = new Array();
 								positivos[seleccionado] = document.getElementById("numPos").value;
 								negativos[seleccionado] = document.getElementById("numNeg").value;
-								vetos[seleccionado] = document.getElementById("numVet").value;
-								desplegar();
+								vetos[seleccionado] = document.getElementById("numVetos").value;
+								desplegar(seleccionado);
+								document.getElementById("numPos").value = 0;
+								document.getElementById("numNeg").value = 0;
+								document.getElementById("numVetos").value = 0;
 							}
 							
-							function desplegar() {
-								var listaParticipantes = document.getElementById("participantesDist");
-								var seleccionado = listaParticipantes.selectedIndex;
-								document.getElementById("numPos").value = positivos[seleccionado];
-								document.getElementById("numNeg").value = negativos[seleccionado]; 
-								document.getElementById("numVet").value = vetos[seleccionado];
+							function desplegar(i) {
+								document.getElementById("numPos").value = positivos[i];
+								document.getElementById("numNeg").value = negativos[i];
+								document.getElementById("numVetos").value = vetos[i];
 							}
-							// -->
+						// -->
 						</script>
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
 							<fieldset>
