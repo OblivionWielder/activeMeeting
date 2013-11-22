@@ -354,9 +354,9 @@
 							function asignar(mismo) { 
 								var listaParticipantes = document.getElementById("participantesDist");
 								var seleccionado = listaParticipantes.selectedIndex;
-								positivos[seleccionado] = document.getElementById("numPos");
-								negativos[seleccionado] = document.getElementById("numNeg");
-								vetos[seleccionado] = document.getElementById("numVet");
+								positivos[seleccionado] = document.getElementById("numPos").value;
+								negativos[seleccionado] = document.getElementById("numNeg").value;
+								vetos[seleccionado] = document.getElementById("numVet").value;
 								desplegar();
 							}
 							
@@ -365,7 +365,7 @@
 								var seleccionado = listaParticipantes.selectedIndex;
 								document.getElementById("numPos").value = positivos[seleccionado];
 								document.getElementById("numNeg").value = negativos[seleccionado]; 
-								document.getElementById("numVet").value = vetos[seleccionado]
+								document.getElementById("numVet").value = vetos[seleccionado];
 							}
 							// -->
 						</script>
