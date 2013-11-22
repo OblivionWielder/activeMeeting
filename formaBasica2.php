@@ -344,30 +344,12 @@
 						<p> Soy distribucionAInvitados</p>
 						<script>
 						<!--		
-							var listaParticipantes = document.getElementById("participantesDist");
-							var tam = listaParticipantes.lenght;
-							var positivos = new Array();
-							var negativos = new Array();
-							var vetos = new Array();
-							
-							for(int i = 0; i<tam; i++){
-								positivos.push(document.getElementById("numPos").value);
-								negativos.push(document.getElementById("numNeg").value);
-								vetos.push(document.getElementById("numVetos").value);
-							}
-
-							function asignar(mismo) { 	
+							function asignar(mismo) {
+								var listaParticipantes = document.getElementById("participantesDist");
 								var seleccionado = listaParticipantes.selectedIndex;
-								positivos[seleccionado] = document.getElementById("numPos").value;
-								negativos[seleccionado] = document.getElementById("numNeg").value;
-								vetos[seleccionado] = document.getElementById("numVetos").value;
-								desplegar(seleccionado);
-							}
-							
-							function desplegar(i) {
-								document.getElementById("numPos").value = positivos[i];
-								document.getElementById("numNeg").value = negativos[i];
-								document.getElementById("numVetos").value = vetos[i];
+								document.getElementById("numPos").value = seleccionado;
+								document.getElementById("numNeg").value = seleccionado;
+								document.getElementById("numVetos").value = seleccionado;
 							}
 						// -->
 						</script>
