@@ -120,7 +120,7 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 $_SESSION["accion"] = 1;
 $_SESSION["nombreJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5); //nombre de la junta
 $_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"; //nombre de la junta
-$_SESSION["fechaDeCierre"] = randomDate("1970-01-01 01:01","2013-12-30 23:30");
+$_SESSION["fechaDeCierre"] = randomDate("2013-11-01 01:01","2013-12-30 23:30");
 $_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50); //nombre de la junta
 
 //segunda seccion - detalles de diferentes horas de eleccion
@@ -138,6 +138,13 @@ $_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-
 													"horaFin"	=> getDos())
 										);
 
+//tercera seccion - detalles de diferentes invitados
+$_SESSION["opcionesDeInvitados"] = array(	0 => $_SESSION["emailCreador"],
+											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											43 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"
+										);
  echo "<br/>"; 
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
  echo "<br/>"; 
