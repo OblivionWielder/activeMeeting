@@ -143,8 +143,31 @@ $_SESSION["opcionesDeInvitados"] = array(	0 => $_SESSION["emailCreador"],
 											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
 											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
 											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
-											43 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"
+											4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"
 										);
+
+//cuarta seccion - detalles de  invitados y votos
+$_SESSION["votosDeInvitados"] = array(	0 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][0],
+														"positivos"	=>	get_random_string("0123456789", 2),
+														"negativos"	=>	get_random_string("0123456789", 2),
+														"vetos"		=>	get_random_string("0123456789", 1)),
+										1 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][1],
+														"positivos"	=>	get_random_string("0123456789", 2),
+														"negativos"	=>	get_random_string("0123456789", 2),
+														"vetos"		=>	get_random_string("0123456789", 1)),
+										2 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][2],
+														"positivos"	=>	get_random_string("0123456789", 2),
+														"negativos"	=>	get_random_string("0123456789", 2),
+														"vetos"		=>	get_random_string("0123456789", 1)),
+										3 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][3],
+														"positivos"	=>	get_random_string("0123456789", 2),
+														"negativos"	=>	get_random_string("0123456789", 2),
+														"vetos"		=>	get_random_string("0123456789", 1)),
+										4 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][4],
+														"positivos"	=>	get_random_string("0123456789", 2),
+														"negativos"	=>	get_random_string("0123456789", 2),
+														"vetos"		=>	get_random_string("0123456789", 1))
+									);
  echo "<br/>"; 
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
  echo "<br/>"; 
