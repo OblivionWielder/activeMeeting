@@ -351,19 +351,28 @@
 							negativos.length = document.getElementById("participantesDist").length;
 							vetos.length = document.getElementById("participantesDist").length;
 							
-							function displayResult(selTag) { 
+							function asignar(mismo) { 
 								var listaParticipantes = document.getElementById("participantesDist");
 								var seleccionado = listaParticipantes.selectedIndex;
-								positivos[seleccionado] = document.getElementById("numPos").value
-								negativos[seleccionado] = document.getElementById("numNeg").value
-								vetos[seleccionado] = document.getElementById("numVet").value								
+								positivos[seleccionado] = document.getElementById("numPos");
+								negativos[seleccionado] = document.getElementById("numNeg");
+								vetos[seleccionado] = document.getElementById("numVet");
+								desplegar();
+							}
+							
+							function desplegar() {
+								var listaParticipantes = document.getElementById("participantesDist");
+								var seleccionado = listaParticipantes.selectedIndex;
+								document.getElementById("numPos").value = positivos[seleccionado];
+								document.getElementById("numNeg").value = negativos[seleccionado]; 
+								document.getElementById("numVet").value = vetos[seleccionado]
 							}
 							// -->
 						</script>
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
 							<fieldset>
 								<label for="listaInvitados">Invitados: </label>
-								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="displayResult(this)"></select>
+								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="asignar(this)"></select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
 								<input type="text" id="numPos" name="numPos" size="1" value="0" />
