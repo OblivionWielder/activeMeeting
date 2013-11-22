@@ -343,13 +343,20 @@
 					<div id="distribucionAInvitados" hidden>
 						<p> Soy distribucionAInvitados</p>
 						<script>
-						<!--
+						<!--	
+							var positivos = new Array();
+							var negativos = new Array();
+							var vetos = new Array();
+							positivos.length = document.getElementById("participantesDist").length;
+							negativos.length = document.getElementById("participantesDist").length;
+							vetos.length = document.getElementById("participantesDist").length;
+							
 							function displayResult(selTag) { 
 								var listaParticipantes = document.getElementById("participantesDist");
 								var seleccionado = listaParticipantes.selectedIndex;
-								document.getElementById("numPos").value=seleccionado;
-								document.getElementById("numNeg").value=seleccionado;
-								document.getElementById("numVetos").value=seleccionado;								
+								positivos[seleccionado] = document.getElementById("numPos").value
+								negativos[seleccionado] = document.getElementById("numNeg").value
+								vetos[seleccionado] = document.getElementById("numVet").value								
 							}
 							// -->
 						</script>
