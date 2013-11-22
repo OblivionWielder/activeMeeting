@@ -345,10 +345,11 @@
 						<script>
 						<!--
 							function displayResult(selTag) { 
-								var x=selTag.options[selTag.selectedIndex].text;
-								document.getElementById("numPos").value=0;
-								document.getElementById("numNeg").value=0;
-								document.getElementById("numVetos").value=0;								
+								var listaParticipantes = document.getElementById("participantesDist");
+								var seleccionado = listaParticipantes.selectedIndex;
+								document.getElementById("numPos").value=seleccionado;
+								document.getElementById("numNeg").value=seleccionado;
+								document.getElementById("numVetos").value=seleccionado;								
 							}
 							// -->
 						</script>
