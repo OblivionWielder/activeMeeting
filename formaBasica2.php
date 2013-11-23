@@ -350,12 +350,6 @@
 							var negativos = new Array();
 							var vetos = new Array();
 							
-							for (int i=0; i<tam; i++){
-								positivos.push(document.getElementById("numPos").value);
-								negativos.push(document.getElementById("numNeg").value);
-								vetos.push(document.getElementById("numVetos").value);
-							};
-							
 							function asignar() {	
 								var seleccionado = listaParticipantes.selectedIndex;
 								positivos[seleccionado] = document.getElementById("NumPos").value;
