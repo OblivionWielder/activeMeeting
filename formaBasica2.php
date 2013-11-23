@@ -356,7 +356,7 @@
 								vetos.push(document.getElementById("numVetos").value);
 							}
 							
-							function asignar(mismo) {	
+							function asignar() {	
 								var seleccionado = listaParticipantes.selectedIndex;
 								positivos[seleccionado] = document.getElementById("NumPos").value;
 								negativos[seleccionado] = document.getElementById("NumNeg").value;
@@ -367,7 +367,7 @@
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
 							<fieldset>
 								<label for="listaInvitados">Invitados: </label>
-								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="asignar(this)"></select>
+								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="asignar()"></select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
 								<input type="text" id="numPos" name="numPos" size="1" value="0" />
