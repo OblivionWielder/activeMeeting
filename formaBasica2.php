@@ -343,13 +343,24 @@
 					<div id="distribucionAInvitados" hidden>
 						<p> Soy distribucionAInvitados</p>
 						<script>
-						<!--		
-							function asignar(mismo) {
-								var listaParticipantes = document.getElementById("participantesDist");
+						<!--
+							var listaParticipantes = document.getElementById("participantesDist");
+							var tam = listaParticipantes.length;
+							var positivos = new Array();
+							var negativos = new Array();
+							var vetos = new Array();
+							
+							for (int i=0; i<tam; i++){
+								positivos.push(document.getElementById("numPos").value);
+								negativos.push(document.getElementById("numNeg").value);
+								vetos.push(document.getElementById("numVetos").value);
+							}
+							
+							function asignar(mismo) {	
 								var seleccionado = listaParticipantes.selectedIndex;
-								document.getElementById("numPos").value = seleccionado;
-								document.getElementById("numNeg").value = seleccionado;
-								document.getElementById("numVetos").value = seleccionado;
+								positivos[seleccionado] = document.getElementById("NumPos").value;
+								negativos[seleccionado] = document.getElementById("NumNeg").value;
+								vetos[seleccionado] = document.getElementById("NumVetos").value;
 							}
 						// -->
 						</script>
