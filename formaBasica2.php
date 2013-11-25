@@ -355,6 +355,12 @@
 								positivos[seleccionado] = document.getElementById("NumPos").value;
 								negativos[seleccionado] = document.getElementById("NumNeg").value;
 								vetos[seleccionado] = document.getElementById("NumVetos").value;
+								
+								var votosInv = {pos:positivos[seleccionado],neg:negativos[seleccionado],vet:vetos[seleccionado]};
+								
+								document.getElementById("NumPos").value = votosInv.pos;
+								document.getElementById("NumNeg").value = votosInv.neg;
+								document.getElementById("NumVetos").value = votosInv.vet;
 							}
 						// -->
 						</script>
