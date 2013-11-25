@@ -370,13 +370,13 @@
 								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="asignar()"></select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
-								<input type="text" id="numPos" name="numPos" size="1" value="0" />
+								<input type="text" id="numPos" name="numPos" size="1" value=<?php $votoDeInvitados[0]["positivo"]?> />
 								<br />
 								<label for="numNeg">Votos negativos (-): </label>
-								<input type="text" id="numNeg" name="numNeg" size="1" value="0" />
+								<input type="text" id="numNeg" name="numNeg" size="1" value=<?php $votoDeInvitados[0]["negativo"]?> />
 								<br />
 								<label for="numVetos">Vetos(x): </label>
-								<input type="text" id="numVetos" name="numVetos" size="1" value="0" />
+								<input type="text" id="numVetos" name="numVetos" size="1" value=<?php $votoDeInvitados[0]["vetos"]?> />
 							</fieldset>
 							<button type="button" onclick="loadSeleccionInvitados()">Anterior</button>
 							<button type="submit">Siguiente</button>
