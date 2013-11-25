@@ -6,7 +6,6 @@
 		<meta http-equiv="imagetoolbar" content="no" />
 		<link rel="stylesheet" href="template/styles/layout.css" type="text/css" />
 		<script type="text/javascript" src="template/scripts/jquery-1.4.1.min.js"></script>
-		<script type="text/javascript"></script>
 		<script type="text/javascript">
 			function hideEveryone()
 			{
@@ -59,7 +58,7 @@
 			<div id="container">
 				<div id="content">
 					<h3>Votacion de Junta</h3>
-					<div id="creacionJunta" hidden>
+					<div id="votacionJunta" hidden>
 						<p>Soy votacionJunta</p>
 						<!--<form id="votaJuntaForm" method="post">-->
 						<form id="votaJuntaForm" action="javascript:alert( 'successOMG!' );">
