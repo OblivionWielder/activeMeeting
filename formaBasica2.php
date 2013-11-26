@@ -252,7 +252,7 @@
 					<!--Div de Invitados-->
 					<div id="seleccionInvitados" hidden>
 						<p> Soy seleccionInvitados</p>
-						<script>
+						<script type="text/javascript">
 						<!--
 							function agregarPartic()
 							{
@@ -342,7 +342,7 @@
 					<!--Div de Distribucion herramientas para invitados-->
 					<div id="distribucionAInvitados" hidden>
 						<p> Soy distribucionAInvitados</p>
-						<script>
+						<script type="text/javascript">
 						<!--
 							var positivos = new Array();
 							var negativos = new Array();
