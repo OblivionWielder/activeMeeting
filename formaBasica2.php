@@ -349,37 +349,51 @@
 							var positivos = new Array();
 							var negativos = new Array();
 							var vetos = new Array();
+							var i=0;
+							
+							var forloop = function(tam){
+								for(var j=0; j<tam; j++){
+									positivos[j] = 0;
+									negativos[j] = 0;
+									vetos[j] = 0;
+								}
+							}
 							
 							function asignar() {	
 								var seleccionado = listaParticipantes.selectedIndex;
-								positivos[seleccionado] = document.getElementById("NumPos").value;
-								negativos[seleccionado] = document.getElementById("NumNeg").value;
-								vetos[seleccionado] = document.getElementById("NumVetos").value;
+								i = seleccionado;
+								document.getElementById("numPos").value = positivos[seleccionado];
+								document.getElementById("numNeg").value = negativos[seleccionado];
+								document.getElementById("numVetos").value = vetos[seleccionado];
 							}
 							
-							function cambiar() {
-								var seleccionado = listaParticipantes.selectedIndex;
-								var votosInv = {pos:positivos[seleccionado],neg:negativos[seleccionado],vet:vetos[seleccionado]};
-								document.getElementById("NumPos").value = votosInv.pos;
-								document.getElementById("NumNeg").value = votosInv.neg;
-								document.getElementById("NumVetos").value = votosInv.vet;
+							function cambiarP() {
+								positivos[i] = document.getElementById("numPos").value;
+							}
+							
+							function cambiarN() {
+								negativos[i] = document.getElementById("numNeg").value;
+							}
+							
+							function cambiarV() {
+								vetos[i] = document.getElementById("numVetos").value;
 							}
 						// -->
 						</script>
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
 							<fieldset>
 								<label for="listaInvitados">Invitados: </label>
-								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="asignar()" onclick="cambiar()">
+								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onclick="asignar()">
 								</select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
-								<input type="text" id="numPos" name="numPos" size="1" value="0" />
+								<input type="text" id="numPos" name="numPos" size="1" value="0" onchange="cambiarP()"/>
 								<br />
 								<label for="numNeg">Votos negativos (-): </label>
-								<input type="text" id="numNeg" name="numNeg" size="1" value="0" />
+								<input type="text" id="numNeg" name="numNeg" size="1" value="0" onchange="cambiarN()"/>
 								<br />
 								<label for="numVetos">Vetos(x): </label>
-								<input type="text" id="numVetos" name="numVetos" size="1" value="0" />
+								<input type="text" id="numVetos" name="numVetos" size="1" value="0" onchange="cambiarV()"/>
 							</fieldset>
 							<button type="button" onclick="loadSeleccionInvitados()">Anterior</button>
 							<button type="submit">Siguiente</button>
