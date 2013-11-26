@@ -154,7 +154,7 @@
 								$.ajax({
 									type: "POST",
 									dataType: "json",
-									url: "saveInSession.php",
+									url: "saveInSession_temp.php",
 									//data: {myData:JSON.stringify($( this ).serializeArray() )},
 									data: {myData:$( this ).serializeArray() },
 									success: function(data){
@@ -234,7 +234,7 @@
 								$.ajax({
 									type: "POST",
 									dataType: "json",
-									url: "saveInSession.php",
+									url: "saveInSession_temp.php",
 									//data: {myData:JSON.stringify($( this ).serializeArray() )},
 									data: {myData:$( this ).serializeArray() },
 									success: function(data){
@@ -324,7 +324,7 @@
 							$.ajax({
 								type: "POST",
 								dataType: "json",
-								url: "saveInSession.php",
+								url: "saveInSession_temp.php",
 							  //data: {myData:JSON.stringify($( this ).serializeArray() )},
 								data: {myData:$( this ).serializeArray() },
 								success: function(data){
@@ -403,7 +403,7 @@
 							$.ajax({
 								type: "POST",
 								dataType: "json",
-								url: "saveInSession.php",
+								url: "saveInSession_temp_temp.php",
 							  //data: {myData:JSON.stringify($( this ).serializeArray() )},
 								data: {myData:$( this ).serializeArray() },
 								success: function(data){
