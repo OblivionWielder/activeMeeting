@@ -294,7 +294,7 @@ if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
-$invitadoAndID[$valor] => $mysqli->insert_id;
+$invitadoAndID[$valor] = $mysqli->insert_id;
     
 }
 echo "<br/>";
