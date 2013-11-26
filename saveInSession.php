@@ -287,7 +287,7 @@ VALUES (NULL , 'qwe@qwe.com', '1111', '1111', '6'),
 //despues agregamos a los asistentes a la junta
 
 $query = "";
-$invitadoAndID = array();
+$invitadoAndID[0] = 1;
 foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
 	$query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES (NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "');";
 if (!$mysqli->query($query)) {
