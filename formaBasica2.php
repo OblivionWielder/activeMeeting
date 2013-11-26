@@ -344,56 +344,53 @@
 						<p> Soy distribucionAInvitados</p>
 						<script>
 						<!--
-							var listaParticipantes = document.getElementById("participantesDist");
-							var tam = listaParticipantes.length;
 							var positivos = new Array();
 							var negativos = new Array();
 							var vetos = new Array();
-							var i=0;
 							
-							var forloop = function(tam){
-								for(var j=0; j<tam; j++){
-									positivos[j] = 0;
-									negativos[j] = 0;
-									vetos[j] = 0;
+							var votInicial = function(tam){
+								for(var i=0; i<tam; i++){
+									positivos[i]=0;
+									negativos[i]=0;
+									vetos[i]=0;
 								}
 							}
 							
-							function asignar() {	
-								var seleccionado = listaParticipantes.selectedIndex;
-								i = seleccionado;
-								document.getElementById("numPos").value = positivos[seleccionado];
-								document.getElementById("numNeg").value = negativos[seleccionado];
-								document.getElementById("numVetos").value = vetos[seleccionado];
+							function asignar() {							
+								var seleccionado = document.getElementById("participantesDist").selectedIndex;
+								
+								for (var i=0; i<document.getElementById("participantesDist").length; i++){
+									if(i==seleccionado){
+										document.getElementById("numPos").value = positivos[seleccionado];
+										document.getElementById("numNeg").value = negativos[seleccionado];
+										document.getElementById("numVetos").value = vetos[seleccionado];
+									}
+								}
+								
+								cambios(seleccionado);
 							}
 							
-							function cambiarP(dato) {
-								positivos[i] = dato.value;
-							}
-							
-							function cambiarN(dato) {
-								negativos[i] = dato.value;
-							}
-							
-							function cambiarV(dato) {
-								vetos[i] = dato.value;
+							function cambios(selcam) {
+								positivos[selcam] = document.getElementById("numPos").value;
+								negativos[selcam] = document.getElementById("numNeg").value;
+								vetos[selcam] = document.getElementById("numVetos").value;
 							}
 						// -->
 						</script>
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
 							<fieldset>
 								<label for="listaInvitados">Invitados: </label>
-								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onclick="asignar()">
+								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="asignar()">
 								</select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
-								<input type="text" id="numPos" name="numPos" size="1" value="0" onchange="cambiarP(this)"/>
+								<input type="text" id="numPos" name="numPos" size="1" value="0"/>
 								<br />
 								<label for="numNeg">Votos negativos (-): </label>
-								<input type="text" id="numNeg" name="numNeg" size="1" value="0" onchange="cambiarN(this)"/>
+								<input type="text" id="numNeg" name="numNeg" size="1" value="0"/>
 								<br />
 								<label for="numVetos">Vetos(x): </label>
-								<input type="text" id="numVetos" name="numVetos" size="1" value="0" onchange="cambiarV(this)"/>
+								<input type="text" id="numVetos" name="numVetos" size="1" value="0"/>
 							</fieldset>
 							<button type="button" onclick="loadSeleccionInvitados()">Anterior</button>
 							<button type="submit">Siguiente</button>
