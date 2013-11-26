@@ -285,6 +285,21 @@ VALUES (NULL , 'qwe@qwe.com', '1111', '1111', '6'),
 }
 */
 //despues agregamos a los asistentes a la junta
+
+$query = "";
+$invitadoAndID = array();
+foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
+	$query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES (NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "');";
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "<br/>";
+printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
+$invitadoAndID[$valor] => $mysqli->insert_id;
+    
+}
+echo "<br/>";
+echo $invitadosAndID;
+/*
 $query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES";
 foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
 	$query = $query . "(NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "'),";
@@ -296,6 +311,7 @@ if (!$mysqli->query($query)) {
 }
 echo "<br/>";
 printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
+*/
 
 
 /*
