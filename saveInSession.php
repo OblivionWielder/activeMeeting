@@ -286,7 +286,7 @@ if ($mysqli->connect_errno) {
 }
 
 $query = "INSERT INTO  `lethedw2_aMeet`.`junta` (`idjunta` ,`nombre` ,`descripcion` ,`finalVotacion`)
-VALUES (NULL ,  ".$_SESSION['nombreJunta'].",  ".$_SESSION['descripcionJunta'].",  ".$_SESSION['fechaDeCierre'].")";
+VALUES (NULL ,  ".$_SESSION['nombreJunta'].",  ".$_SESSION['descripcionJunta'].",  ".$_SESSION['fechaDeCierre'].");";
 
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
