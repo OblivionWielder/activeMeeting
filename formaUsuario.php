@@ -77,9 +77,15 @@
 							<label for="votVetos"> X </label>
 							<input type="text" name="votVetos1" id="votVetos1" />
 						  </fieldset>
-						  <button type="submit" onchange="loadVotacionTerminada">Votar</button>
+						  <button type="submit">Votar</button>
 						<!--<input type="submit" id="creacionJuntaFormButton" name="Submit" value="Siguiente (Fechas)" />-->
 						</form>
+						<span></span>
+						<script>
+							$( "#votaJuntaForm" ).submit(function(event) {
+								loadVotacionTerminada();
+							});
+						</script>
 					</div>
 					
 					<!--Div de Cierre de votos-->
