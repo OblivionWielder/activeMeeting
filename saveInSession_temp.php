@@ -108,7 +108,7 @@ function getDos()
 
 
 
-if($testing)
+if($testing == 0)
 {
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
  echo "<br/>"; 
