@@ -1,6 +1,6 @@
 <?php
 session_start();
-$testing = 1;
+$testing = 0;
 
 
 for($i=0;$i<count($_POST['myData']);$i++){ 
