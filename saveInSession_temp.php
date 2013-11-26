@@ -100,7 +100,7 @@ function getUno()
 
 function getDos()
 {
-	return $dos = date('H:i:s', strtotime($uno) + 1800);
+	return $dos = randomTime($uno,"23:30");
 }
 
 //echo $uno."%%%".$dos;
@@ -108,7 +108,7 @@ function getDos()
 
 
 
-if($testing)
+if($testing == 1)
 {
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
  echo "<br/>"; 
@@ -120,7 +120,7 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 $_SESSION["accion"] = 1;
 $_SESSION["nombreJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5); //nombre de la junta
 $_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"; //nombre de la junta
-$_SESSION["fechaDeCierre"] = randomDate("1970-01-01 01:01","2013-12-30 23:30");
+$_SESSION["fechaDeCierre"] = randomDate("2013-11-01 01:01","2013-12-30 23:30");
 $_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50); //nombre de la junta
 
 //segunda seccion - detalles de diferentes horas de eleccion
@@ -138,6 +138,36 @@ $_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-
 													"horaFin"	=> getDos())
 										);
 
+//tercera seccion - detalles de diferentes invitados
+$_SESSION["opcionesDeInvitados"] = array(	0 => $_SESSION["emailCreador"],
+											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"
+										);
+
+//cuarta seccion - detalles de  invitados y votos
+$_SESSION["votosDeInvitados"] = array(	0 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][0],
+														"positivos"	=>	get_random_string("0123456789", 2),
+														"negativos"	=>	get_random_string("0123456789", 2),
+														"vetos"		=>	get_random_string("0123456789", 1)),
+										1 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][1],
+														"positivos"	=>	get_random_string("0123456789", 2),
+														"negativos"	=>	get_random_string("0123456789", 2),
+														"vetos"		=>	get_random_string("0123456789", 1)),
+										2 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][2],
+														"positivos"	=>	get_random_string("0123456789", 2),
+														"negativos"	=>	get_random_string("0123456789", 2),
+														"vetos"		=>	get_random_string("0123456789", 1)),
+										3 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][3],
+														"positivos"	=>	get_random_string("0123456789", 2),
+														"negativos"	=>	get_random_string("0123456789", 2),
+														"vetos"		=>	get_random_string("0123456789", 1)),
+										4 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][4],
+														"positivos"	=>	get_random_string("0123456789", 2),
+														"negativos"	=>	get_random_string("0123456789", 2),
+														"vetos"		=>	get_random_string("0123456789", 1))
+									);
  echo "<br/>"; 
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
  echo "<br/>"; 
@@ -199,20 +229,10 @@ function crearJunta($id = 'default'){
 	3. QUe la hora maxima sea 23.59.59
 	4. QUe la hora minima sea 0.0.1
 	5. QUe el inicio sea menor al final
-	
-	
-	forma
-	[0]
-		[fecha]
-		[inicio]
-		[final]
-	[1]
-		[fecha]
-		[inicio]
-		[final]
+
 	*/
 
-	$horariosSeleccionados = array(); //sobre este habra nombres de numero
+	$horariosSeleccionados = $_SESSION["opcionesDeHorario"]; //sobre este habra nombres de numero
 	//sobre cada opcion que nos venga, asignamos 3 campos: fecha, horaInicial y horaFinal.
 	
 	
@@ -224,7 +244,7 @@ function crearJunta($id = 'default'){
 	3. Los correos tienen que ser correctos en forma
 	4. No es posible eliminar el creador
 	*/
-	$listaDeInvitados = array(); 
+	$listaDeInvitados = $_SESSION["opcionesDeInvitados"]; 
 	
 	
 	
@@ -234,42 +254,60 @@ function crearJunta($id = 'default'){
 	podemos usar luego eso con array(0 => 'zero_a', 2 => 'two_a', 3 => 'three_a'); para asignar votos positivos,
 	negativos y vetos
 	*/
-	$pointDistribution = array();
-	
-	
-	/* 
-	primero creamos al asistente que es el duenio de la junta
-	obtenemos su id y lo guardamos en una variable idasistente
-	
-	despues creamos la junta
-	insert into junta nombre Descripcion finalvotacion
-	finalvotacion es creado mediante la manipulacion de fecha y hora de lo que nos este llegando en fechaDECierre y hora de cierre
-	obtemenos el id generado y lo guardamos en una varible llamada idjunta
-	
-	despues hacemos que ese asistente sea el owner de esa junta
-	Insert into owner
-	
-	
-	agregamos a los asistentes y obtenemos ese arreglo de ids y lo guardamos en invitados[]
-	insert into asistente....
+	$pointDistribution = $_SESSION["votosDeInvitados"];
+//CONEXION	
+$mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
 
-	ahora agregamos en tools a los invitados[] junto con idjunta y pointdiscribution
-	insert into tools
+$query = "INSERT INTO  `lethedw2_aMeet`.`junta` (`idjunta` ,`nombre` ,`descripcion` ,`finalVotacion`)
+VALUES (NULL ,  '".$_SESSION['nombreJunta']."',  '".$_SESSION['descripcionJunta']."',  '".$_SESSION['fechaDeCierre']."');";
+//priemro generamos la junta
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+}
+
+echo "<br/>";
+printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
+//guardamos el id
+$idJunta = $mysqli->insert_id;
+
+
+/*
+INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`)
+VALUES (NULL , 'qwe@qwe.com', '1111', '1111', '6'), 
+	(NULL , 'asd@asd.com', NULL , NULL , '6'),
+	(NULL , 'zxc@zxc.com', NULL , NULL , '6');.
 	
-	por ultimo creamos los timeslots usando la misma funcion para parsear la fecha y horariosSeleccionados
-	insert into timeslot
-	
-	
-	
-	
-	
-	
-	*********NECESITAMOS UNA TABLA QUE GUARDE UN HASH DE EL INVITADO CON LA JUNTA A LA QUE FUE INVITADA**************
-	
-	
-	
-	
-	
+	foreach ($array as &$valor) {
+    $valor = $valor * 2;
+}
+*/
+//despues agregamos a los asistentes a la junta
+$query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES";
+foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
+	$query = $query . "(NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "'),";
+}
+$query = substr($query,0,-1); //just takes off the leading comma
+$query = $query . ";";
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+}
+echo "<br/>";
+printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
+
+
+/*
+	guardamos sus ids
+
+despues agregamos al owner a la junta
+
+despues asignamos los persmisos de los asistentes
+
+despues agregamos los timeslots a la junta
+
+por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, idDeJunta	
 	procedemos a crear los hashes que serviran para setear a los usuarios
 	esto se hace con hash('ripemd160', 'The quick brown fox jumped over the lazy dog.');
 	
