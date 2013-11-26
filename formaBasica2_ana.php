@@ -403,7 +403,7 @@
 							$.ajax({
 								type: "POST",
 								dataType: "json",
-								url: "saveInSession_temp_temp.php",
+								url: "saveInSession_temp.php",
 							  //data: {myData:JSON.stringify($( this ).serializeArray() )},
 								data: {myData:$( this ).serializeArray() },
 								success: function(data){
