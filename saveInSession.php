@@ -299,7 +299,10 @@ $invitadoAndID[$valor] = $mysqli->insert_id;
 }
 }
 echo "<br/>";
-echo $invitadoAndID;
+echo "%%%%%%%%%% <pre>";
+print_r($invitadoAndID);
+echo "</pre>";
+
 /*
 $query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES";
 foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
