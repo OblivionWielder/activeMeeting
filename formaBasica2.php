@@ -361,6 +361,10 @@
 									negativos[i]=0;
 									vetos[i]=0;
 									cambio[i]=0;
+									
+									positivos2[i]=0;
+									negativos2[i]=0;
+									vetos2[i]=0;
 								}
 							}
 							
