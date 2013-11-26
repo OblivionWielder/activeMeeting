@@ -347,6 +347,11 @@
 							window.positivos = new Array();
 							window.negativos = new Array();
 							window.vetos = new Array();
+							window.cambio = new Array();
+							
+							window.positivos2 = new Array();
+							window.negativos2 = new Array();
+							window.vetos2 = new Array();
 							
 							var tam = document.getElementById("participantesDist").length;
 							
@@ -355,6 +360,7 @@
 									positivos[i]=0;
 									negativos[i]=0;
 									vetos[i]=0;
+									cambio[i]=0;
 								}
 							}
 							
@@ -363,9 +369,17 @@
 								
 								for (var i=0; i<document.getElementById("participantesDist").length; i++){
 									if(i==seleccionado){
-										document.getElementById("numPos").value = positivos[seleccionado];
-										document.getElementById("numNeg").value = negativos[seleccionado];
-										document.getElementById("numVetos").value = vetos[seleccionado];
+										if(cambio[i] == 0){
+											document.getElementById("numPos").value = positivos[seleccionado];
+											document.getElementById("numNeg").value = negativos[seleccionado];
+											document.getElementById("numVetos").value = vetos[seleccionado];
+										}
+										else {
+											document.getElementById("numPos").value = positivos2[seleccionado];
+											document.getElementById("numNeg").value = negativos2[seleccionado];
+											document.getElementById("numVetos").value = vetos2[seleccionado];
+											cambio[i]=0;
+										}
 									}
 								}
 								
@@ -373,9 +387,10 @@
 							}
 							
 							function cambios(selcam) {
-								positivos[selcam] = document.getElementById("numPos").value;
-								negativos[selcam] = document.getElementById("numNeg").value;
-								vetos[selcam] = document.getElementById("numVetos").value;
+								positivos2[selcam] = document.getElementById("numPos").value;
+								negativos2[selcam] = document.getElementById("numNeg").value;
+								vetos2[selcam] = document.getElementById("numVetos").value;
+								cambio[selcam]=1;
 							}
 						// -->
 						</script>
