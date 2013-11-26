@@ -115,7 +115,7 @@
 					<div id="creacionJunta" hidden>
 						<p>Soy creacionJunta</p>
 						<!--<form id="creacionJuntaForm" method="post">-->
-						<form id="creacionJuntaForm" action="javascript:alert('successOMG!');">
+						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );">
 						  <fieldset>
 							<label for="nombreJunta">Nombre De La Junta: </label>
 							<input type="text" name="nombreJunta" id="nombreJunta" />
@@ -132,6 +132,7 @@
 							<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50">
 							</textarea>
 						  </fieldset>
+						  <input type ="hidden" value=1 id="accion" name ="accion"/>
 							<button type="submit">Siguiente</button>
 						<!--<input type="submit" id="creacionJuntaFormButton" name="Submit" value="Siguiente (Fechas)" />-->
 						</form>
@@ -251,7 +252,7 @@
 					<!--Div de Invitados-->
 					<div id="seleccionInvitados" hidden>
 						<p> Soy seleccionInvitados</p>
-						<script>
+						<script type="text/javascript">
 						<!--
 							function agregarPartic()
 							{
@@ -275,7 +276,7 @@
 
 									arregloParticipantes.push(email.text); //Se mete al participante en el arreglo
 									
-									// Al ponerlo asi no funciona, aunque no deberia de haber problemas
+									// Al ponerlo asi no funciona, aunque no deberia de haber problemas D=
 									/*try
 									{
 										// Para IE de version 7 para abajo
@@ -310,9 +311,6 @@
 								<br /><br />
 								<label for="listaInvitados">Invitados: </label>
 								<select name="participantes" id="participantes" multiple="multiple" size="3"></select>
-								
-								<input type="hidden" name="arregloInvitados" />
-								
 								<button type="button" name="eliminarParticipante" id="eliminarParticipante" onclick="eliminarPartic()" />Eliminar participante</button>
 								<br /><br />
 							</fieldset>
@@ -344,19 +342,56 @@
 					<!--Div de Distribucion herramientas para invitados-->
 					<div id="distribucionAInvitados" hidden>
 						<p> Soy distribucionAInvitados</p>
+						<script type="text/javascript">
+						<!--
+							var positivos = new Array();
+							var negativos = new Array();
+							var vetos = new Array();
+							
+							var tam = document.getElementById("participantesDist").length;
+							var votInicial = function(tam){
+								for(var i=0; i<tam; i++){
+									positivos[i]=0;
+									negativos[i]=0;
+									vetos[i]=0;
+								}
+							}
+							
+							function asignar() {							
+								var seleccionado = document.getElementById("participantesDist").selectedIndex;
+								
+								for (var i=0; i<document.getElementById("participantesDist").length; i++){
+									if(i==seleccionado){
+										document.getElementById("numPos").value = positivos[seleccionado];
+										document.getElementById("numNeg").value = negativos[seleccionado];
+										document.getElementById("numVetos").value = vetos[seleccionado];
+									}
+								}
+								
+								cambios(seleccionado);
+							}
+							
+							function cambios(selcam) {
+								positivos[selcam] = document.getElementById("numPos").value;
+								negativos[selcam] = document.getElementById("numNeg").value;
+								vetos[selcam] = document.getElementById("numVetos").value;
+							}
+						// -->
+						</script>
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
 							<fieldset>
 								<label for="listaInvitados">Invitados: </label>
-								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3"></select>
+								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="asignar()">
+								</select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
-								<input type="text" id="numPos" name="numPos" size="1" value="0" />
+								<input type="text" id="numPos" name="numPos" size="1" value="0"/>
 								<br />
 								<label for="numNeg">Votos negativos (-): </label>
-								<input type="text" id="numNeg" name="numNeg" size="1" value="0" />
+								<input type="text" id="numNeg" name="numNeg" size="1" value="0"/>
 								<br />
 								<label for="numVetos">Vetos(x): </label>
-								<input type="text" id="numVetos" name="numVetos" size="1" value="0" />
+								<input type="text" id="numVetos" name="numVetos" size="1" value="0"/>
 							</fieldset>
 							<button type="button" onclick="loadSeleccionInvitados()">Anterior</button>
 							<button type="submit">Siguiente</button>
