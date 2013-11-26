@@ -348,6 +348,7 @@
 							var negativos = new Array();
 							var vetos = new Array();
 							
+							var tam = document.getElementById("participantesDist").length;
 							var votInicial = function(tam){
 								for(var i=0; i<tam; i++){
 									positivos[i]=0;
