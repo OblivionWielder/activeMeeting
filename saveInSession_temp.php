@@ -1,6 +1,6 @@
 <?php
 session_start();
-$testing = 0;
+$testing = 1;
 
 
 for($i=0;$i<count($_POST['myData']);$i++){ 
@@ -229,17 +229,7 @@ function crearJunta($id = 'default'){
 	3. QUe la hora maxima sea 23.59.59
 	4. QUe la hora minima sea 0.0.1
 	5. QUe el inicio sea menor al final
-	
-	
-	forma
-	[0]
-		[fecha]
-		[inicio]
-		[final]
-	[1]
-		[fecha]
-		[inicio]
-		[final]
+
 	*/
 
 	$horariosSeleccionados = $_SESSION["opcionesDeHorario"]; //sobre este habra nombres de numero
@@ -265,17 +255,7 @@ function crearJunta($id = 'default'){
 	negativos y vetos
 	*/
 	$pointDistribution = $_SESSION["votosDeInvitados"];
-	
-	
-	/* 
-	
-creamos la junta
-	insert into junta nombre Descripcion finalvotacion
-	finalvotacion es creado mediante la manipulacion de fecha y hora de lo que nos este llegando en fechaDECierre y hora de cierre
-	obtemenos el id generado y lo guardamos en una varible llamada idjunta
-
-*/
-
+//CONEXION	
 $mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
 if ($mysqli->connect_errno) {
     echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
@@ -283,58 +263,51 @@ if ($mysqli->connect_errno) {
 
 $query = "INSERT INTO  `lethedw2_aMeet`.`junta` (`idjunta` ,`nombre` ,`descripcion` ,`finalVotacion`)
 VALUES (NULL ,  '".$_SESSION['nombreJunta']."',  '".$_SESSION['descripcionJunta']."',  '".$_SESSION['fechaDeCierre']."');";
-
-//echo $query;
-
+//priemro generamos la junta
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
 }
 
 echo "<br/>";
 printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
-
-
+//guardamos el id
+$idJunta = $mysqli->insert_id;
 
 
 /*
-despues creamos al asistente que es el duenio de la junta
-	obtenemos su id y lo guardamos en una variable idasistente
+INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`)
+VALUES (NULL , 'qwe@qwe.com', '1111', '1111', '6'), 
+	(NULL , 'asd@asd.com', NULL , NULL , '6'),
+	(NULL , 'zxc@zxc.com', NULL , NULL , '6');.
 	
+	foreach ($array as &$valor) {
+    $valor = $valor * 2;
+}
 */
+//despues agregamos a los asistentes a la junta
+$query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES";
+foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
+	$query = $query . "(NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "'),";
+}
+$query = substr($query,0,-1); //just takes off the leading comma
+$query = $query . ";";
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+}
+echo "<br/>";
+printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
+
 
 /*
-	
-	despues hacemos que ese asistente sea el owner de esa junta
-	Insert into owner
-	
-*/
+	guardamos sus ids
 
-/*
-	agregamos a los asistentes y obtenemos ese arreglo de ids y lo guardamos en invitados[]
-	insert into asistente....
-*/
+despues agregamos al owner a la junta
 
-/*
-	ahora agregamos en tools a los invitados[] junto con idjunta y pointdiscribution
-	insert into tools
-	
-	*/
-	
-	/*
-	por ultimo creamos los timeslots usando la misma funcion para parsear la fecha y horariosSeleccionados
-	insert into timeslot
-	
-	
-	
-	
-	
-	
-	*********NECESITAMOS UNA TABLA QUE GUARDE UN HASH DE EL INVITADO CON LA JUNTA A LA QUE FUE INVITADA**************
-	
-	
-	
-	
-	
+despues asignamos los persmisos de los asistentes
+
+despues agregamos los timeslots a la junta
+
+por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, idDeJunta	
 	procedemos a crear los hashes que serviran para setear a los usuarios
 	esto se hace con hash('ripemd160', 'The quick brown fox jumped over the lazy dog.');
 	
