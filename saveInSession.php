@@ -277,11 +277,24 @@ echo 'Connected successfully';
 mysql_select_db('my_database') or die('Could not select database'); */ 
 $link = mysql_connect('localhost', 'lethedw2_aMeet', 'pesViS7g')
 or die('Could not connect: ' . mysql_error());
-echo 'Connected successfully';
 mysql_select_db('lethedw2_aMeet') or die('Could not select database');
-$qery = "INSERT INTO  `lethedw2_aMeet`.`junta` (
-`idjunta` ,`nombre` ,`descripcion` ,`finalVotacion`)
-VALUES (NULL ,  'nombreJunta',  'descripcionJunta',  '2013-11-22 09:21:20')";
+
+
+$mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+
+$query = "INSERT INTO  `lethedw2_aMeet`.`junta` (`idjunta` ,`nombre` ,`descripcion` ,`finalVotacion`)
+VALUES (NULL ,  $_SESSION['nombreJunta'],  $_SESSINON['descripcionJunta'],  $_SESSION['fechaDeCierre'])";
+
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+}
+
+
+
+
 /*
 	
 	despues creamos la junta
