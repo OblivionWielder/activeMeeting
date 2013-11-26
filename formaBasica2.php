@@ -355,9 +355,11 @@
 								positivos[seleccionado] = document.getElementById("NumPos").value;
 								negativos[seleccionado] = document.getElementById("NumNeg").value;
 								vetos[seleccionado] = document.getElementById("NumVetos").value;
-								
+							}
+							
+							function cambiar() {
+								var seleccionado = listaParticipantes.selectedIndex;
 								var votosInv = {pos:positivos[seleccionado],neg:negativos[seleccionado],vet:vetos[seleccionado]};
-								
 								document.getElementById("NumPos").value = votosInv.pos;
 								document.getElementById("NumNeg").value = votosInv.neg;
 								document.getElementById("NumVetos").value = votosInv.vet;
@@ -367,16 +369,17 @@
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
 							<fieldset>
 								<label for="listaInvitados">Invitados: </label>
-								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="asignar()"></select>
+								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="asignar()" onclick="cambiar()">
+								</select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
-								<input type="text" id="numPos" name="numPos" size="1" value=<?php $votoDeInvitados[0]["positivo"]?> />
+								<input type="text" id="numPos" name="numPos" size="1" value="0" />
 								<br />
 								<label for="numNeg">Votos negativos (-): </label>
-								<input type="text" id="numNeg" name="numNeg" size="1" value=<?php $votoDeInvitados[0]["negativo"]?> />
+								<input type="text" id="numNeg" name="numNeg" size="1" value="0" />
 								<br />
 								<label for="numVetos">Vetos(x): </label>
-								<input type="text" id="numVetos" name="numVetos" size="1" value=<?php $votoDeInvitados[0]["vetos"]?> />
+								<input type="text" id="numVetos" name="numVetos" size="1" value="0" />
 							</fieldset>
 							<button type="button" onclick="loadSeleccionInvitados()">Anterior</button>
 							<button type="submit">Siguiente</button>
