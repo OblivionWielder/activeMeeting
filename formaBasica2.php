@@ -344,29 +344,28 @@
 						<p> Soy distribucionAInvitados</p>
 						<script type="text/javascript">
 						<!--
+							var positivos = new Array();
+							var negativos = new Array();
+							var vetos = new Array();
 							
+							var tam = document.getElementById("participantesDist").length;
 							
-							/*var tam = document.getElementById("participantesDist").length;
-							var votInicial = function(tam){
-								for(var i=0; i<tam; i++){
-									positivos[i]=0;
-									negativos[i]=0;
-									vetos[i]=0;
+							var votInicial = function(window.tam){
+								for(var i=0; i<window.tam; i++){
+									window.positivos[i]=0;
+									window.negativos[i]=0;
+									window.vetos[i]=0;
 								}
-							}*/
+							}
 							
-							function asignar() {
-								var positivos = new Array();
-								var negativos = new Array();
-								var vetos = new Array();
-								
+							function asignar() {							
 								var seleccionado = document.getElementById("participantesDist").selectedIndex;
 								
 								for (var i=0; i<document.getElementById("participantesDist").length; i++){
 									if(i==seleccionado){
-										document.getElementById("numPos").value = positivos[seleccionado];
-										document.getElementById("numNeg").value = negativos[seleccionado];
-										document.getElementById("numVetos").value = vetos[seleccionado];
+										document.getElementById("numPos").value = window.positivos[seleccionado];
+										document.getElementById("numNeg").value = window.negativos[seleccionado];
+										document.getElementById("numVetos").value = window.vetos[seleccionado];
 									}
 								}
 								
@@ -374,9 +373,9 @@
 							}
 							
 							function cambios(selcam) {
-								positivos[selcam] = document.getElementById("numPos").value;
-								negativos[selcam] = document.getElementById("numNeg").value;
-								vetos[selcam] = document.getElementById("numVetos").value;
+								window.positivos[selcam] = document.getElementById("numPos").value;
+								window.negativos[selcam] = document.getElementById("numNeg").value;
+								window.vetos[selcam] = document.getElementById("numVetos").value;
 							}
 						// -->
 						</script>
