@@ -108,78 +108,7 @@ function getDos()
 
 
 
-if($testing == 1)
-{
-echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
- echo "<br/>"; 
-echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
- echo "<br/>"; 
-echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 
-//primera seccion - detalles de la 
-$_SESSION["accion"] = 1;
-$_SESSION["nombreJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5); //nombre de la junta
-$_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"; //nombre de la junta
-$_SESSION["fechaDeCierre"] = randomDate("2013-11-01 01:01","2013-12-30 23:30");
-$_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50); //nombre de la junta
-
-//segunda seccion - detalles de diferentes horas de eleccion
-$_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
-													"horaInicio"=> getUno(),
-													"horaFin"	=> getDos()),
-										1 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
-													"horaInicio"=> getUno(),
-													"horaFin"	=> getDos()),
-										2 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
-													"horaInicio"=> getUno(),
-													"horaFin"	=> getDos()),
-										3 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
-													"horaInicio"=> getUno(),
-													"horaFin"	=> getDos())
-										);
-
-//tercera seccion - detalles de diferentes invitados
-$_SESSION["opcionesDeInvitados"] = array(	0 => $_SESSION["emailCreador"],
-											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
-											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
-											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
-											4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"
-										);
-
-//cuarta seccion - detalles de  invitados y votos
-$_SESSION["votosDeInvitados"] = array(	0 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][0],
-														"positivos"	=>	get_random_string("0123456789", 2),
-														"negativos"	=>	get_random_string("0123456789", 2),
-														"vetos"		=>	get_random_string("0123456789", 1)),
-										1 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][1],
-														"positivos"	=>	get_random_string("0123456789", 2),
-														"negativos"	=>	get_random_string("0123456789", 2),
-														"vetos"		=>	get_random_string("0123456789", 1)),
-										2 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][2],
-														"positivos"	=>	get_random_string("0123456789", 2),
-														"negativos"	=>	get_random_string("0123456789", 2),
-														"vetos"		=>	get_random_string("0123456789", 1)),
-										3 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][3],
-														"positivos"	=>	get_random_string("0123456789", 2),
-														"negativos"	=>	get_random_string("0123456789", 2),
-														"vetos"		=>	get_random_string("0123456789", 1)),
-										4 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][4],
-														"positivos"	=>	get_random_string("0123456789", 2),
-														"negativos"	=>	get_random_string("0123456789", 2),
-														"vetos"		=>	get_random_string("0123456789", 1))
-									);
- echo "<br/>"; 
-echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
- echo "<br/>"; 
-echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
- echo "<br/>"; 
-echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
-
-
-
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
 }
 switch ($_SESSION["accion"]) {
     case 0:
