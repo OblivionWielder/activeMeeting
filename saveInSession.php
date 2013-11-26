@@ -268,17 +268,13 @@ function crearJunta($id = 'default'){
 	
 	
 	/* 
-	primero creamos al asistente que es el duenio de la junta
-	obtenemos su id y lo guardamos en una variable idasistente
-	// Connecting, selecting database
-$link = mysql_connect('mysql_host', 'mysql_user', 'mysql_password')
-    or die('Could not connect: ' . mysql_error());
-echo 'Connected successfully';
-mysql_select_db('my_database') or die('Could not select database'); */ 
-$link = mysql_connect('localhost', 'lethedw2_aMeet', 'pesViS7g')
-or die('Could not connect: ' . mysql_error());
-mysql_select_db('lethedw2_aMeet') or die('Could not select database');
+	
+creamos la junta
+	insert into junta nombre Descripcion finalvotacion
+	finalvotacion es creado mediante la manipulacion de fecha y hora de lo que nos este llegando en fechaDECierre y hora de cierre
+	obtemenos el id generado y lo guardamos en una varible llamada idjunta
 
+*/
 
 $mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
 if ($mysqli->connect_errno) {
@@ -288,32 +284,43 @@ if ($mysqli->connect_errno) {
 $query = "INSERT INTO  `lethedw2_aMeet`.`junta` (`idjunta` ,`nombre` ,`descripcion` ,`finalVotacion`)
 VALUES (NULL ,  '".$_SESSION['nombreJunta']."',  '".$_SESSION['descripcionJunta']."',  '".$_SESSION['fechaDeCierre']."');";
 
-echo $query;
+//echo $query;
 
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
 }
 
+echo "<br/>";
+printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
+
 
 
 
 /*
+despues creamos al asistente que es el duenio de la junta
+	obtenemos su id y lo guardamos en una variable idasistente
 	
-	despues creamos la junta
-	insert into junta nombre Descripcion finalvotacion
-	finalvotacion es creado mediante la manipulacion de fecha y hora de lo que nos este llegando en fechaDECierre y hora de cierre
-	obtemenos el id generado y lo guardamos en una varible llamada idjunta
+*/
+
+/*
 	
 	despues hacemos que ese asistente sea el owner de esa junta
 	Insert into owner
 	
-	
+*/
+
+/*
 	agregamos a los asistentes y obtenemos ese arreglo de ids y lo guardamos en invitados[]
 	insert into asistente....
+*/
 
+/*
 	ahora agregamos en tools a los invitados[] junto con idjunta y pointdiscribution
 	insert into tools
 	
+	*/
+	
+	/*
 	por ultimo creamos los timeslots usando la misma funcion para parsear la fecha y horariosSeleccionados
 	insert into timeslot
 	
