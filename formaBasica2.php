@@ -344,22 +344,21 @@
 						<p> Soy distribucionAInvitados</p>
 						<script type="text/javascript">
 						<!--
+							window.positivos = new Array();
+							window.negativos = new Array();
+							window.vetos = new Array();
 							
+							var tam = document.getElementById("participantesDist").length;
 							
-							/*var tam = document.getElementById("participantesDist").length;
 							var votInicial = function(tam){
 								for(var i=0; i<tam; i++){
 									positivos[i]=0;
 									negativos[i]=0;
 									vetos[i]=0;
 								}
-							}*/
+							}
 							
-							function asignar() {
-								var positivos = new Array();
-								var negativos = new Array();
-								var vetos = new Array();
-								
+							function asignar() {							
 								var seleccionado = document.getElementById("participantesDist").selectedIndex;
 								
 								for (var i=0; i<document.getElementById("participantesDist").length; i++){

@@ -287,7 +287,7 @@ VALUES (NULL , 'qwe@qwe.com', '1111', '1111', '6'),
 //despues agregamos a los asistentes a la junta
 
 $query = "";
-$invitadoAndID[0] = 1;
+$invitadoAndID = array();
 foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
 	$query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES (NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "');";
 if (!$mysqli->query($query)) {
@@ -295,7 +295,9 @@ if (!$mysqli->query($query)) {
     echo "<br/>";
 }
 printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
-$invitadoAndID[$valor] = $mysqli->insert_id;
+
+//guardamos sus ids
+$invitadoAndID[$mysqli->insert_id] = $valor; 
     
 }
 echo "<br/>";
@@ -319,9 +321,19 @@ printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
 
 
 /*
-	guardamos sus ids
+	
 
 despues agregamos al owner a la junta
+*/
+$query = "";
+//$first_value = reset($invitadoAndID); // First Element's Value
+echo "este es el valor";
+
+$first_key = key($invitadoAndID); // First Element's Key
+echo $first_key;
+//$query = "INSERT INTO `lethedw2_aMeet`.`owner` (`junta_idjunta`, `asistente_idasistente`) VALUES ('". $idJunta . "', '". 1."')";
+
+/*
 
 despues asignamos los persmisos de los asistentes
 
