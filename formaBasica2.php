@@ -367,16 +367,16 @@
 								document.getElementById("numVetos").value = vetos[seleccionado];
 							}
 							
-							function cambiarP() {
-								positivos[i] = document.getElementById("numPos").value;
+							function cambiarP(dato) {
+								positivos[i] = dato.value;
 							}
 							
-							function cambiarN() {
-								negativos[i] = document.getElementById("numNeg").value;
+							function cambiarN(dato) {
+								negativos[i] = dato.value;
 							}
 							
-							function cambiarV() {
-								vetos[i] = document.getElementById("numVetos").value;
+							function cambiarV(dato) {
+								vetos[i] = dato.value;
 							}
 						// -->
 						</script>
@@ -387,13 +387,13 @@
 								</select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
-								<input type="text" id="numPos" name="numPos" size="1" value="0" onchange="cambiarP()"/>
+								<input type="text" id="numPos" name="numPos" size="1" value="0" onchange="cambiarP(this)"/>
 								<br />
 								<label for="numNeg">Votos negativos (-): </label>
-								<input type="text" id="numNeg" name="numNeg" size="1" value="0" onchange="cambiarN()"/>
+								<input type="text" id="numNeg" name="numNeg" size="1" value="0" onchange="cambiarN(this)"/>
 								<br />
 								<label for="numVetos">Vetos(x): </label>
-								<input type="text" id="numVetos" name="numVetos" size="1" value="0" onchange="cambiarV()"/>
+								<input type="text" id="numVetos" name="numVetos" size="1" value="0" onchange="cambiarV(this)"/>
 							</fieldset>
 							<button type="button" onclick="loadSeleccionInvitados()">Anterior</button>
 							<button type="submit">Siguiente</button>
