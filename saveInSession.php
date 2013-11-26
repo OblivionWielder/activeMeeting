@@ -288,9 +288,8 @@ VALUES (NULL , 'qwe@qwe.com', '1111', '1111', '6'),
 $query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES";
 foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
 	$query = $query . "(NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "'),";
-    //echo $valor. "<br/>";
 }
-$query = substr($query,1); //just takes off the leading comma
+$query = substr($query,0,-1); //just takes off the leading comma
 $query = $query . ";";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
