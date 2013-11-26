@@ -287,8 +287,17 @@ VALUES (NULL , 'qwe@qwe.com', '1111', '1111', '6'),
 //despues agregamos a los asistentes a la junta
 $query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES";
 foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
-    echo $valor. "<br/>";
+	$query = $query . "(NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "'),";
+    //echo $valor. "<br/>";
 }
+$query = substr($query,1); //just takes off the leading comma
+$query = $query . ";";
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+}
+echo "<br/>";
+printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
+
 
 /*
 	guardamos sus ids
