@@ -297,6 +297,7 @@ printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
 $invitadoAndID[$valor] = $mysqli->insert_id;
     
 }
+}
 echo "<br/>";
 echo $invitadosAndID;
 /*
