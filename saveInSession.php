@@ -330,8 +330,11 @@ $query = "";
 echo "este es el valor";
 
 $first_key = key($invitadoAndID); // First Element's Key
-echo $first_key;
-//$query = "INSERT INTO `lethedw2_aMeet`.`owner` (`junta_idjunta`, `asistente_idasistente`) VALUES ('". $idJunta . "', '". 1."')";
+echo $first_key . "<br/>";
+$query = "INSERT INTO `lethedw2_aMeet`.`owner` (`junta_idjunta`, `asistente_idasistente`) VALUES ('" .
+$idJunta . "', '". $first_key ."')";
+
+echo $query;
 
 /*
 
