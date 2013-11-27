@@ -330,12 +330,44 @@ $query = "";
 echo "este es el valor";
 
 $first_key = key($invitadoAndID); // First Element's Key
-echo $first_key;
-//$query = "INSERT INTO `lethedw2_aMeet`.`owner` (`junta_idjunta`, `asistente_idasistente`) VALUES ('". $idJunta . "', '". 1."')";
+echo $first_key . "<br/>";
+$query = "INSERT INTO `lethedw2_aMeet`.`owner` (`junta_idjunta`, `asistente_idasistente`) VALUES ('" .
+$idJunta . "', '". $first_key ."')";
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "<br/>";
+}
+//echo $query;
+
+
+
+
+
 
 /*
-
 despues asignamos los persmisos de los asistentes
+INSERT INTO `lethedw2_aMeet`.`tools` (`asistente_idasistente`, `junta_idjunta`, `votesPlus`, `votesMinus`, `vetos`) 
+VALUES ('1', '1', '5', '5', '5'), 
+('2', '1', '6', '6', '6');
+*/
+$query = "";
+foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
+	$query = "INSERT INTO `lethedw2_aMeet`.`tools` (`asistente_idasistente`, `junta_idjunta`, `votesPlus`, `votesMinus`, `vetos`)
+VALUES (NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "');";
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "<br/>";
+}
+
+
+
+
+
+
+
+
+
+/*
 
 despues agregamos los timeslots a la junta
 
