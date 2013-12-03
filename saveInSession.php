@@ -363,7 +363,7 @@ if (!$mysqli->query($query)) {
     echo "<br/>";
 }
 
-
+}
 
 
 
@@ -386,6 +386,7 @@ if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
+}
 
 
 
@@ -403,7 +404,7 @@ por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, id
 	*/
 	
 
-} 
+
 }
 
 ?>
