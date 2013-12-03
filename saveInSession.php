@@ -362,7 +362,7 @@ if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
-
+//test revisando pushes
 }
 
 
