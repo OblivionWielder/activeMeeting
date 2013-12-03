@@ -351,9 +351,9 @@ VALUES ('1', '1', '5', '5', '5'),
 ('2', '1', '6', '6', '6');
 */
 $query = "";
-foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
+foreach ($_SESSION["votosDeInvitados"] as &$valor) {
 	$query = "INSERT INTO `lethedw2_aMeet`.`tools` (`asistente_idasistente`, `junta_idjunta`, `votesPlus`, `votesMinus`, `vetos`)
-VALUES (NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "');";
+VALUES ('" . $valor['invitado'] . "', '" . $idJunta ."', '" . $valor['positivos']  ."', '" . $valor['negativos']  ."', '" . $valor['vetos']  . "');";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
