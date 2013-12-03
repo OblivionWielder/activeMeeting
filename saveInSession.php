@@ -357,7 +357,7 @@ VALUES (" .
 "(SELECT  `idasistente` 
 FROM  `asistente` 
 WHERE  `email` LIKE '" .$valor['invitado']. "')". ", '" . $idJunta ."', '" . $valor['positivos']  ."', '" . $valor['negativos']  ."', '" . $valor['vetos']  . "');";
-echo $query . "<br/>";
+//echo $query . "<br/>";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
@@ -374,6 +374,27 @@ if (!$mysqli->query($query)) {
 /*
 
 despues agregamos los timeslots a la junta
+
+*/
+
+$query = "";
+foreach ($_SESSION["opcionesDeHorario"] as &$valor) {
+	$query = "INSERT INTO `lethedw2_aMeet`.`timeslot` (`idtimeslot`, `tiempoInicio`, `tiempoFin`, `junta_idjunta`) 
+	VALUES (NULL, '" . $valor['fecha'] . " " . $valor['horaInicio'] . "', '" . $valor['fecha'] . " " . $valor['horaFin'] . "', '". $idJunta  ."');";
+echo $query . "<br/>";
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "<br/>";
+}
+
+
+
+
+
+
+/*
+
+
 
 por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, idDeJunta	
 	procedemos a crear los hashes que serviran para setear a los usuarios
