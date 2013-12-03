@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head
+	<meta charset='utf-8'>
+	<title>Asignacion de participantes</title>
+</head>
+
+<body>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<script type="text/javascript" language="javascript">
+	<!--
+		var votos = new Array();
+		
+		/*votos[0] = {positivos:1, negativos:2, vetos:3};
+		votos[1] = {positivos:4, negativos:5, vetos:6};*/
+		
+		function mostrarNumVotos() {
+			var seleccionado = document.getElementById("participantesDist").selectedIndex;
+			var refPos = document.getElementById("NumPos");
+			var refNeg = document.getElementById("NumNeg");
+			var refVetos = document.getElementById("NumVetos");
+			
+			if(seleccionado != null) {
+				if( typeof(votos[seleccionado]) == 'undefined' )
+					votos[seleccionado] = {positivos:0, negativos:0, vetos:0};
+				
+				refPos.disabled = false;
+				refNeg.disabled = false;
+				refVetos.disabled = false;
+				refPos.value = votos[seleccionado].positivos;
+				refNeg.value = votos[seleccionado].negativos;
+				refVetos.value = votos[seleccionado].vetos;
+			} else {
+				refPos.disabled = true;
+				refNeg.disabled = true;
+				refVetos.disabled = true;
+				refPos.value = "-";
+				refNeg.value = "-";
+				refVetos.value = "-";
+			}
+		}
+		
+		function modificarNumPos() {
+			var seleccionado = document.getElementById("participantesDist").selectedIndex;
+			var nuevoNumVotos = parseInt( document.getElementById("NumPos").value );
+			
+			if(nuevoNumVotos >= 0)
+				votos[seleccionado].positivos = nuevoNumVotos;
+		}
+		
+		function modificarNumNeg() {
+			var seleccionado = document.getElementById("participantesDist").selectedIndex;
+			var nuevoNumVotos = parseInt( document.getElementById("NumNeg").value );
+			
+			if(nuevoNumVotos >= 0)
+				votos[seleccionado].negativos = nuevoNumVotos;
+		}
+		
+		function modificarNumVetos() {
+			var seleccionado = document.getElementById("participantesDist").selectedIndex;
+			var nuevoNumVotos = parseInt( document.getElementById("NumVetos").value );
+			
+			if(nuevoNumVotos >= 0)
+				votos[seleccionado].vetos = nuevoNumVotos;
+		}
+		
+		function incrementa(tipoVoto) {
+			var seleccionado = document.getElementById("participantesDist").selectedIndex;
+			
+			switch(tipoVoto) {
+				case 1: document.getElementById("NumPos").value = ++votos[seleccionado].positivos;
+						break;
+				case 2: document.getElementById("NumNeg").value = ++votos[seleccionado].negativos;
+						break;
+				case 3: document.getElementById("NumVetos").value = ++votos[seleccionado].vetos;
+						break;
+			}
+		}
+		
+		function decrementa(tipoVoto) {
+			var seleccionado = document.getElementById("participantesDist").selectedIndex;
+			
+			switch(tipoVoto) {
+				case 1: document.getElementById("NumPos").value = votos[seleccionado].positivos - 1 < 0 ? 0 : --votos[seleccionado].positivos;
+						break;
+				case 2: document.getElementById("NumNeg").value = votos[seleccionado].negativos - 1 < 0 ? 0 : --votos[seleccionado].negativos;
+						break;
+				case 3: document.getElementById("NumVetos").value = votos[seleccionado].vetos - 1 < 0 ? 0 : --votos[seleccionado].vetos;
+						break;
+			}
+		}
+		
+	// -->
+</script>
+
+<form id="prueba" name="prueba" method="post" action="">
+	<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="mostrarNumVotos()">
+		<option value="Part1">Part1</option>
+		<option value="Part2">Part2</option>
+		<option value="Part3">Part3</option>
+	</select>
+	<br /><br />
+	<label for="NumPos">Votos positivos (+): </label>
+	<button type="button" onclick="decrementa(1)">-</button>
+	<input type="text" id="NumPos" name="NumPos" size="1" value="-" onchange="modificarNumPos()" disabled />
+	<button type="button" onclick="incrementa(1)">+</button>
+	<br />
+	<label for="NumNeg">Votos negativos (-): </label>
+	<button type="button" onclick="decrementa(2)">-</button>
+	<input type="text" id="NumNeg" name="NumNeg" size="1" value="-" onchange="modificarNumNeg()" disabled />
+	<button type="button" onclick="incrementa(2)">+</button>
+	<br />
+	<label for="NumVetos">Vetos(x): </label>
+	<button type="button" onclick="decrementa(3)">-</button>
+	<input type="text" id="NumVetos" name="NumVetos" size="1" value="-" onchange="modificarNumVetos()" disabled />
+	<button type="button" onclick="incrementa(3)">+</button>
+	<br /><br />
+	
+	<input type="submit" disabled />
+</form>
+
+</body>
+</html>
