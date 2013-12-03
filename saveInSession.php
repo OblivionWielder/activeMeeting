@@ -356,7 +356,7 @@ foreach ($_SESSION["votosDeInvitados"] as &$valor) {
 VALUES ('" . 
 "(SELECT  `idasistente` 
 FROM  `asistente` 
-WHERE  `email` LIKE" .$valor['invitado']. ")". "', '" . $idJunta ."', '" . $valor['positivos']  ."', '" . $valor['negativos']  ."', '" . $valor['vetos']  . "');";
+WHERE  `email` LIKE " .$valor['invitado']. ")". "', '" . $idJunta ."', '" . $valor['positivos']  ."', '" . $valor['negativos']  ."', '" . $valor['vetos']  . "');";
 echo $query . "<br/>";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
