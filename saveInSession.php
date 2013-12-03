@@ -353,7 +353,10 @@ VALUES ('1', '1', '5', '5', '5'),
 $query = "";
 foreach ($_SESSION["votosDeInvitados"] as &$valor) {
 	$query = "INSERT INTO `lethedw2_aMeet`.`tools` (`asistente_idasistente`, `junta_idjunta`, `votesPlus`, `votesMinus`, `vetos`)
-VALUES ('" . $valor['invitado'] . "', '" . $idJunta ."', '" . $valor['positivos']  ."', '" . $valor['negativos']  ."', '" . $valor['vetos']  . "');";
+VALUES ('" . 
+"(SELECT  `idasistente` 
+FROM  `asistente` 
+WHERE  `email` LIKE" .$valor['invitado']. ")". "', '" . $idJunta ."', '" . $valor['positivos']  ."', '" . $valor['negativos']  ."', '" . $valor['vetos']  . "');";
 echo $query . "<br/>";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
