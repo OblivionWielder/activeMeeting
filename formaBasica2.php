@@ -427,7 +427,7 @@
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
 							<fieldset>
 								<label for="listaInvitados">Invitados: </label>
-								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="asignar()">
+								<select name="participantesDist" id="participantesDist" multiple="multiple" size="3" onchange="mostrarNumVotos()">
 								</select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
@@ -435,6 +435,7 @@
 								<input type="text" id="numPos" name="numPos" size="1" value="-" onchange="modificarNumPos()" disabled />
 								<button type="button" onclick="incrementa(1)">+</button>
 								<br />
+								<label for="numNeg">Votos negativos (-): </label>
 								<button type="button" onclick="decrementa(2)">-</button>
 								<input type="text" id="numNeg" name="numNeg" size="1" value="-" onchange="modificarNumNeg()" disabled />
 								<button type="button" onclick="incrementa(2)">+</button>
