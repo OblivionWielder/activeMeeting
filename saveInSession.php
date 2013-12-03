@@ -379,5 +379,6 @@ por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, id
 	
 
 } 
+}
 
 ?>
