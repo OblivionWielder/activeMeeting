@@ -344,58 +344,84 @@
 						<p> Soy distribucionAInvitados</p>
 						<script type="text/javascript">
 						<!--
-							window.positivos = new Array();
-							window.negativos = new Array();
-							window.vetos = new Array();
-							window.cambio = new Array();
-							
-							window.positivos2 = new Array();
-							window.negativos2 = new Array();
-							window.vetos2 = new Array();
-							
-							var tam = document.getElementById("participantesDist").length;
-							
-							var votInicial = function(tam){
-								for(var i=0; i<tam; i++){
-									positivos[i]=0;
-									negativos[i]=0;
-									vetos[i]=0;
-									cambio[i]=0;
-									
-									positivos2[i]=0;
-									negativos2[i]=0;
-									vetos2[i]=0;
-								}
-							}
-							
-							function asignar() {							
+							var votos = new Array();
+		
+							function mostrarNumVotos() {
 								var seleccionado = document.getElementById("participantesDist").selectedIndex;
-								
-								for (var i=0; i<document.getElementById("participantesDist").length; i++){
-									if(i==seleccionado){
-										if(cambio[i] == 0){
-											document.getElementById("numPos").value = positivos[seleccionado];
-											document.getElementById("numNeg").value = negativos[seleccionado];
-											document.getElementById("numVetos").value = vetos[seleccionado];
-										}
-										else {
-											document.getElementById("numPos").value = positivos2[seleccionado];
-											document.getElementById("numNeg").value = negativos2[seleccionado];
-											document.getElementById("numVetos").value = vetos2[seleccionado];
-											cambio[i]=0;
-										}
-									}
+								var refPos = document.getElementById("numPos");
+								var refNeg = document.getElementById("numNeg");
+								var refVetos = document.getElementById("numVetos");
+			
+								if(seleccionado != null) {
+									if( typeof(votos[seleccionado]) == 'undefined' )
+										votos[seleccionado] = {positivos:0, negativos:0, vetos:0};
+				
+									refPos.disabled = false;
+									refNeg.disabled = false;
+									refVetos.disabled = false;
+									refPos.value = votos[seleccionado].positivos;
+									refNeg.value = votos[seleccionado].negativos;
+									refVetos.value = votos[seleccionado].vetos;
 								}
-								
-								cambios(seleccionado);
+								else {
+									refPos.disabled = true;
+									refNeg.disabled = true;
+									refVetos.disabled = true;
+									refPos.value = "-";
+									refNeg.value = "-";
+									refVetos.value = "-";
+								}
 							}
-							
-							function cambios(selcam) {
-								positivos2[selcam] = document.getElementById("numPos").value;
-								negativos2[selcam] = document.getElementById("numNeg").value;
-								vetos2[selcam] = document.getElementById("numVetos").value;
-								cambio[selcam]=1;
+		
+							function modificarNumPos() {
+								var seleccionado = document.getElementById("participantesDist").selectedIndex;
+								var nuevoNumVotos = parseInt( document.getElementById("numPos").value );
+			
+								if(nuevoNumVotos >= 0)
+									votos[seleccionado].positivos = nuevoNumVotos;
 							}
+		
+							function modificarNumNeg() {
+								var seleccionado = document.getElementById("participantesDist").selectedIndex;
+								var nuevoNumVotos = parseInt( document.getElementById("numNeg").value );
+			
+								if(nuevoNumVotos >= 0)
+									votos[seleccionado].negativos = nuevoNumVotos;
+							}
+		
+							function modificarNumVetos() {
+								var seleccionado = document.getElementById("participantesDist").selectedIndex;
+								var nuevoNumVotos = parseInt( document.getElementById("numVetos").value );
+			
+								if(nuevoNumVotos >= 0)
+									votos[seleccionado].vetos = nuevoNumVotos;
+							}
+		
+						function incrementa(tipoVoto) {
+							var seleccionado = document.getElementById("participantesDist").selectedIndex;
+			
+							switch(tipoVoto) {
+								case 1: document.getElementById("numPos").value = ++votos[seleccionado].positivos;
+										break;
+								case 2: document.getElementById("numNeg").value = ++votos[seleccionado].negativos;
+										break;
+								case 3: document.getElementById("numVetos").value = ++votos[seleccionado].vetos;
+										break;
+							}
+						}
+		
+						function decrementa(tipoVoto) {
+							var seleccionado = document.getElementById("participantesDist").selectedIndex;
+			
+							switch(tipoVoto) {
+								case 1: document.getElementById("numPos").value = votos[seleccionado].positivos - 1 < 0 ? 0 : --votos[seleccionado].positivos;
+										break;
+								case 2: document.getElementById("numNeg").value = votos[seleccionado].negativos - 1 < 0 ? 0 : --votos[seleccionado].negativos;
+										break;
+								case 3: document.getElementById("numVetos").value = votos[seleccionado].vetos - 1 < 0 ? 0 : --votos[seleccionado].vetos;
+										break;
+							}
+						}
 						// -->
 						</script>
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
@@ -405,13 +431,18 @@
 								</select>
 								<br /><br />
 								<label for="numPos">Votos positivos (+): </label>
-								<input type="text" id="numPos" name="numPos" size="1" value="0"/>
+								<button type="button" onclick="decrementa(1)">-</button>
+								<input type="text" id="numPos" name="numPos" size="1" value="-" onchange="modificarNumPos()" disabled />
+								<button type="button" onclick="incrementa(1)">+</button>
 								<br />
-								<label for="numNeg">Votos negativos (-): </label>
-								<input type="text" id="numNeg" name="numNeg" size="1" value="0"/>
+								<button type="button" onclick="decrementa(2)">-</button>
+								<input type="text" id="numNeg" name="numNeg" size="1" value="-" onchange="modificarNumNeg()" disabled />
+								<button type="button" onclick="incrementa(2)">+</button>
 								<br />
 								<label for="numVetos">Vetos(x): </label>
-								<input type="text" id="numVetos" name="numVetos" size="1" value="0"/>
+								<button type="button" onclick="decrementa(3)">-</button>
+								<input type="text" id="numVetos" name="numVetos" size="1" value="-" onchange="modificarNumVetos()" disabled />
+								<button type="button" onclick="incrementa(3)">+</button>
 							</fieldset>
 							<button type="button" onclick="loadSeleccionInvitados()">Anterior</button>
 							<button type="submit">Siguiente</button>
