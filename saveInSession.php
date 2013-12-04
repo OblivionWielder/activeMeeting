@@ -119,7 +119,7 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 //primera seccion - detalles de la 
 $_SESSION["accion"] = 1;
 $_SESSION["nombreJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5); //nombre de la junta
-$_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"; //nombre de la junta
+$_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com"; //nombre de la junta
 $_SESSION["fechaDeCierre"] = randomDate("2013-11-01 01:01","2013-12-30 23:30");
 $_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50); //nombre de la junta
 
@@ -381,7 +381,7 @@ $query = "";
 foreach ($_SESSION["opcionesDeHorario"] as &$valor) {
 	$query = "INSERT INTO `lethedw2_aMeet`.`timeslot` (`idtimeslot`, `tiempoInicio`, `tiempoFin`, `junta_idjunta`) 
 	VALUES (NULL, '" . $valor['fecha'] . " " . $valor['horaInicio'] . "', '" . $valor['fecha'] . " " . $valor['horaFin'] . "', '". $idJunta  ."');";
-echo $query . "<br/>";
+//echo $query . "<br/>";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
@@ -402,8 +402,17 @@ por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, id
 	esto se hace con hash('ripemd160', 'The quick brown fox jumped over the lazy dog.');
 	
 	*/
-	
-
+//invitadoAndID
+$query = "";
+foreach ($invitadoAndID as $key => $value){
+	//UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  'asdasdasdasdasdasdasdasdasdasd' WHERE  `asistente`.`idasistente` =1 AND  `asistente`.`junta_idjunta` =1;
+	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" .hash('sha256', $key . $value . $idJunta ) . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
+";
+echo $query . "<br/>";
+//if (!$mysqli->query($query)) {
+//    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+//    echo "<br/>";
+}
 
 }
 
