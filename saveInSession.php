@@ -409,10 +409,13 @@ foreach ($invitadoAndID as $key => $value){
 	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" . $hash = hash('sha256', $key . $value . $idJunta ) . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
 ";
 echo $query . "<br/>";
-//if (!$mysqli->query($query)) {
-//    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
-//    echo "<br/>";
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "<br/>";
 
+
+
+}
 $to      = $value;
 $subject = 'Your activeMeeting link';
 $message = 'Hey, here is your new activeMetting link!' . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
@@ -421,9 +424,6 @@ $headers = 'From: scasas@kioku.mx' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 mail($to, $subject, $message, $headers);
-
-}
-
 }
 
 ?>
