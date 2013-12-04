@@ -165,6 +165,7 @@ echo "<pre>";
 print_r($_SESSION);
 echo "</pre>";
 }
+
 switch ($_SESSION["accion"]) {
     case 0:
         echo "none";
@@ -173,7 +174,7 @@ switch ($_SESSION["accion"]) {
         crearJunta('something');
         break;
     case 2:
-        echo2();
+        echo1();
         break;
 }
 
@@ -182,15 +183,6 @@ function echo1($var = 'default'){
    echo "<br/>"; 
 } 
 
-function echo2($var = 'default'){ 
-   echo "two <br/>"; 
-   echo "<br/>"; 
-} 
-
-function echo3($var = 'default'){ 
-   echo "three <br/>"; 
-   echo "<br/>"; 
-} 
 
 function crearJunta($id = 'default'){ 
 
@@ -320,14 +312,40 @@ if (!$mysqli->query($query)) {
 
 
 $to      = $value;
-$subject = 'Your activeMeeting link';
 $message = 'Hey, here is your new activeMetting link!' . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
-$headers = 'From: scasas@kioku.mx' . "\r\n" .
-    'Reply-To: scasas@kioku.mx' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-
-mail($to, $subject, $message, $headers);
+sendEMail($value, $message);
 }
 
+}
+function sendEMail($who, $what)
+{
+	require_once "Mail.php";
+
+$from = '<from.gmail.com>';
+$to = '<to.gmail.com>';
+$subject = 'Your new activation link';
+$body = $what;
+
+$headers = array(
+    'From' => $from,
+    'To' => $who,
+    'Subject' => $subject
+);
+
+$smtp = Mail::factory('smtp', array(
+        'host' => 'ssl://smtp.gmail.com',
+        'port' => '465',
+        'auth' => true,
+        'username' => 'sendemail@lethedwellers.com',
+        'password' => 'this password shall remain secret'
+    ));
+
+$mail = $smtp->send($to, $headers, $body);
+
+if (PEAR::isError($mail)) {
+    echo('<p>' . $mail->getMessage() . '</p>');
+} else {
+    echo('<p>Message successfully sent!</p>');
+}
 }
 ?>
