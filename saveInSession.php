@@ -412,9 +412,6 @@ echo $query . "<br/>";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
-
-
-
 }
 $to      = $value;
 $subject = 'Your activeMeeting link';
@@ -426,4 +423,5 @@ $headers = 'From: scasas@kioku.mx' . "\r\n" .
 mail($to, $subject, $message, $headers);
 }
 
+}
 ?>
