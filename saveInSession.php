@@ -251,16 +251,19 @@ if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
-printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
+//printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
 
 //guardamos sus ids
 $invitadoAndID[$mysqli->insert_id] = $valor; 
     
 }
+
+/*
 echo "<br/>";
 echo "%%%%%%%%%% <pre>";
 print_r($invitadoAndID);
-echo "</pre>";
+echo "</pre>"; 
+*/
 
 /*
 despues agregamos al owner a la junta
