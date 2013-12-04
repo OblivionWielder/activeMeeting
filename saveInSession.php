@@ -13,15 +13,6 @@ echo "<pre>";
 print_r($_SESSION);
 echo "</pre>";
 }
-//This module was for outputing into a file to see results
-//foreach ($_SESSION as $key=>$val)
-//$output = $output . $key. ": ".$val. "<br>";
-//file_put_contents('file2.txt', $output);
-
-
-
-
-
 
 ///TESTING Methods///
 function get_random_string($valid_chars, $length)
@@ -103,11 +94,6 @@ function getDos()
 	return $dos = randomTime($uno,"23:30");
 }
 
-//echo $uno."%%%".$dos;
-
-
-
-
 if($testing)
 {
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
@@ -175,8 +161,6 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
  echo "<br/>"; 
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 
-
-
 echo "<pre>";
 print_r($_SESSION);
 echo "</pre>";
@@ -209,17 +193,11 @@ function echo3($var = 'default'){
 } 
 
 function crearJunta($id = 'default'){ 
-	
-	//variables de la primera pantalla
-	echo "PRIMER SECCION";
-	//FILTER_SANITIZE_FULL_SPECIAL_CHARS
 
 	$nombreDeJunta = filter_var($_SESSION['nombreJunta'], FILTER_SANITIZE_SPECIAL_CHARS); 
 	$emailDelCreador = filter_var($_SESSION['emailCreador'], FILTER_SANITIZE_EMAIL); //FILTER_SANITIZE_EMAIL
 	$fechaDeCierre = $_SESSION['cierreVotacion']; //2012-12-23
 	$horaDeCierre = $_SESSION['horaCierreVotacion']; //19:56
-	//$dateSrc = '2007-04-19 12:50 GMT'; 
-   // $dateTime = new DateTime($fechaDeCierre." ".$horaDeCierre); 
 	$descipcionDeJunta = filter_var($_SESSION['descripcionJunta'], FILTER_SANITIZE_SPECIAL_CHARS); //blablabla
 	//variable de la segunda pantalla
 	/*
@@ -229,13 +207,9 @@ function crearJunta($id = 'default'){
 	3. QUe la hora maxima sea 23.59.59
 	4. QUe la hora minima sea 0.0.1
 	5. QUe el inicio sea menor al final
-
 	*/
-
 	$horariosSeleccionados = $_SESSION["opcionesDeHorario"]; //sobre este habra nombres de numero
 	//sobre cada opcion que nos venga, asignamos 3 campos: fecha, horaInicial y horaFinal.
-	
-	
 	//variable de la tercera pantalla
 	/*
 	Tenemos que verificar que:
@@ -245,9 +219,6 @@ function crearJunta($id = 'default'){
 	4. No es posible eliminar el creador
 	*/
 	$listaDeInvitados = $_SESSION["opcionesDeInvitados"]; 
-	
-	
-	
 	//variable de la distribucion de puntos
 	/*
 	Usamos listaDeInvitados como llaves
@@ -267,23 +238,9 @@ VALUES (NULL ,  '".$_SESSION['nombreJunta']."',  '".$_SESSION['descripcionJunta'
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
 }
-
-echo "<br/>";
-printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
 //guardamos el id
 $idJunta = $mysqli->insert_id;
 
-
-/*
-INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`)
-VALUES (NULL , 'qwe@qwe.com', '1111', '1111', '6'), 
-	(NULL , 'asd@asd.com', NULL , NULL , '6'),
-	(NULL , 'zxc@zxc.com', NULL , NULL , '6');.
-	
-	foreach ($array as &$valor) {
-    $valor = $valor * 2;
-}
-*/
 //despues agregamos a los asistentes a la junta
 
 $query = "";
@@ -306,49 +263,18 @@ print_r($invitadoAndID);
 echo "</pre>";
 
 /*
-$query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES";
-foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
-	$query = $query . "(NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "'),";
-}
-$query = substr($query,0,-1); //just takes off the leading comma
-$query = $query . ";";
-if (!$mysqli->query($query)) {
-    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
-}
-echo "<br/>";
-printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
-*/
-
-
-/*
-	
-
 despues agregamos al owner a la junta
 */
 $query = "";
-//$first_value = reset($invitadoAndID); // First Element's Value
-echo "este es el valor";
-
 $first_key = key($invitadoAndID); // First Element's Key
-echo $first_key . "<br/>";
 $query = "INSERT INTO `lethedw2_aMeet`.`owner` (`junta_idjunta`, `asistente_idasistente`) VALUES ('" .
 $idJunta . "', '". $first_key ."')";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
-//echo $query;
-
-
-
-
-
-
 /*
 despues asignamos los persmisos de los asistentes
-INSERT INTO `lethedw2_aMeet`.`tools` (`asistente_idasistente`, `junta_idjunta`, `votesPlus`, `votesMinus`, `vetos`) 
-VALUES ('1', '1', '5', '5', '5'), 
-('2', '1', '6', '6', '6');
 */
 $query = "";
 foreach ($_SESSION["votosDeInvitados"] as &$valor) {
@@ -362,57 +288,34 @@ if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
-//test revisando pushes
 }
-
-
-
-
-
-
-
 /*
-
 despues agregamos los timeslots a la junta
-
 */
-
 $query = "";
 foreach ($_SESSION["opcionesDeHorario"] as &$valor) {
 	$query = "INSERT INTO `lethedw2_aMeet`.`timeslot` (`idtimeslot`, `tiempoInicio`, `tiempoFin`, `junta_idjunta`) 
 	VALUES (NULL, '" . $valor['fecha'] . " " . $valor['horaInicio'] . "', '" . $valor['fecha'] . " " . $valor['horaFin'] . "', '". $idJunta  ."');";
-//echo $query . "<br/>";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
 }
-
-
-
-
-
-
 /*
-
-
-
 por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, idDeJunta	
 	procedemos a crear los hashes que serviran para setear a los usuarios
 	esto se hace con hash('ripemd160', 'The quick brown fox jumped over the lazy dog.');
-	
 	*/
-//invitadoAndID
 $query = "";
 foreach ($invitadoAndID as $key => $value){
-	//UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  'asdasdasdasdasdasdasdasdasdasd' WHERE  `asistente`.`idasistente` =1 AND  `asistente`.`junta_idjunta` =1;
 	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" . $hash = hash('sha256', $key . $value . $idJunta ) . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
 ";
-echo $query . "<br/>";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
+
+
 $to      = $value;
 $subject = 'Your activeMeeting link';
 $message = 'Hey, here is your new activeMetting link!' . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
