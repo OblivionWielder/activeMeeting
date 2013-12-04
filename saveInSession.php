@@ -140,10 +140,10 @@ $_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-
 
 //tercera seccion - detalles de diferentes invitados
 $_SESSION["opcionesDeInvitados"] = array(	0 => $_SESSION["emailCreador"],
-											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
-											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
-											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
-											4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"
+											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com",
+											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com",
+											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com",
+											4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com"
 										);
 
 //cuarta seccion - detalles de  invitados y votos
@@ -406,12 +406,22 @@ por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, id
 $query = "";
 foreach ($invitadoAndID as $key => $value){
 	//UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  'asdasdasdasdasdasdasdasdasdasd' WHERE  `asistente`.`idasistente` =1 AND  `asistente`.`junta_idjunta` =1;
-	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" .hash('sha256', $key . $value . $idJunta ) . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
+	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" . $hash = hash('sha256', $key . $value . $idJunta ) . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
 ";
 echo $query . "<br/>";
 //if (!$mysqli->query($query)) {
 //    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
 //    echo "<br/>";
+
+$to      = $value;
+$subject = 'Your activeMeeting link';
+$message = 'Hey, here is your new activeMetting link!' . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
+$headers = 'From: scasas@kioku.mx' . "\r\n" .
+    'Reply-To: scasas@kioku.mx' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($to, $subject, $message, $headers);
+
 }
 
 }
