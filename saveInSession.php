@@ -319,6 +319,7 @@ sendEMail($value, $message);
 }
 function sendEMail($who, $what)
 {
+	/*
 	require_once "Mail.php";
 
 $from = '<from.gmail.com>';
@@ -347,5 +348,11 @@ if (PEAR::isError($mail)) {
 } else {
     echo('<p>Message successfully sent!</p>');
 }
+*/
+echo "correo No enviado. Aun sin implementacion";
+echo <br/>;
+echo $who . "####" . $what;
+echo <br/>;
+echo <br/>;
 }
 ?>
