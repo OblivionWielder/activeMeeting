@@ -202,7 +202,7 @@
 					<!--Div de Fechas-->
 					<div id="seleccionFechas" hidden>
 						<p> Soy seleccionFechas</p>
-						<script>
+						<script type="text/javascript">
 							$(function() {
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size() + 1;			
