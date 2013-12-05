@@ -200,15 +200,15 @@
 					<div id="seleccionFechas" hidden>
 						<p> Soy seleccionFechas</p>
 						<script type="text/javascript">
+							var fechas = new Array();
+							var calendario = new Array();
+								
+							fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")];
+							calendario.push(fechas);
+							
 							$(function() {
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size() + 1;			
-								
-								var fechas = new Array();
-								var calendario = new Array();
-								
-								fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")];
-								calendario.push(fechas);
 								
 								$('#agregafecha').live('click', function() {
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" required/>'
@@ -527,31 +527,31 @@
 									votos[seleccionado].vetos = nuevoNumVotos;
 							}
 		
-						function incrementa(tipoVoto) {
-							var seleccionado = document.getElementById("participantesDist").selectedIndex;
+							function incrementa(tipoVoto) {
+								var seleccionado = document.getElementById("participantesDist").selectedIndex;
 			
-							switch(tipoVoto) {
-								case 1: document.getElementById("numPos").value = ++votos[seleccionado].positivos;
-										break;
-								case 2: document.getElementById("numNeg").value = ++votos[seleccionado].negativos;
-										break;
-								case 3: document.getElementById("numVetos").value = ++votos[seleccionado].vetos;
-										break;
+								switch(tipoVoto) {
+									case 1: document.getElementById("numPos").value = ++votos[seleccionado].positivos;
+											break;
+									case 2: document.getElementById("numNeg").value = ++votos[seleccionado].negativos;
+											break;
+									case 3: document.getElementById("numVetos").value = ++votos[seleccionado].vetos;
+											break;
+								}
 							}
-						}
 		
-						function decrementa(tipoVoto) {
-							var seleccionado = document.getElementById("participantesDist").selectedIndex;
+							function decrementa(tipoVoto) {
+								var seleccionado = document.getElementById("participantesDist").selectedIndex;
 			
-							switch(tipoVoto) {
-								case 1: document.getElementById("numPos").value = votos[seleccionado].positivos - 1 < 0 ? 0 : --votos[seleccionado].positivos;
-										break;
-								case 2: document.getElementById("numNeg").value = votos[seleccionado].negativos - 1 < 0 ? 0 : --votos[seleccionado].negativos;
-										break;
-								case 3: document.getElementById("numVetos").value = votos[seleccionado].vetos - 1 < 0 ? 0 : --votos[seleccionado].vetos;
-										break;
+								switch(tipoVoto) {
+									case 1: document.getElementById("numPos").value = votos[seleccionado].positivos - 1 < 0 ? 0 : --votos[seleccionado].positivos;
+											break;
+									case 2: document.getElementById("numNeg").value = votos[seleccionado].negativos - 1 < 0 ? 0 : --votos[seleccionado].negativos;
+											break;
+									case 3: document.getElementById("numVetos").value = votos[seleccionado].vetos - 1 < 0 ? 0 : --votos[seleccionado].vetos;
+											break;
+								}
 							}
-						}
 						// -->
 						</script>
 						<form id="distribucionAInvitadosForm" action="javascript:alert( 'successOMG!' );">
