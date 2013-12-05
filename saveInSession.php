@@ -375,7 +375,8 @@ if (!$mysqli->query($query)) {
     echo "Falló la seleccion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
-
+echo "%%%%%%%%";
+echo $mysqli;
 echo $mysqli->num_rows;
 echo "<br/>";
 
