@@ -118,18 +118,43 @@
 						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );">
 						  <fieldset>
 							<label for="nombreJunta">Nombre De La Junta: </label>
-							<input type="text" name="nombreJunta" id="nombreJunta" />
+							<input type="text" name="nombreJunta" id="nombreJunta" required/>
 							<br />
 							<label for="emailCreador">Email: </label>
-							<input type="text" name="emailCreador" id="emailCreador" />
+							<input type="text" name="emailCreador" id="emailCreador" required/>
 							<br />
 							<label for="cierreVotacion">Fecha De Cierre De Votaci&oacute;n: </label>
-							<input type="text" name="cierreVotacion" id="cierreVotacion" />
+							<input type="text" name="cierreVotacion" id="cierreVotacion" required/>
 							<label for="horaCierreVotacion"> Hora: </label>
-							<input type="text" name="horaCierreVotacion" id="horaCierreVotacion" />
+							<select name="horaCierreVotacion" id="horaCierreVotacion" size="1">
+								<option value="0:00">0:00</option>
+								<option value="1:00">1:00</option>
+								<option value="2:00">2:00</option>
+								<option value="3:00">3:00</option>
+								<option value="4:00">4:00</option>
+								<option value="5:00">5:00</option>
+								<option value="6:00">6:00</option>
+								<option value="7:00">7:00</option>
+								<option value="8:00">8:00</option>
+								<option value="9:00">9:00</option>
+								<option value="10:00">10:00</option>
+								<option value="11:00">11:00</option>
+								<option value="12:00">12:00</option>
+								<option value="13:00">13:00</option>
+								<option value="14:00">14:00</option>
+								<option value="15:00">15:00</option>
+								<option value="16:00">16:00</option>
+								<option value="17:00">17:00</option>
+								<option value="18:00">18:00</option>
+								<option value="19:00">19:00</option>
+								<option value="20:00">20:00</option>
+								<option value="21:00">21:00</option>
+								<option value="22:00">22:00</option>
+								<option value="23:00">23:00</option>
+							</select>
 							<br />
 							<label for="descripcionJunta">Descripci&oacute;n: </label>
-							<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50">
+							<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50" required>
 							</textarea>
 						  </fieldset>
 						  <input type ="hidden" value=1 id="accion" name ="accion"/>
@@ -184,9 +209,9 @@
 								calendario.push(fechas);
 								
 								$('#agregafecha').live('click', function() {
-									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" />'
-										+'<input type="text" id="horaInicio' + i +'" size="20" name="horaInicio' + i +'" />'
-										+'<input type="text" id="horaFin' + i +'" size="20" name="horaFin' + i +'" />'
+									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" required/>'
+										+'<input type="text" id="horaInicio' + i +'" size="20" name="horaInicio' + i +'" required/>'
+										+'<input type="text" id="horaFin' + i +'" size="20" name="horaFin' + i +'" required/>'
 										+'<button type="button" href="#" id="borrafecha">Borrar Fecha</button></p>').appendTo(scntDiv);
 									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 									calendario.push(fechas);
@@ -214,9 +239,9 @@
 								<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
 								<div id="fechas">
 									<p>
-										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1"/>
-										<input type="text" id="horaInicio1" size="20" name="horaInicio1"/>
-										<input type="text" id="horaFin1" size="20" name="horaFin1"/>
+										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1" required/>
+										<input type="text" id="horaInicio1" size="20" name="horaInicio1" required/>
+										<input type="text" id="horaFin1" size="20" name="horaFin1" required/>
 									</p>
 								</div>
 								<br />
