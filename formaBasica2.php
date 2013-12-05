@@ -78,6 +78,17 @@
 				$("#juntaCreada").show();
 			}
 		</script>
+		
+		<!-- Codigo para el manejo del Datepicker
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		
+		<script>
+			$(function() {
+				$( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd' } );
+			});
+		</script> -->
 	</head>
 
 	<body onload="loadCreacionJunta()">
@@ -114,14 +125,7 @@
 					<h3>Generar Junta</h3>
 					<div id="creacionJunta" hidden>
 						<p>Soy creacionJunta</p>
-						<!-- Codigo para el manejo del Datepicker  -->
-						<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-						<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-						<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-						<script>
-							$(function() {
-								$( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd' } );
-							});
+						<script type="text/javascript">
 						</script>
 						<!--<form id="creacionJuntaForm" method="post">-->
 						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );">
