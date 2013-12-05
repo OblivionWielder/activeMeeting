@@ -240,8 +240,58 @@
 								<div id="fechas">
 									<p>
 										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1" required/>
-										<input type="text" id="horaInicio1" size="20" name="horaInicio1" required/>
-										<input type="text" id="horaFin1" size="20" name="horaFin1" required/>
+										<select name="horaInicio1" id="horaInicio1" size="1">
+											<option value="0:00">0:00</option>
+											<option value="1:00">1:00</option>
+											<option value="2:00">2:00</option>
+											<option value="3:00">3:00</option>
+											<option value="4:00">4:00</option>
+											<option value="5:00">5:00</option>
+											<option value="6:00">6:00</option>
+											<option value="7:00">7:00</option>
+											<option value="8:00">8:00</option>
+											<option value="9:00">9:00</option>
+											<option value="10:00">10:00</option>
+											<option value="11:00">11:00</option>
+											<option value="12:00">12:00</option>
+											<option value="13:00">13:00</option>
+											<option value="14:00">14:00</option>
+											<option value="15:00">15:00</option>
+											<option value="16:00">16:00</option>
+											<option value="17:00">17:00</option>
+											<option value="18:00">18:00</option>
+											<option value="19:00">19:00</option>
+											<option value="20:00">20:00</option>
+											<option value="21:00">21:00</option>
+											<option value="22:00">22:00</option>
+											<option value="23:00">23:00</option>
+										</select>
+										<select name="horaFin1" id="horaFin1" size="1">
+											<option value="0:00">0:00</option>
+											<option value="1:00">1:00</option>
+											<option value="2:00">2:00</option>
+											<option value="3:00">3:00</option>
+											<option value="4:00">4:00</option>
+											<option value="5:00">5:00</option>
+											<option value="6:00">6:00</option>
+											<option value="7:00">7:00</option>
+											<option value="8:00">8:00</option>
+											<option value="9:00">9:00</option>
+											<option value="10:00">10:00</option>
+											<option value="11:00">11:00</option>
+											<option value="12:00">12:00</option>
+											<option value="13:00">13:00</option>
+											<option value="14:00">14:00</option>
+											<option value="15:00">15:00</option>
+											<option value="16:00">16:00</option>
+											<option value="17:00">17:00</option>
+											<option value="18:00">18:00</option>
+											<option value="19:00">19:00</option>
+											<option value="20:00">20:00</option>
+											<option value="21:00">21:00</option>
+											<option value="22:00">22:00</option>
+											<option value="23:00">23:00</option>
+										</select>
 									</p>
 								</div>
 								<br />
