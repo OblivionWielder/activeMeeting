@@ -78,6 +78,17 @@
 				$("#juntaCreada").show();
 			}
 		</script>
+		
+		<!-- Codigo para el manejo del Datepicker -->
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		
+		<script>
+			$(function() {
+				$( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd' } );
+			});
+		</script>
 	</head>
 
 	<body onload="loadCreacionJunta()">
@@ -126,7 +137,7 @@
 							<input type="text" name="emailCreador" id="emailCreador" required/>
 							<br />
 							<label for="cierreVotacion">Fecha De Cierre De Votaci&oacute;n: </label>
-							<input type="text" name="cierreVotacion" id="cierreVotacion" required/>
+							<input type="text" name="cierreVotacion" id="cierreVotacion" class="fecha" required/>
 							<label for="horaCierreVotacion"> Hora: </label>
 							<select name="horaCierreVotacion" id="horaCierreVotacion" size="1">
 								<option value="0:00">0:00</option>
@@ -211,7 +222,7 @@
 								var i = $('#fechas p').size() + 1;			
 								
 								$('#agregafecha').live('click', function() {
-									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" required/>'
+									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
 										+	'<option value="1:00">1:00</option>'
@@ -291,7 +302,7 @@
 								<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
 								<div id="fechas">
 									<p>
-										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1" required/>
+										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1" class="fecha" required/>
 										<select name="horaInicio1" id="horaInicio1" size="1">
 											<option value="0:00">0:00</option>
 											<option value="1:00">1:00</option>
@@ -346,7 +357,7 @@
 										</select>
 									</p>
 									<p>
-										<input type="text" id="fechaElegir2" size="20" name="fechaElegir2" required/>
+										<input type="text" id="fechaElegir2" size="20" name="fechaElegir2" class="fecha" required/>
 										<select name="horaInicio2" id="horaInicio2" size="1">
 											<option value="0:00">0:00</option>
 											<option value="1:00">1:00</option>
