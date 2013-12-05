@@ -352,7 +352,7 @@
 									</p>
 								</div>
 								<br />
-								<textarea id="your_textarea"></textarea>
+								<textarea id="your_textarea" rows="4" cols="50"></textarea>
 								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
 								<br />
 							</fieldset>
