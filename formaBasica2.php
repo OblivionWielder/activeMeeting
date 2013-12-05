@@ -620,7 +620,7 @@
 							</fieldset>
 							
 							<script>
-								document.getElementById('nomJunta').innerHTML = document.getElementById("nombreJunta").value;
+								document.getElementById('nomJunta').innerHTML = document.getElementById("nombreJunta").textContent;
 							</script>
 						<button type="button" onclick="loadDistribucionAInvitados()">Anterior</button>
 						<button type="button" onclick="loadJuntaCreada()">Terminar</button>
