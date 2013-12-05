@@ -203,7 +203,8 @@
 							var fechas = new Array();
 							var calendario = new Array();
 								
-							fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")];
+							fechas = [{document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")},
+							{document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")}];
 							calendario.push(fechas);
 							
 							$(function() {
@@ -539,7 +540,7 @@
 			
 								if(seleccionado != null) {
 									if( typeof(votos[seleccionado]) == 'undefined' )
-										votos[seleccionado] = {positivos:0, negativos:0, vetos:0};
+										votos[seleccionado] = {positivos:1, negativos:1, vetos:0};
 				
 									refPos.disabled = false;
 									refNeg.disabled = false;
@@ -562,7 +563,7 @@
 								var seleccionado = document.getElementById("participantesDist").selectedIndex;
 								var nuevoNumVotos = parseInt( document.getElementById("numPos").value );
 			
-								if(nuevoNumVotos >= 0)
+								if(nuevoNumVotos >= 1)
 									votos[seleccionado].positivos = nuevoNumVotos;
 							}
 		
@@ -570,7 +571,7 @@
 								var seleccionado = document.getElementById("participantesDist").selectedIndex;
 								var nuevoNumVotos = parseInt( document.getElementById("numNeg").value );
 			
-								if(nuevoNumVotos >= 0)
+								if(nuevoNumVotos >= 1)
 									votos[seleccionado].negativos = nuevoNumVotos;
 							}
 		
@@ -599,9 +600,9 @@
 								var seleccionado = document.getElementById("participantesDist").selectedIndex;
 			
 								switch(tipoVoto) {
-									case 1: document.getElementById("numPos").value = votos[seleccionado].positivos - 1 < 0 ? 0 : --votos[seleccionado].positivos;
+									case 1: document.getElementById("numPos").value = votos[seleccionado].positivos - 1 < 1 ? 1 : --votos[seleccionado].positivos;
 											break;
-									case 2: document.getElementById("numNeg").value = votos[seleccionado].negativos - 1 < 0 ? 0 : --votos[seleccionado].negativos;
+									case 2: document.getElementById("numNeg").value = votos[seleccionado].negativos - 1 < 1 ? 1 : --votos[seleccionado].negativos;
 											break;
 									case 3: document.getElementById("numVetos").value = votos[seleccionado].vetos - 1 < 0 ? 0 : --votos[seleccionado].vetos;
 											break;
