@@ -508,9 +508,12 @@
 								<textarea name="your_textarea" id="your_textarea" rows="4" cols="50">
 								</textarea>
 								<script>
-								var your_array = [ "Alice", "Bob", "Eve" ];
-							var textarea = document.getElementById("your_textarea");
-							textarea.value = your_array.join("\n");
+									$('#participantes').on('change',function(){
+										var test = this;
+										$('#your_textarea').val(function(_,v){
+											return v + test.value;
+										})
+									})
 								</script>
 							</fieldset>
 							<button type="button" onclick="loadSeleccionFechas()">Anterior</button>
