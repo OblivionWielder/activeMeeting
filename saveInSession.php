@@ -399,9 +399,9 @@ if ($mysqli->connect_errno) {
 //$query = "SELECT  *  FROM `timeslot` WHERE `junta_idjunta` like '" . $_SESSION['juntaActiva'] . "';";
 $query = "SELECT  *  FROM `timeslot` WHERE `junta_idjunta` like '" . 81 . "';";
 $result = $mysqli->query($query);
-//$row = mysqli_fetch_array($result, MYSQLI_BOTH);
+//$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 //printf ("%s (%s) (%s) (%s)\n", $row[0], $row[1], $row[2], $row[3]);+
-while($row = $result->fetch_array())
+while($row = $result->mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
 echo "<pre>";
 print_r($row);
