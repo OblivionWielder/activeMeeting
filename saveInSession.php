@@ -370,22 +370,139 @@ if ($mysqli->connect_errno) {
 }	
 	
 	
-	$query = "SELECT * FROM `asistente` WHERE hash like '" . $hash . "';";
-if (!$mysqli->query($query)) {
-    echo "Falló la seleccion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
-    echo "<br/>";
-}
-echo "%%%%%%%%";
-echo $mysqli;
-echo $mysqli->num_rows;
-echo "<br/>";
+$query = "SELECT   `idasistente` ,  `junta_idjunta`  FROM `asistente` WHERE `hash` like '" . $hash . "';";
+$result = $mysqli->query($query);
+//echo "%%%%%%%%";
+//echo $query;
+//echo "<br/>";
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+//printf ($row['idasistente'], $row['junta_idjunta']);
+//printf ($row['junta_idjunta']);
+$_SESSION['usuarioActivo'] = $row['idasistente'] ;
+$_SESSION['juntaActiva'] = $row['junta_idjunta'];
 
+
+//bool mysqli::close ( void )
+}
+
+function cargarOpciones()
+{
+	//CONEXION	
+$mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}	
+	
+
+	//cargar las opciones de la junta para display
+
+//cargar los timeslots de la junta sobre los que votaremos
+
+//cargar cuales de los timeslots tienen veto
+
+//cargar nuestros puntos positivos, negativos y vetos
+
+//preparar las variables
+
+
+
+	
+$query = "SELECT   `idasistente` ,  `junta_idjunta`  FROM `asistente` WHERE `hash` like '" . $hash . "';";
+$result = $mysqli->query($query);
+//echo "%%%%%%%%";
+//echo $query;
+//echo "<br/>";
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+//printf ($row['idasistente'], $row['junta_idjunta']);
+//printf ($row['junta_idjunta']);
+$_SESSION['usuarioActivo'] = $row['idasistente'] ;
+$_SESSION['juntaActiva'] = $row['junta_idjunta'];
 
 
 //bool mysqli::close ( void )
 }
 
 
+
+function votarJunta($asistente, $timeslot, $junta, $modificador)
+{
+	//CONEXION	
+$mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    return 1;
+}	
+
+
+$query = "";
+
+	$query = "INSERT INTO  `lethedw2_aMeet`.`vote` (
+`asistente_idasistente` ,
+`timeslot_idtimeslot` ,
+`timeslot_junta_idjunta` ,
+`modifier`
+)
+VALUES (
+'".$asistente."',  '".$timeslot."',  '".$junta."',  '".$modificador."'
+)
+ON DUPLICATE KEY UPDATE 
+`modifier` = ". $modificador ."
+;";
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "<br/>";
+    return 1;
+}
+
+return 0;
+
+
+}
+
+function vetarTimeSlot($asistente, $timeslot, $junta)
+{
+	//CONEXION	
+$mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}	
+
+$query = "INSERT INTO  `lethedw2_aMeet`.`veto` (
+`asistente_idasistente` ,
+`timeslot_idtimeslot` ,
+`timeslot_junta_idjunta`
+)
+VALUES (
+'".$asistente."',  '".$timeslot."',  '".$junta."'
+);";
+//priemro generamos la junta
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    return 1;
+}
+//guardamos el id
+return 0;
+}
+
+function quitarVeto($asistente, $timeslot, $junta)
+{
+	//CONEXION	
+$mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}	
+
+$query = " DELETE FROM `lethedw2_aMeet`.`veto` WHERE `veto`.`asistente_idasistente` = ".$asistente." AND 
+ `veto`.`timeslot_idtimeslot` = ".$timeslot." AND
+ `veto`.`timeslot_junta_idjunta`= ".$junta.";";
+//priemro generamos la junta
+if (!$mysqli->query($query)) {
+    echo "Falló el borrado de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    return 1;
+}
+//guardamos el id
+return 0;
+}
 
 
 ?>
