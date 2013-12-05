@@ -98,7 +98,7 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 
 //primera seccion - detalles de la 
-$_SESSION["accion"] = 2;
+$_SESSION["accion"] = 4;
 $_SESSION["nombreJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5); //nombre de la junta
 $_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com"; //nombre de la junta
 $_SESSION["fechaDeCierre"] = randomDate("2013-11-01 01:01","2013-12-30 23:30");
@@ -177,6 +177,9 @@ switch ($_SESSION["accion"]) {
         break;
     case 2:
         loadSession('07be52c435a67846ac9a145029359643ac410887cee95');
+        break;
+	case 4:
+        cargarOpciones();
         break;
 }
 
@@ -391,12 +394,23 @@ function cargarOpciones()
 $mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
 if ($mysqli->connect_errno) {
     echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}	
-	
+}
+
+//$query = "SELECT  *  FROM `timeslot` WHERE `junta_idjunta` like '" . $_SESSION['juntaActiva'] . "';";
+$query = "SELECT  *  FROM `timeslot` WHERE `junta_idjunta` like '" . 81 . "';";
+$result = $mysqli->query($query);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+echo "<pre>";
+print_r($row);
+echo "</pre>";
+//printf ($row['idasistente'], $row['junta_idjunta']);
+//printf ($row['junta_idjunta']);
+
 
 	//cargar las opciones de la junta para display
 
 //cargar los timeslots de la junta sobre los que votaremos
+
 
 //cargar cuales de los timeslots tienen veto
 
@@ -407,16 +421,7 @@ if ($mysqli->connect_errno) {
 
 
 	
-$query = "SELECT   `idasistente` ,  `junta_idjunta`  FROM `asistente` WHERE `hash` like '" . $hash . "';";
-$result = $mysqli->query($query);
-//echo "%%%%%%%%";
-//echo $query;
-//echo "<br/>";
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-//printf ($row['idasistente'], $row['junta_idjunta']);
-//printf ($row['junta_idjunta']);
-$_SESSION['usuarioActivo'] = $row['idasistente'] ;
-$_SESSION['juntaActiva'] = $row['junta_idjunta'];
+
 
 
 //bool mysqli::close ( void )
