@@ -446,20 +446,23 @@
 							$( "#seleccionInvitadosForm" ).submit(function(event) {
 							console.log( JSON.stringify($( this ).serializeArray() ));
 							event.preventDefault();
-							$.ajax({
-								type: "POST",
-								dataType: "json",
-								url: "saveInSession.php",
-							  //data: {myData:JSON.stringify($( this ).serializeArray() )},
-								data: {myData:$( this ).serializeArray() },
-								success: function(data){
-									alert('Llegue!');
-								},
-								error: function(e){
-									console.log(e.message);
-								}
-							});
-							loadDistribucionAInvitados();
+							if(document.getElementById("participantes").length >=2) {
+								$.ajax({
+									type: "POST",
+									dataType: "json",
+									url: "saveInSession.php",
+									//data: {myData:JSON.stringify($( this ).serializeArray() )},
+									data: {myData:$( this ).serializeArray() },
+									success: function(data){
+										alert('Llegue!');
+									},
+									error: function(e){
+										console.log(e.message);
+									}
+								});
+								loadDistribucionAInvitados();
+							}
+							else alert("Necesitas al menos 2 invitados");
 							});
 						</script>
 					</div>
