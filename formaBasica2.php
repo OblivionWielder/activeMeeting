@@ -202,7 +202,6 @@
 						<script type="text/javascript">
 							var fechas = new Array();
 							var calendario = new Array();
-							var textarea = document.getElementById("your_textarea");
 								
 							fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")];
 							calendario.push(fechas);
@@ -270,8 +269,6 @@
 									calendario.push(fechas);
 									i++;
 									return false;
-									
-									textarea.value = your_array.join("\n");
 								});
 					
 								$('#borrafecha').live('click', function() { 
@@ -284,8 +281,6 @@
 										
 									}
 									return false;
-									
-									textarea.value = your_array.join("\n");
 								});
 							});
 						</script>
@@ -352,7 +347,6 @@
 									</p>
 								</div>
 								<br />
-								<textarea id="your_textarea" rows="4" cols="50"></textarea>
 								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
 								<br />
 							</fieldset>
