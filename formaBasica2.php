@@ -202,6 +202,7 @@
 						<script type="text/javascript">
 							var fechas = new Array();
 							var calendario = new Array();
+							var textarea = document.getElementById("your_textarea");
 								
 							fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")];
 							calendario.push(fechas);
@@ -269,6 +270,8 @@
 									calendario.push(fechas);
 									i++;
 									return false;
+									
+									textarea.value = your_array.join("\n");
 								});
 					
 								$('#borrafecha').live('click', function() { 
@@ -281,6 +284,8 @@
 										
 									}
 									return false;
+									
+									textarea.value = your_array.join("\n");
 								});
 							});
 						</script>
@@ -347,6 +352,7 @@
 									</p>
 								</div>
 								<br />
+								<textarea id="your_textarea"></textarea>
 								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
 								<br />
 							</fieldset>
@@ -606,7 +612,6 @@
 						<form id="confirmacionInformacionForm">
 							<fieldset>
 								<label for="nJunta">Nombre De La Junta: </label>
-								<label for="nomJunta"></label>
 								<br />
 								<label for="eCreador">Email: </label>
 								<br />
@@ -618,10 +623,6 @@
 								<br />
 								<label for="lInvitados">Invitados: </label>
 							</fieldset>
-							
-							<script>
-								document.getElementById('nomJunta').innerHTML = document.getElementById("nombreJunta").textContent;
-							</script>
 						<button type="button" onclick="loadDistribucionAInvitados()">Anterior</button>
 						<button type="button" onclick="loadJuntaCreada()">Terminar</button>
 						</form>
