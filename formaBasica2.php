@@ -209,7 +209,7 @@
 							
 							$(function() {
 								var scntDiv = $('#fechas');
-								var i = $('#fechas p').size() + 2;			
+								var i = $('#fechas p').size() + 1;			
 								
 								$('#agregafecha').live('click', function() {
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" required/>'
@@ -273,7 +273,7 @@
 								});
 					
 								$('#borrafecha').live('click', function() { 
-									if( i > 3 ) {
+									if( i > 2 ) {
 										$(this).parents('p').remove();
 										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 										var indice = calendario.indexOf(fechaBorrar);
