@@ -493,7 +493,6 @@
 								distPart.remove(seleccionado+1);
 								arregloParticipantes.splice(seleccionado,1); //Borra del arreglo al participante seleccionado
 							}
-
 							// -->
 						</script>
 						<form id="seleccionInvitadosForm" action="javascript:alert( 'successOMG!' );">
@@ -506,6 +505,13 @@
 								<select name="participantes" id="participantes" multiple="multiple" size="3"></select>
 								<button type="button" name="eliminarParticipante" id="eliminarParticipante" onclick="eliminarPartic()" />Eliminar participante</button>
 								<br /><br />
+								<textarea name="your_textarea" id="your_textarea" rows="4" cols="50">
+								</textarea>
+								<script>
+								var your_array = [ "Alice", "Bob", "Eve" ];
+							var textarea = document.getElementById("your_textarea");
+							textarea.value = your_array.join("\n");
+								</script>
 							</fieldset>
 							<button type="button" onclick="loadSeleccionFechas()">Anterior</button>
 							<button type="submit">Siguiente</button>
