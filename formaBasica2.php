@@ -79,7 +79,7 @@
 			}
 		</script>
 		
-		<!-- Codigo para el manejo del Datepicker -->
+		<!-- Codigo para el manejo del Datepicker
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -88,7 +88,7 @@
 			$(function() {
 				$( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd' } );
 			});
-		</script>
+		</script> -->
 	</head>
 
 	<body onload="loadCreacionJunta()">
