@@ -384,7 +384,7 @@ echo "<br/>";
 
 
 
-bool mysqli::close ( void )
+//bool mysqli::close ( void )
 }
 
 
