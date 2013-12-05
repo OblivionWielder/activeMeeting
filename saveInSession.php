@@ -1,9 +1,6 @@
 <?php
 session_start();
 $testing = 1;
-$testing = 1; //forzando un push
-
-
 
 if($testing == 0)
 {
@@ -373,9 +370,9 @@ if ($mysqli->connect_errno) {
 }	
 	
 	
-	$query = "SELECT * FROM 'asistente' WHERE hash like '" . $hash . "';";
+	$query = "SELECT * FROM `asistente` WHERE hash like '" . $hash . "';";
 if (!$mysqli->query($query)) {
-    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "Falló la seleccion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
 
