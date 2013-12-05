@@ -606,6 +606,7 @@
 						<form id="confirmacionInformacionForm">
 							<fieldset>
 								<label for="nJunta">Nombre De La Junta: </label>
+								<label for="nomJunta"></label>
 								<br />
 								<label for="eCreador">Email: </label>
 								<br />
@@ -617,6 +618,10 @@
 								<br />
 								<label for="lInvitados">Invitados: </label>
 							</fieldset>
+							
+							<script>
+								document.getElementById('nomJunta').innerHTML = document.getElementById("nombreJunta").value;
+							</script>
 						<button type="button" onclick="loadDistribucionAInvitados()">Anterior</button>
 						<button type="button" onclick="loadJuntaCreada()">Terminar</button>
 						</form>
