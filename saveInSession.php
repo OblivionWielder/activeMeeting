@@ -320,7 +320,7 @@ $to      = $value;
 $message = 'Hey, here is your new activeMetting link!' . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
 sendEMail($value, $message);
 
-bool mysqli::close ( void )
+bool mysqli::close ( void );
 }
 
 }
