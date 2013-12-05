@@ -401,11 +401,14 @@ $query = "SELECT  *  FROM `timeslot` WHERE `junta_idjunta` like '" . 81 . "';";
 $result = $mysqli->query($query);
 //$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 //printf ("%s (%s) (%s) (%s)\n", $row[0], $row[1], $row[2], $row[3]);+
-while($row = $result->mysqli_fetch_array($result, MYSQLI_ASSOC))
+while($row = $result->fetch_array())
 {
 echo "<pre>";
 print_r($row);
 echo "</pre>";
+
+
+
 }
 
 //printf ($row['idasistente'], $row['junta_idjunta']);
