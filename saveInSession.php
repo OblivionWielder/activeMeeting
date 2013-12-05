@@ -319,6 +319,8 @@ if (!$mysqli->query($query)) {
 $to      = $value;
 $message = 'Hey, here is your new activeMetting link!' . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
 sendEMail($value, $message);
+
+bool mysqli::close ( void )
 }
 
 }
@@ -364,6 +366,13 @@ echo "<br/>";
 
 function loadSession($hash)
 {
+//CONEXION	
+$mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}	
+	
+	
 	$query = "SELECT * FROM 'asistente' WHERE hash like '" . $hash . "';";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
@@ -372,6 +381,10 @@ if (!$mysqli->query($query)) {
 
 echo $mysqli->num_rows;
 echo "<br/>";
+
+
+
+bool mysqli::close ( void )
 }
 
 
