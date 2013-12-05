@@ -114,7 +114,7 @@
 					<h3>Generar Junta</h3>
 					<div id="creacionJunta" hidden>
 						<p>Soy creacionJunta</p>
-						<script type="text/javascript">
+						<script>
 						$(function() {
 							$( "#cierreVotacion" ).datepicker();
 						});
@@ -202,7 +202,7 @@
 					<!--Div de Fechas-->
 					<div id="seleccionFechas" hidden>
 						<p> Soy seleccionFechas</p>
-						<script type="text/javascript">
+						<script>
 							$(function() {
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size() + 1;			
