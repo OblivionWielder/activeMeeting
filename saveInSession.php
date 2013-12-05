@@ -3,10 +3,7 @@ session_start();
 $testing = 1;
 
 
-for($i=0;$i<count($_POST['myData']);$i++){ 
-$_SESSION[$_POST['myData'][$i]["name"]]=$_POST['myData'][$i]["value"];
-}
-$output = '';
+
 if($testing == 0)
 {
 echo "<pre>";
@@ -103,7 +100,7 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 
 //primera seccion - detalles de la 
-$_SESSION["accion"] = 1;
+$_SESSION["accion"] = 2;
 $_SESSION["nombreJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5); //nombre de la junta
 $_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com"; //nombre de la junta
 $_SESSION["fechaDeCierre"] = randomDate("2013-11-01 01:01","2013-12-30 23:30");
@@ -164,6 +161,13 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 echo "<pre>";
 print_r($_SESSION);
 echo "</pre>";
+
+for($i=0;$i<count($_POST['myData']);$i++){ 
+$_SESSION[$_POST['myData'][$i]["name"]]=$_POST['myData'][$i]["value"];
+}
+
+
+
 }
 
 switch ($_SESSION["accion"]) {
@@ -174,7 +178,7 @@ switch ($_SESSION["accion"]) {
         crearJunta('something');
         break;
     case 2:
-        echo1();
+        loadSession('07be52c435a67846ac9a145029359643ac410887cee95');
         break;
 }
 
@@ -350,9 +354,26 @@ if (PEAR::isError($mail)) {
 }
 */
 echo "correo No enviado. Aun sin implementacion";
-echo <br/>;
+echo "<br/>";
 echo $who . "####" . $what;
-echo <br/>;
-echo <br/>;
+echo "<br/>";
+echo "<br/>";
 }
+
+
+function loadSession($hash)
+{
+	$query = "SELECT * FROM 'asistente' WHERE hash like '" . $hash . "';";
+if (!$mysqli->query($query)) {
+    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "<br/>";
+}
+
+echo $mysqli->num_rows;
+echo "<br/>";
+}
+
+
+
+
 ?>
