@@ -209,7 +209,7 @@
 							
 							$(function() {
 								var scntDiv = $('#fechas');
-								var i = $('#fechas p').size() + 1;			
+								var i = $('#fechas p').size() + 2;			
 								
 								$('#agregafecha').live('click', function() {
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" required/>'
