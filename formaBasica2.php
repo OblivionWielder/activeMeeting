@@ -505,16 +505,6 @@
 								<select name="participantes" id="participantes" multiple="multiple" size="3"></select>
 								<button type="button" name="eliminarParticipante" id="eliminarParticipante" onclick="eliminarPartic()" />Eliminar participante</button>
 								<br /><br />
-								<textarea name="your_textarea" id="your_textarea" rows="4" cols="50">
-								</textarea>
-								<script>
-									$('#participantes').on('change',function(){
-										var test = this;
-										$('#your_textarea').val(function(_,v){
-											return v + test.value;
-										})
-									})
-								</script>
 							</fieldset>
 							<button type="button" onclick="loadSeleccionFechas()">Anterior</button>
 							<button type="submit">Siguiente</button>
