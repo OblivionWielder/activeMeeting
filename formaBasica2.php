@@ -114,7 +114,7 @@
 					<h3>Generar Junta</h3>
 					<div id="creacionJunta" hidden>
 						<p>Soy creacionJunta</p>
-						<script>
+						<script type="text/javascript">
 						$(function() {
 							$( "#cierreVotacion" ).datepicker();
 						});
