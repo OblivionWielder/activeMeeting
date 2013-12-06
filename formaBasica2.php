@@ -125,7 +125,7 @@
 					<div id="creacionJunta" hidden>
 						<p>Soy creacionJunta</p>
 						<script type="text/javascript">
-						/*	function validateForm(){
+							/*function validateForm(){
 								var x=document.forms["creacionJuntaForm"]["emailCreador"].value;
 								var atpos=x.indexOf("@");
 								var dotpos=x.lastIndexOf(".");
@@ -136,7 +136,7 @@
 							}*/
 						</script>
 						<!--<form id="creacionJuntaForm" method="post">-->
-						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );">
+						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );" onsubmit="return validateForm();">
 						  <fieldset>
 							<label for="nombreJunta">Nombre De La Junta: </label>
 							<input type="text" name="nombreJunta" id="nombreJunta" required/>
@@ -184,12 +184,8 @@
 						</form>
 						<span></span>
 						<script>
-							$( "#creacionJuntaForm" ).submit(function(event) {
-							    //agregado para que pueda votar el creador
-								var inputEmail = document.getElementById("emailCreador");
-								var distPart = document.getElementById("participantesDist");
-								
-								var x=inputEmail.value;
+							$(function(){
+							var x=document.forms["creacionJuntaForm"]["emailCreador"].value;
 								var atpos=x.indexOf("@");
 								var dotpos=x.lastIndexOf(".");
 								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
@@ -197,11 +193,13 @@
 									return false;
 								}
 								else{
-								if(inputEmail.value != "") {
-									var email = document.createElement("option");
-									email.text = inputEmail.value;
-									distPart.add(email, null);
-								}
+							$( "#creacionJuntaForm" ).submit(function(event) {
+							    //agregado para que pueda votar el creador
+								var inputEmail = document.getElementById("emailCreador");
+								var distPart = document.getElementById("participantesDist");
+								var email = document.createElement("option");
+								email.text = inputEmail.value;
+								distPart.add(email, null);
 								
 								console.log( JSON.stringify($( this ).serializeArray() ));
 								event.preventDefault();
@@ -219,7 +217,8 @@
 									}
 								});
 								loadSeleccionFechas();
-								}
+							});
+							}
 							});
 						</script>
 					</div>
@@ -474,15 +473,8 @@
 								
 								var arregloParticipantes = new Array(); //Arreglo para mandar a los participantes a procesador
 								
-								var x=inputEmail.value;
-								var atpos=x.indexOf("@");
-								var dotpos=x.lastIndexOf(".");
-								
-								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-									alert("E-mail no valido");
-									return false;
-								}
-								else{
+								if(inputEmail.value != "")
+								{
 									/* Validar que el inputEmail sea una email valido */
 									/* Validar que el email que se trata de agregar no exista en la lista de participantes */
 
