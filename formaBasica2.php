@@ -189,7 +189,7 @@
 								var inputEmail = document.getElementById("emailCreador");
 								var distPart = document.getElementById("participantesDist");
 								
-								var x=document.forms["creacionJuntaForm"]["emailCreador"].value;
+								var x=inputEmail.value;
 								var atpos=x.indexOf("@");
 								var dotpos=x.lastIndexOf(".");
 								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
