@@ -443,14 +443,21 @@ $result = $mysqli->query($query);
 $counter = 0;
 while($row = $result->fetch_array())
 {
-echo "<pre>";
-print_r($row);
-echo "</pre>";
 
-//$timeslotsActivos[$counter]
+
+$timeslotsActivos[$counter] = array( 'idTimeslot' => $row['idTimeslot'],
+					'tiempoInicio' => $row['tiempoInicio'],
+					'tiempoFin' => $row['tiempoFin'],
+					'votosHechosPorUsuario' => $row['modifier'],
+					'votosTotales' => $row['votosTotales']
+	);
+
 
 $counter = $counter +1;
 }
+echo "<pre>";
+print_r($timeslotsActivos);
+echo "</pre>";
 
 
 
