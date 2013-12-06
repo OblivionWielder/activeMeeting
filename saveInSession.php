@@ -463,7 +463,7 @@ if ($mysqli->connect_errno) {
 }	
 	
 	
-$query = "SELECT   `idasistente` ,  `junta_idjunta`  FROM `asistente` WHERE `hash` like '" . $hash . "';";
+$query = "SELECT   *  FROM `asistente` WHERE `hash` like '" . $hash . "';";
 $result = $mysqli->query($query);
 //echo "%%%%%%%%";
 //echo $query;
@@ -473,7 +473,7 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 //printf ($row['junta_idjunta']);
 $_SESSION['usuarioActivo'] = $row['idasistente'] ;
 $_SESSION['juntaActiva'] = $row['junta_idjunta'];
-
+$_SESSION['nombreActivo'] = $row['email'];
 
 //bool mysqli::close ( void )
 }
