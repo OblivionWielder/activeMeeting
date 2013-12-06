@@ -28,6 +28,16 @@
 	
 	<body onload="loadVotacionJunta()">
 	<!--Divs Varios-->
+	
+	<?php
+	//ESTE CODIGO CARGA el email del usuario, su id y su junta en las variables de session correspondientes.
+	//ADEMAS CARGA LAS OPCIONES DE LOS HORARIOS CON SUS RESPECTIVOS VOTACIONES Y VETOS EN CASO DE EXISTIR.
+$_SESSION['accion'] = 3;
+$_SESSION['sessionHash'] = $_GET['session'];
+  include 'saveInSession.php';
+  loadSession();
+   cargarOpciones();
+?>
 		<div class="wrapper col1">
 		  <div id="header">
 			<div id="logo">
