@@ -445,7 +445,7 @@ while($row = $result->fetch_array())
 {
 
 
-$timeslotsActivos[$counter] = array( 'idTimeslot' => $row['idTimeslot'],
+$timeslotsActivos[$counter] = array( 'idTimeslot' => $row['idtimeslot'],
 					'tiempoInicio' => $row['tiempoInicio'],
 					'tiempoFin' => $row['tiempoFin'],
 					'votosHechosPorUsuario' => $row['modifier'],
