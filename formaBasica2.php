@@ -221,7 +221,7 @@
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size() + 1;			
 								
-								$('#agregafecha').click(function() {
+								$('#agregafecha').on('click', function() {
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
@@ -282,7 +282,7 @@
 									return false;
 								});
 					
-								$('#borrafecha').click(function() { 
+								$('#borrafecha').on('click', function() { 
 									if( i > 3 ) {
 										$(this).parents('p').remove();
 										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
