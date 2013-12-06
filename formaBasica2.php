@@ -6,6 +6,10 @@
 		<meta http-equiv="imagetoolbar" content="no" />
 		<link rel="stylesheet" href="template/styles/layout.css" type="text/css" />
 		<script type="text/javascript" src="template/scripts/jquery-1.4.1.min.js"></script>
+		<!-- Codigo para el manejo del Datepicker -->
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<?php
 			session_start();
 		?> 
@@ -79,10 +83,7 @@
 			}
 		</script>
 		
-		<!-- Codigo para el manejo del Datepicker -->
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />-->
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		
 		<script>
 			$(function() {
 				$( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd' } );
