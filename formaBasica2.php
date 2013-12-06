@@ -8,8 +8,8 @@
 		<script type="text/javascript" src="template/scripts/jquery-1.4.1.min.js"></script>
 		<!-- Codigo para el manejo del Datepicker -->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 		<?php
 			session_start();
 		?> 
@@ -282,13 +282,12 @@
 								});
 					
 								$('#borrafecha').on('click', function() { 
-									if( i > 2 ) {
+									if( i > 3 ) {
 										$(this).parents('p').remove();
 										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 										var indice = calendario.indexOf(fechaBorrar);
 										calendario.splice(indice,1);
 										i--;
-										
 									}
 									return false;
 								});
