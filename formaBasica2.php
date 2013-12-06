@@ -455,15 +455,30 @@
 						<p> Soy seleccionInvitados</p>
 						<script type="text/javascript">
 						<!--
+							/*function validateForm(){
+								var x=document.forms["creacionJuntaForm"]["emailCreador"].value;
+								var atpos=x.indexOf("@");
+								var dotpos=x.lastIndexOf(".");
+								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+									alert("E-mail no valido");
+									return false;
+								}
+							}*/
+							
 							function agregarPartic()
 							{
 								var listaParticipantes = document.getElementById("participantes"); // Obtener la referencia del select
 								var distPart = document.getElementById("participantesDist"); // Lista para el siguiente div
 								var inputEmail = document.getElementById("emailParticipante"); // Obtener la referencia del mail que se recibe como input
+								var x=inputEmail.value;
+								var atpos=x.indexOf("@");
+								var dotpos=x.lastIndexOf(".");
 								
-								var arregloParticipantes = new Array(); //Arreglo para mandar a los participantes a procesador
-								
-								if(inputEmail.value != "")
+								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+									alert("E-mail no valido");
+									return false;
+								}
+								else
 								{
 									/* Validar que el inputEmail sea una email valido */
 									/* Validar que el email que se trata de agregar no exista en la lista de participantes */
@@ -499,7 +514,6 @@
 								var seleccionado = listaParticipantes.selectedIndex;
 								listaParticipantes.remove(seleccionado);
 								distPart.remove(seleccionado+1);
-								arregloParticipantes.splice(seleccionado,1); //Borra del arreglo al participante seleccionado
 							}
 							// -->
 						</script>
