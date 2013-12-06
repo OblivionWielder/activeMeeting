@@ -284,17 +284,11 @@
 								$(document).on('click', '.remove', function(){
 									var $this = $(this);
 									$(this).parents('p').remove();
+									var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
+									var indice = calendario.indexOf(fechaBorrar);
+									calendario.splice(indice,1);
+									i--;
 								})
-								/*$('#borrafecha').on('click', function() { 
-									if( i > 3 ) {
-										$(this).parents('p').remove();
-										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
-										var indice = calendario.indexOf(fechaBorrar);
-										calendario.splice(indice,1);
-										i--;
-									}
-									return false;
-								});*/
 							});
 						</script>
 						<form id="seleccionFechasForm" action="javascript:alert( 'successOMG!' );">
