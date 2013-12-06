@@ -419,7 +419,7 @@ function sendEMail($who, $what)
 	require_once "Mail.php";
 
 $from = '<from.gmail.com>';
-$to = '<to.gmail.com>';
+$to = $who;
 $subject = 'Your new activation link';
 $body = $what;
 
