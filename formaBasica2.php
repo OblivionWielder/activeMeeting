@@ -487,7 +487,7 @@
 								var atpos=x.indexOf("@");
 								var dotpos=x.lastIndexOf(".");
 								
-								var esta=0;
+								var esta;
 								
 								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
 									alert("E-mail no valido");
@@ -497,12 +497,9 @@
 								{
 									/* Validar que el inputEmail sea una email valido */
 									/* Validar que el email que se trata de agregar no exista en la lista de participantes */
-									/*for(var i=0; listaParticipantes.length; i++){
-										if(listaParticipantes.options[i].text === x)
-											esta = 1;
-									}
-									*/
-									if(esta == 0){
+									esta=optionExists(x, listaParticipantes);
+									
+									if(!esta){
 										var email = document.createElement("option"); // Crear un option nuevo
 										email.text = inputEmail.value; // Asignarle de value al option el string del mail a agregar
 										var email2 = document.createElement("option"); // Crear un option nuevo
@@ -525,7 +522,6 @@
 									}
 									else{
 										alert("E-mail repetido");
-										esta = 0;
 										return false;
 									}
 								}
@@ -538,6 +534,19 @@
 								var seleccionado = listaParticipantes.selectedIndex;
 								listaParticipantes.remove(seleccionado);
 								distPart.remove(seleccionado+1);
+							}
+							
+							function optionExists ( needle, haystack ){
+								var optionExists = false,
+									optionsLength = haystack.length;
+
+								while ( optionsLength-- ){
+									if ( haystack.options[ optionsLength ].value === needle ){
+										optionExists = true;
+										break;
+									}
+								}
+								return optionExists;
 							}
 							// -->
 						</script>
