@@ -446,12 +446,9 @@ if (PEAR::isError($mail)) {
     echo('<p>Message successfully sent!</p>');
 }
 // */
-
-echo "correo No enviado. Mail sending apagado El mensaje esta a continuacion:";
-echo "<br/>";
-echo $who . "####" . $what;
-echo "<br/>";
-echo "<br/>";//*/
+$f = fopen("correos.txt", "a"); 
+fwrite($f,  date('Y-m-d H:i:s') . "Correo No enviado. Mail sending apagado El mensaje esta a continuacion: " . $who . "####" . $what . "\n"); 
+fclose($f); 
 }
 
 function loadSession()
