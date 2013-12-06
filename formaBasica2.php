@@ -210,23 +210,23 @@
 					<div id="seleccionFechas" hidden>
 						<p> Soy seleccionFechas</p>
 						<script type="text/javascript">
-							var fechas = new Array();
+							/*var fechas = new Array();
 							var calendario = new Array();
 								
 							fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1"),
 							document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")];
-							calendario.push(fechas);
+							calendario.push(fechas);*/
 							
 							$(function() {
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size()+1;			
 								
 								$('#borrafecha').on('click', function(){
-									if(i>2){
+									if(i>3){
 										$("div p:last-child").remove();
-										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
+										/*var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 										var indice = calendario.indexOf(fechaBorrar);
-										calendario.splice(indice,1);
+										calendario.splice(indice,1);*/
 										i--;
 									}
 								})
@@ -287,8 +287,8 @@
 										+'</select>'
 										+'</p>').appendTo(scntDiv);
 									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
-									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
-									calendario.push(fechas);
+									//fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
+									//calendario.push(fechas);
 									i++;
 									return false;
 								});
