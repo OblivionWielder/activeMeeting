@@ -286,6 +286,7 @@
 										+	'<option value="22:00">22:00</option>'
 										+	'<option value="23:00">23:00</option>'
 										+'</select>'
+										+'<br/>'
 										+'</div>').appendTo(scntDiv);
 									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
 									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
@@ -354,6 +355,7 @@
 											<option value="22:00">22:00</option>
 											<option value="23:00">23:00</option>
 										</select>
+										<br/>
 									</div>
 									<div id="fecha2">
 										<input type="text" id="fechaElegir2" size="20" name="fechaElegir2" class="fecha" required/>
@@ -409,6 +411,7 @@
 											<option value="22:00">22:00</option>
 											<option value="23:00">23:00</option>
 										</select>
+										<br/>
 									</div>	
 								</div>
 								<br />
