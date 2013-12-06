@@ -115,7 +115,7 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 //primera seccion - detalles de la 
 $_SESSION["accion"] = 1;
 $_SESSION["nombreJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5); //nombre de la junta
-$_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com"; //nombre de la junta
+$_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"; //nombre de la junta
 $_SESSION["fechaDeCierre"] = randomDate("2013-11-01 01:01","2013-12-30 23:30");
 $_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50); //nombre de la junta
 
@@ -136,10 +136,10 @@ $_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-
 
 //tercera seccion - detalles de diferentes invitados
 $_SESSION["opcionesDeInvitados"] = array(	0 => $_SESSION["emailCreador"],
-											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com",
-											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com",
-											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com",
-											4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com"
+											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"
 										);
 
 //cuarta seccion - detalles de  invitados y votos
@@ -396,7 +396,8 @@ por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, id
 	*/
 $query = "";
 foreach ($invitadoAndID as $key => $value){
-	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" . $hash = hash('sha256', $key . $value . $idJunta ) . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
+	$hash = hash('sha256', $key . $value . $idJunta );
+	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" . $hash . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
 ";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
@@ -405,7 +406,7 @@ if (!$mysqli->query($query)) {
 
 
 $to      = $value;
-$message = 'Hey, here is your new activeMetting link!' . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
+$message = 'Hey, here is your new activeMetting link! '  . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
 sendEMail($value, $message);
 
 //bool mysqli::close ( void );
