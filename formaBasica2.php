@@ -274,14 +274,18 @@
 										+	'<option value="22:00">22:00</option>'
 										+	'<option value="23:00">23:00</option>'
 										+'</select>'
-										+'<button type="button" href="#" id="borrafecha">Borrar Fecha</button></p>').appendTo(scntDiv);
+										+'<button type="button" href="#" id="borrafecha" class="remove">Borrar Fecha</button></p>').appendTo(scntDiv);
 									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 									calendario.push(fechas);
 									i++;
 									return false;
 								});
 					
-								$('#borrafecha').on('click', function() { 
+								$(document).on('click', '.remove', function(){
+									var $this = $(this);
+									$this.add($this.prev()).add($this.next()).remove();
+								})
+								/*$('#borrafecha').on('click', function() { 
 									if( i > 3 ) {
 										$(this).parents('p').remove();
 										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
@@ -290,7 +294,7 @@
 										i--;
 									}
 									return false;
-								});
+								});*/
 							});
 						</script>
 						<form id="seleccionFechasForm" action="javascript:alert( 'successOMG!' );">
