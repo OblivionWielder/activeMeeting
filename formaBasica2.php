@@ -175,7 +175,7 @@
 							</select>
 							<br />
 							<label for="descripcionJunta">Descripci&oacute;n: </label>
-							<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50" required>
+							<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50">
 							</textarea>
 						  </fieldset>
 						  <input type ="hidden" value=1 id="accion" name ="accion"/>
