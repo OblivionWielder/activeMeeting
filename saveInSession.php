@@ -1,6 +1,6 @@
 <?php
 session_start();
-$testing = 0;
+$testing = 1;
 
 //Parte magica que agrega lo del post a la sesion
 for($i=0;$i<count($_POST['myData']);$i++){ 
@@ -102,7 +102,7 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 
 //primera seccion - detalles de la 
-$_SESSION["accion"] = 4;
+$_SESSION["accion"] = 1;
 $_SESSION["nombreJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5); //nombre de la junta
 $_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com"; //nombre de la junta
 $_SESSION["fechaDeCierre"] = randomDate("2013-11-01 01:01","2013-12-30 23:30");
@@ -403,7 +403,7 @@ sendEMail($value, $message);
 }
 function sendEMail($who, $what)
 {
-	/*
+	
 	require_once "Mail.php";
 
 $from = '<from.gmail.com>';
@@ -422,7 +422,7 @@ $smtp = Mail::factory('smtp', array(
         'port' => '465',
         'auth' => true,
         'username' => 'sendemail@lethedwellers.com',
-        'password' => 'this password shall remain secret'
+        'password' => 'this password shall remain secretalso'
     ));
 
 $mail = $smtp->send($to, $headers, $body);
@@ -432,12 +432,12 @@ if (PEAR::isError($mail)) {
 } else {
     echo('<p>Message successfully sent!</p>');
 }
-*/
+/*
 echo "correo No enviado. Aun sin implementacion";
 echo "<br/>";
 echo $who . "####" . $what;
 echo "<br/>";
-echo "<br/>";
+echo "<br/>";*/
 }
 
 function loadSession()
