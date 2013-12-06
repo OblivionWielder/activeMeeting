@@ -544,10 +544,39 @@ $timeslotsActivos[$counter] = array( 'idTimeslot' => $row['idtimeslot'],
 
 $counter = $counter +1;
 }
+
+
+
+//Traer TODOS LOS TIMESLOTS
+$todosLosTimeslots = array();
+$counter = 0;
+$query = "SELECT * 
+FROM  `timeslot` 
+WHERE  `junta_idjunta` = '" . $_SESSION['juntaActiva'] . "';";
+$result = $mysqli->query($query);
+while($row = $result->fetch_array())
+{
+$todosLosTimeslots[$counter] = array( 'idTimeslot' => $row['idtimeslot'],
+					'tiempoInicio' => $row['tiempoInicio'],
+					'tiempoFin' => $row['tiempoFin']
+
+
+$counter = $counter +1;
+}
+
+
+
 //echo "<pre>";
 //print_r($timeslotsActivos);
 //echo "</pre>";
+
+
+
+//lost timeslots con votaciones
 $_SESSION['timeslotsCargados'] = $timeslotsActivos;
+
+//todos los timeslots de esta junta 
+$_SESSION['todosLosTimeslots'] = $todosLosTimeslots;
 }
 
 
