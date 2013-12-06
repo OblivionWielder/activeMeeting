@@ -220,18 +220,23 @@
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size();			
 								
-								$(document).on('click', '.remove', function(){
-									var $this = $(this);
-									$(this).parents('p').remove();
-									var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
-									var indice = calendario.indexOf(fechaBorrar);
-									calendario.splice(indice,1);
-									i--;
+								$("#borrafecha").on('click', function(){
+									if(i>=2){
+                                        var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
+										var indice = calendario.indexOf(fechaBorrar);
+										calendario.splice(indice,1);
+									    $("#fechaElegir"+i).remove();
+                                        $("#horaInicio"+i).remove();
+                                        $("#horaFin"+i).remove();
+									    i--;
+                                    }
+									else
+										return false;
 								})
 								
 								$('#agregafecha').on('click', function() {
 									i++;
-									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
+									$('<input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
 										+	'<option value="1:00">1:00</option>'
@@ -283,8 +288,8 @@
 										+	'<option value="21:00">21:00</option>'
 										+	'<option value="22:00">22:00</option>'
 										+	'<option value="23:00">23:00</option>'
-										+'</select>'
-										+'<button type="button" href="#" id="borrafecha" class="remove">Borrar Fecha</button></p>').appendTo(scntDiv);
+										+'</select>').appendTo(scntDiv);
+										
 									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
 									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 									calendario.push(fechas);
@@ -298,7 +303,6 @@
 								<br /><br />
 								<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
 								<div id="fechas">
-									<p>
 										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1" class="fecha" required/>
 										<select name="horaInicio1" id="horaInicio1" size="1">
 											<option value="0:00">0:00</option>
@@ -352,8 +356,6 @@
 											<option value="22:00">22:00</option>
 											<option value="23:00">23:00</option>
 										</select>
-									</p>
-									<p>
 										<input type="text" id="fechaElegir2" size="20" name="fechaElegir2" class="fecha" required/>
 										<select name="horaInicio2" id="horaInicio2" size="1">
 											<option value="0:00">0:00</option>
@@ -407,10 +409,10 @@
 											<option value="22:00">22:00</option>
 											<option value="23:00">23:00</option>
 										</select>
-									</p>
 								</div>
 								<br />
 								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
+								<button type="button" href="#" id="borrafecha">Borrar Fecha</button>
 								<br />
 							</fieldset>
 							<button type="button" onclick="loadCreacionJunta()">Anterior</button>
