@@ -489,8 +489,6 @@
 									email2.text = inputEmail.value; // Asignarle de value al option el string del mail a agregar
 									listaParticipantes.add(email, null); // Agregar el option al final de la lista
 									distPart.add(email2, null); // Agregar el option al final de la lista del otro div
-
-									arregloParticipantes.push(email.text); //Se mete al participante en el arreglo
 									
 									// Al ponerlo asi no funciona, aunque no deberia de haber problemas D=
 									/*try
