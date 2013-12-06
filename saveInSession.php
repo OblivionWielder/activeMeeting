@@ -396,26 +396,39 @@ if ($mysqli->connect_errno) {
     echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
+
+//cargar las opciones de la junta para display
+$timeslotsActivos = array();
 //$query = "SELECT  *  FROM `timeslot` WHERE `junta_idjunta` like '" . $_SESSION['juntaActiva'] . "';";
+
+/*
+SELECT TI.idtimeslot, TI.tiempoInicio, TI.tiempoFin, VO.modifier
+FROM  `timeslot`  `TI` ,  `vote`  `VO` ,  `veto`  `VE` 
+WHERE TI.idtimeslot = VO.timeslot_idtimeslot
+AND TI.idtimeslot = VE.timeslot_idtimeslot
+AND VO.timeslot_idtimeslot = VE.timeslot_idtimeslot
+AND TI.junta_idjunta = VO.timeslot_junta_idjunta
+AND TI.junta_idjunta = VE.timeslot_junta_idjunta
+AND VO.timeslot_junta_idjunta = VE.timeslot_junta_idjunta
+*/
 $query = "SELECT  *  FROM `timeslot` WHERE `junta_idjunta` like '" . 81 . "';";
 $result = $mysqli->query($query);
-//$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-//printf ("%s (%s) (%s) (%s)\n", $row[0], $row[1], $row[2], $row[3]);+
+
+$counter = 0;
 while($row = $result->fetch_array())
 {
 echo "<pre>";
 print_r($row);
 echo "</pre>";
 
+$timeslotsActivos[$counter]
 
-
+$counter = $counter +1;
 }
 
-//printf ($row['idasistente'], $row['junta_idjunta']);
-//printf ($row['junta_idjunta']);
 
 
-	//cargar las opciones de la junta para display
+
 
 //cargar los timeslots de la junta sobre los que votaremos
 
