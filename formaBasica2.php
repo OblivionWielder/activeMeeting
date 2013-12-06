@@ -284,6 +284,7 @@
 										+	'<option value="23:00">23:00</option>'
 										+'</select>'
 										+'<button type="button" href="#" id="borrafecha" class="remove">Borrar Fecha</button></p>').appendTo(scntDiv);
+									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
 									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 									calendario.push(fechas);
 									i++;
