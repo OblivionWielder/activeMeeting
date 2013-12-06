@@ -85,7 +85,7 @@
 			
 		<script>
 			$(function() {
-				$( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd', "refresh" } );
+				$( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );
 			});
 		</script>
 	</head>
@@ -230,6 +230,7 @@
 								})
 								
 								$('#agregafecha').on('click', function() {
+									$('.fecha').datePicker();
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
