@@ -1,6 +1,6 @@
 <?php
 session_start();
-$testing = 0;
+$testing = 1;
 
 //Parte magica que agrega lo del post a la sesion
 for($i=0;$i<count($_POST['myData']);$i++){ 
@@ -93,6 +93,17 @@ $uno = randomTime("01:01","23:30");
 $dos = date('H:i:s', strtotime($uno) + 1800);
 
 
+function getUno()
+{
+        return $uno = randomTime("01:01","23:30");
+}
+
+function getDos()
+{
+        return $dos = randomTime($uno,"23:30");
+}
+
+
 if($testing)
 {
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
@@ -102,9 +113,9 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 
 //primera seccion - detalles de la 
-$_SESSION["accion"] = 4;
+$_SESSION["accion"] = 1;
 $_SESSION["nombreJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5); //nombre de la junta
-$_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com"; //nombre de la junta
+$_SESSION["emailCreador"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"; //nombre de la junta
 $_SESSION["fechaDeCierre"] = randomDate("2013-11-01 01:01","2013-12-30 23:30");
 $_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50); //nombre de la junta
 
@@ -125,10 +136,10 @@ $_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-
 
 //tercera seccion - detalles de diferentes invitados
 $_SESSION["opcionesDeInvitados"] = array(	0 => $_SESSION["emailCreador"],
-											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com",
-											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com",
-											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com",
-											4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@lethedwellers.com"
+											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com",
+											4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 5)."@yopmail.com"
 										);
 
 //cuarta seccion - detalles de  invitados y votos
@@ -385,7 +396,8 @@ por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, id
 	*/
 $query = "";
 foreach ($invitadoAndID as $key => $value){
-	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" . $hash = hash('sha256', $key . $value . $idJunta ) . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
+	$hash = hash('sha256', $key . $value . $idJunta );
+	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" . $hash . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
 ";
 if (!$mysqli->query($query)) {
     echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
@@ -394,7 +406,7 @@ if (!$mysqli->query($query)) {
 
 
 $to      = $value;
-$message = 'Hey, here is your new activeMetting link!' . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
+$message = 'Hey, here is your new activeMetting link! '  . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
 sendEMail($value, $message);
 
 //bool mysqli::close ( void );
@@ -403,11 +415,11 @@ sendEMail($value, $message);
 }
 function sendEMail($who, $what)
 {
-	/*
+	
 	require_once "Mail.php";
 
 $from = '<from.gmail.com>';
-$to = '<to.gmail.com>';
+$to = $who;
 $subject = 'Your new activation link';
 $body = $what;
 
@@ -422,7 +434,7 @@ $smtp = Mail::factory('smtp', array(
         'port' => '465',
         'auth' => true,
         'username' => 'sendemail@lethedwellers.com',
-        'password' => 'this password shall remain secret'
+        'password' => 'this password shall remain secretalso'
     ));
 
 $mail = $smtp->send($to, $headers, $body);
@@ -432,12 +444,12 @@ if (PEAR::isError($mail)) {
 } else {
     echo('<p>Message successfully sent!</p>');
 }
-*/
+/*
 echo "correo No enviado. Aun sin implementacion";
 echo "<br/>";
 echo $who . "####" . $what;
 echo "<br/>";
-echo "<br/>";
+echo "<br/>";*/
 }
 
 function loadSession()
