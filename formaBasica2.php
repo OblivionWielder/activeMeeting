@@ -283,7 +283,7 @@
 					
 								$(document).on('click', '.remove', function(){
 									var $this = $(this);
-									$this.add($this.prev()).add($this.next()).remove();
+									$(this).parents('p').remove();
 								})
 								/*$('#borrafecha').on('click', function() { 
 									if( i > 3 ) {
