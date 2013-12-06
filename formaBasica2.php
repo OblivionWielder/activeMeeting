@@ -286,7 +286,6 @@
 										+	'<option value="22:00">22:00</option>'
 										+	'<option value="23:00">23:00</option>'
 										+'</select>'
-										+'<br/>'
 										+'</div>').appendTo(scntDiv);
 									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
 									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
@@ -299,7 +298,6 @@
 							<fieldset>
 								<b>Fechas a elegir:</b>
 								<br /><br />
-								<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
 								<div id="fechas">
 									<div id="fecha1">
 										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1" class="fecha" required/>
@@ -355,8 +353,7 @@
 											<option value="22:00">22:00</option>
 											<option value="23:00">23:00</option>
 										</select>
-										<br/>
-									</div>
+                                    </div>
 									<div id="fecha2">
 										<input type="text" id="fechaElegir2" size="20" name="fechaElegir2" class="fecha" required/>
 										<select name="horaInicio2" id="horaInicio2" size="1">
@@ -411,8 +408,7 @@
 											<option value="22:00">22:00</option>
 											<option value="23:00">23:00</option>
 										</select>
-										<br/>
-									</div>	
+									</div>
 								</div>
 								<br />
 								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
