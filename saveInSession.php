@@ -374,6 +374,7 @@ WHERE  `email` LIKE '" .$valor['invitado']. "')". ", '" . $idJunta ."', '" . $va
 //echo $query . "<br/>";
 if (!$mysqli->query($query)) {
     echo "ddd Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo $query;
     echo "<br/>";
 }
 }
