@@ -535,7 +535,7 @@ $counter = $counter +1;
 //echo "<pre>";
 //print_r($timeslotsActivos);
 //echo "</pre>";
-$_SESSION['timeslotsCargados'] = $timeslotsActivos
+$_SESSION['timeslotsCargados'] = $timeslotsActivos;
 }
 
 
