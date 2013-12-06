@@ -125,9 +125,18 @@
 					<div id="creacionJunta" hidden>
 						<p>Soy creacionJunta</p>
 						<script type="text/javascript">
+							function validateForm(){
+								var x=document.forms["creacionJuntaForm"]["emailCreador"].value;
+								var atpos=x.indexOf("@");
+								var dotpos=x.lastIndexOf(".");
+								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+									alert("E-mail no valido");
+									return false;
+								}
+							}
 						</script>
 						<!--<form id="creacionJuntaForm" method="post">-->
-						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );">
+						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );" onsubmit="return validateForm();">
 						  <fieldset>
 							<label for="nombreJunta">Nombre De La Junta: </label>
 							<input type="text" name="nombreJunta" id="nombreJunta" required/>
@@ -177,39 +186,31 @@
 						<script>
 							$( "#creacionJuntaForm" ).submit(function(event) {
 							    //agregado para que pueda votar el creador
-								var inputEmail = document.getElementById("emailCreador").value;
+								var inputEmail = document.getElementById("emailCreador");
 								var distPart = document.getElementById("participantesDist");
-								//var x=document.forms["creacionJuntaForm"]["emailCreador"].value;
-								var atpos=inputEmail.indexOf("@");
-								var dotpos=inputEmail.lastIndexOf(".");
-								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=inputEmail.length) {
-									alert("E-mail no valido");
-									return false;
-								}
-								//if(inputEmail.value != "") 
-								else{
+								
+								if(inputEmail.value != "") {
 									var email = document.createElement("option");
 									email.text = inputEmail.value;
 									distPart.add(email, null);
-								
-								
-									console.log( JSON.stringify($( this ).serializeArray() ));
-									event.preventDefault();
-									$.ajax({
-										type: "POST",
-										dataType: "json",
-										url: "saveInSession.php",
-										//data: {myData:JSON.stringify($( this ).serializeArray() )},
-										data: {myData:$( this ).serializeArray() },
-										success: function(data){
-											alert('Llegue!');
-										},
-										error: function(e){
-											console.log(e.message);
-										}
-									});
-									loadSeleccionFechas();
 								}
+								
+								console.log( JSON.stringify($( this ).serializeArray() ));
+								event.preventDefault();
+								$.ajax({
+									type: "POST",
+									dataType: "json",
+									url: "saveInSession.php",
+									//data: {myData:JSON.stringify($( this ).serializeArray() )},
+									data: {myData:$( this ).serializeArray() },
+									success: function(data){
+										alert('Llegue!');
+									},
+									error: function(e){
+										console.log(e.message);
+									}
+								});
+								loadSeleccionFechas();
 							});
 						</script>
 					</div>
@@ -464,8 +465,15 @@
 								
 								var arregloParticipantes = new Array(); //Arreglo para mandar a los participantes a procesador
 								
-								if(inputEmail.value != "")
-								{
+								var x=inputEmail.value;
+								var atpos=x.indexOf("@");
+								var dotpos=x.lastIndexOf(".");
+								
+								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+									alert("E-mail no valido");
+									return false;
+								}
+								else{
 									/* Validar que el inputEmail sea una email valido */
 									/* Validar que el email que se trata de agregar no exista en la lista de participantes */
 
