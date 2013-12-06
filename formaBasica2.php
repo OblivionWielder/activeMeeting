@@ -221,7 +221,7 @@
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size() + 1;			
 								
-								$('#agregafecha').on('click', function() {
+								$('#agregafecha').click(function() {
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
