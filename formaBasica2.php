@@ -222,7 +222,7 @@
 								
 								$('#borrafecha').on('click', '.remove', function(){
 									var $this = $(this);
-									$(this).parents('p'+i).remove();
+									$(this).parents('p:last').remove();
 									var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 									var indice = calendario.indexOf(fechaBorrar);
 									calendario.splice(indice,1);
@@ -230,7 +230,7 @@
 								})
 								
 								$('#agregafecha').on('click', function() {
-									$('<p'+i+'><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
+									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
 										+	'<option value="1:00">1:00</option>'
@@ -283,7 +283,7 @@
 										+	'<option value="22:00">22:00</option>'
 										+	'<option value="23:00">23:00</option>'
 										+'</select>'
-										+'</p'+i+'>').appendTo(scntDiv);
+										+'</p>').appendTo(scntDiv);
 									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
 									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 									calendario.push(fechas);
@@ -411,7 +411,7 @@
 								</div>
 								<br />
 								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
-								<button type="button" href="#" id="borrafecha">Borrar Fecha</button>
+								<button type="button" href="#" id="borrafecha" class="remove">Borrar Fecha</button>
 								<br />
 							</fieldset>
 							<button type="button" onclick="loadCreacionJunta()">Anterior</button>
