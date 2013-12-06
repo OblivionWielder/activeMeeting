@@ -220,7 +220,7 @@
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size()+1;			
 								
-								$('#borrafecha').on('click', '.remove', function(){
+								$('#borrafecha').on('click', function(){
 									var $this = $(this);
 									$(this).parents('p:last').remove();
 									var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
@@ -411,7 +411,7 @@
 								</div>
 								<br />
 								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
-								<button type="button" href="#" id="borrafecha" class="remove">Borrar Fecha</button>
+								<button type="button" href="#" id="borrafecha">Borrar Fecha</button>
 								<br />
 							</fieldset>
 							<button type="button" onclick="loadCreacionJunta()">Anterior</button>
