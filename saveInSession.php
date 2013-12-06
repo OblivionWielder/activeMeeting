@@ -422,16 +422,22 @@ FROM  `timeslot`  `TI` ,  `vote`  `VO`
 WHERE TI.idtimeslot = VO.timeslot_idtimeslot
 AND TI.junta_idjunta = VO.timeslot_junta_idjunta
 */
-$query = "SELECT  *  FROM `timeslot` WHERE `junta_idjunta` like '" . 81 . "';";
-$query = "SELECT TI.idtimeslot, TI.tiempoInicio, TI.tiempoFin, VO.modifier
-FROM  `timeslot`  `TI` ,  `vote`  `VO` ,  `veto`  `VE` 
+$query = "SELECT TI.idtimeslot, TI.tiempoInicio, TI.tiempoFin, VO.modifier, (SELECT COUNT( * ) AS vetado
+FROM  `timeslot`  `TIC` ,  `vote`  `VOC` ,  `veto`  `VEC` 
+WHERE TIC.idtimeslot = VOC.timeslot_idtimeslot
+AND TIC.idtimeslot = VEC.timeslot_idtimeslot
+AND VOC.timeslot_idtimeslot = VEC.timeslot_idtimeslot
+AND TIC.junta_idjunta = VOC.timeslot_junta_idjunta
+AND TIC.junta_idjunta = VEC.timeslot_junta_idjunta
+AND VOC.timeslot_junta_idjunta = VEC.timeslot_junta_idjunta
+AND TI.idtimeslot = TIC.idtimeslot) as vetado,
+(SELECT SUM( modifier ) AS votosTotales
+FROM  `vote`  `VOT` 
+WHERE VOT.timeslot_idtimeslot = VO.timeslot_idtimeslot) as votosTotales
+FROM  `timeslot`  `TI` ,  `vote`  `VO`
 WHERE TI.idtimeslot = VO.timeslot_idtimeslot
-AND TI.idtimeslot = VE.timeslot_idtimeslot
-AND VO.timeslot_idtimeslot = VE.timeslot_idtimeslot
 AND TI.junta_idjunta = VO.timeslot_junta_idjunta
-AND TI.junta_idjunta = VE.timeslot_junta_idjunta
-AND VO.timeslot_junta_idjunta = VE.timeslot_junta_idjunta
-AND TI.junta_idjunta like '" . $_SESSION['juntaActiva'] . "';";
+AND VO.asistente_idasistente = 1";
 $result = $mysqli->query($query);
 
 $counter = 0;
