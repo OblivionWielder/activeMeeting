@@ -321,7 +321,7 @@ $query = "INSERT INTO  `lethedw2_aMeet`.`junta` (`idjunta` ,`nombre` ,`descripci
 VALUES (NULL ,  '".$_SESSION['nombreJunta']."',  '".$_SESSION['descripcionJunta']."',  '".$_SESSION['fechaDeCierre']."');";
 //priemro generamos la junta
 if (!$mysqli->query($query)) {
-    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "aaa Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
 }
 //guardamos el id
 $idJunta = $mysqli->insert_id;
@@ -333,7 +333,7 @@ $invitadoAndID = array();
 foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
 	$query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES (NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "');";
 if (!$mysqli->query($query)) {
-    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "bbb Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
 //printf ("Nuevo registro con el id %d.\n", $mysqli->insert_id);
@@ -358,7 +358,7 @@ $first_key = key($invitadoAndID); // First Element's Key
 $query = "INSERT INTO `lethedw2_aMeet`.`owner` (`junta_idjunta`, `asistente_idasistente`) VALUES ('" .
 $idJunta . "', '". $first_key ."')";
 if (!$mysqli->query($query)) {
-    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "ccc Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
 /*
@@ -373,7 +373,7 @@ FROM  `asistente`
 WHERE  `email` LIKE '" .$valor['invitado']. "')". ", '" . $idJunta ."', '" . $valor['positivos']  ."', '" . $valor['negativos']  ."', '" . $valor['vetos']  . "');";
 //echo $query . "<br/>";
 if (!$mysqli->query($query)) {
-    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "ddd Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
 }
@@ -385,7 +385,7 @@ foreach ($_SESSION["opcionesDeHorario"] as &$valor) {
 	$query = "INSERT INTO `lethedw2_aMeet`.`timeslot` (`idtimeslot`, `tiempoInicio`, `tiempoFin`, `junta_idjunta`) 
 	VALUES (NULL, '" . $valor['fecha'] . " " . $valor['horaInicio'] . "', '" . $valor['fecha'] . " " . $valor['horaFin'] . "', '". $idJunta  ."');";
 if (!$mysqli->query($query)) {
-    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "eee Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
 }
@@ -400,7 +400,7 @@ foreach ($invitadoAndID as $key => $value){
 	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" . $hash . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
 ";
 if (!$mysqli->query($query)) {
-    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "fff Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
 
@@ -581,7 +581,7 @@ ON DUPLICATE KEY UPDATE
 `modifier` = ". $modificador ."
 ;";
 if (!$mysqli->query($query)) {
-    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "ggg Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
     $_SESSION["respuesta"] = 1;
 }
@@ -613,7 +613,7 @@ VALUES (
 );";
 //priemro generamos la junta
 if (!$mysqli->query($query)) {
-    echo "Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
+    echo "hhh Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     $_SESSION["respuesta"] = 1;
 }
 //guardamos el id
