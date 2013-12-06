@@ -222,7 +222,7 @@
 								var i = $('#fechas p').size()+1;			
 								
 								$('#borrafecha').on('click', function(){
-									if(i>2){
+									if(i>3){
 										$("div p:last-child").remove();
 										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 										var indice = calendario.indexOf(fechaBorrar);
