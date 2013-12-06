@@ -1,6 +1,6 @@
 <?php
 session_start();
-$testing = 1;
+$testing = 0;
 
 //Parte magica que agrega lo del post a la sesion
 for($i=0;$i<count($_POST['myData']);$i++){ 
@@ -16,7 +16,7 @@ CUALQUIER OTRA COSA ES QUE ALGO SALIO MAL!
 */
 $_SESSION["respuesta"] = 0;
 
-if($testing == 0)
+if($testing == 1)
 {
 echo "<pre>";
 print_r($_SESSION);
