@@ -497,9 +497,9 @@
 								{
 									/* Validar que el inputEmail sea una email valido */
 									/* Validar que el email que se trata de agregar no exista en la lista de participantes */
-									esta=optionExists(x, listaParticipantes);
+									//esta=optionExists(x, listaParticipantes);
 									
-									if(!esta){
+									//if(!esta){
 										var email = document.createElement("option"); // Crear un option nuevo
 										email.text = inputEmail.value; // Asignarle de value al option el string del mail a agregar
 										var email2 = document.createElement("option"); // Crear un option nuevo
@@ -519,11 +519,11 @@
 									}*/
 
 										inputEmail.value = ""; // Borrar el campo de mail
-									}
+									/*}
 									else{
 										alert("E-mail repetido");
 										return false;
-									}
+									}*/
 								}
 							}
 
@@ -535,7 +535,7 @@
 								listaParticipantes.remove(seleccionado);
 								distPart.remove(seleccionado+1);
 							}
-							
+							/*
 							function optionExists ( needle, haystack ){
 								var optionExists = false,
 									optionsLength = haystack.length;
@@ -547,7 +547,7 @@
 									}
 								}
 								return optionExists;
-							}
+							}*/
 							// -->
 						</script>
 						<form id="seleccionInvitadosForm" action="javascript:alert( 'successOMG!' );">
