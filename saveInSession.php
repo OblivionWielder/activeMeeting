@@ -406,7 +406,7 @@ if (!$mysqli->query($query)) {
 
 
 $to      = $value;
-$message = 'Hey, here is your new activeMetting link! '  . "http://lethedwellers.com/aMeeting/loadSession.php?session=". $hash;
+$message = 'Hey, here is your new activeMetting link! '  . "http://lethedwellers.com/aMeeting/formaUsuario.php?session=". $hash;
 sendEMail($value, $message);
 
 //bool mysqli::close ( void );
@@ -415,6 +415,7 @@ sendEMail($value, $message);
 }
 function sendEMail($who, $what)
 {
+	/*
 	
 	require_once "Mail.php";
 
@@ -444,12 +445,13 @@ if (PEAR::isError($mail)) {
 } else {
     echo('<p>Message successfully sent!</p>');
 }
-/*
-echo "correo No enviado. Aun sin implementacion";
+// */
+
+echo "correo No enviado. Mail sending apagado El mensaje esta a continuacion:";
 echo "<br/>";
 echo $who . "####" . $what;
 echo "<br/>";
-echo "<br/>";*/
+echo "<br/>";//*/
 }
 
 function loadSession()
