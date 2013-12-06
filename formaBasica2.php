@@ -230,7 +230,9 @@
 								})
 								
 								$('#agregafecha').on('click', function() {
-									$('.fecha').removeClass('hasDatepicker').datepicker({dateFormat: 'yy-mm-dd'});
+									jQuery('.date-pick').removeClass('hasDatepicker').datepicker({
+    dateFormat: 'mm-dd-yy'
+    });
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
