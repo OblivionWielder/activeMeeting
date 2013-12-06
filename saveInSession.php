@@ -93,6 +93,17 @@ $uno = randomTime("01:01","23:30");
 $dos = date('H:i:s', strtotime($uno) + 1800);
 
 
+function getUno()
+{
+        return $uno = randomTime("01:01","23:30");
+}
+
+function getDos()
+{
+        return $dos = randomTime($uno,"23:30");
+}
+
+
 if($testing)
 {
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
