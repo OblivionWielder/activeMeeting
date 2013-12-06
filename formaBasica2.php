@@ -497,7 +497,7 @@
 								{
 									/* Validar que el inputEmail sea una email valido */
 									/* Validar que el email que se trata de agregar no exista en la lista de participantes */
-									esta=optionExists(x, listaParticipantes);
+									esta=optionExists(x, distPart);
 									
 									if(!esta){
 										var email = document.createElement("option"); // Crear un option nuevo
@@ -603,14 +603,7 @@
 								var refNeg = document.getElementById("NumNeg");
 								var refVetos = document.getElementById("NumVetos");
 								
-								if(seleccionado == null) {
-									refPos.disabled = true;
-									refNeg.disabled = true;
-									refVetos.disabled = true;
-									refPos.value = "-";
-									refNeg.value = "-";
-									refVetos.value = "-";
-								} else {
+								if(seleccionado != null) {
 									if( typeof(votos[seleccionado]) == 'undefined' )
 										votos[seleccionado] = {invitado:refInv.value, positivos:1, negativos:1, vetos:0};
 									
@@ -620,6 +613,13 @@
 									refPos.value = votos[seleccionado].positivos;
 									refNeg.value = votos[seleccionado].negativos;
 									refVetos.value = votos[seleccionado].vetos;
+								} else {
+									refPos.disabled = true;
+									refNeg.disabled = true;
+									refVetos.disabled = true;
+									refPos.value = "-";
+									refNeg.value = "-";
+									refVetos.value = "-";
 								}
 							}
 		
