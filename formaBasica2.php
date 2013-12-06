@@ -185,15 +185,27 @@
 						<span></span>
 						<script>
 							$( "#creacionJuntaForm" ).submit(function(event) {
-							    //agregado para que pueda votar el creador
-								var inputEmail = document.getElementById("emailCreador");
-								var distPart = document.getElementById("participantesDist");
-								var email = document.createElement("option");
-								email.text = inputEmail.value;
-								distPart.add(email, null);
 								
 								console.log( JSON.stringify($( this ).serializeArray() ));
 								event.preventDefault();
+								
+								//agregado para que pueda votar el creador
+								var inputEmail = document.getElementById("emailCreador");
+								var distPart = document.getElementById("participantesDist");
+								var email = document.createElement("option");
+								var x=inputEmail.value;
+								var atpos=x.indexOf("@");
+								var dotpos=x.lastIndexOf(".");
+								
+								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+									alert("E-mail no valido");
+									return false;
+								}
+								else
+								{
+								email.text = inputEmail.value;
+								distPart.add(email, null);
+								
 								$.ajax({
 									type: "POST",
 									dataType: "json",
@@ -208,6 +220,7 @@
 									}
 								});
 								loadSeleccionFechas();
+								}
 							});
 						</script>
 					</div>
