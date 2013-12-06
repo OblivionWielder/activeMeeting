@@ -220,6 +220,15 @@
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size() + 1;			
 								
+								$(document).on('click', '.remove', function(){
+									var $this = $(this);
+									$(this).parents('p').remove();
+									var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
+									var indice = calendario.indexOf(fechaBorrar);
+									calendario.splice(indice,1);
+									i--;
+								})
+								
 								$('#agregafecha').on('click', function() {
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
@@ -281,14 +290,15 @@
 									return false;
 								});
 					
-								$(document).on('click', '.remove', function(){
-									var $this = $(this);
-									$(this).parents('p').remove();
-									var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
-									var indice = calendario.indexOf(fechaBorrar);
-									calendario.splice(indice,1);
-									i--;
-								})
+								
+								/*$('#borrafecha').on('click', function() { 
+									if( i > 3 ) {
+										$(this).parents('p').remove();
+										
+										i--;
+									}
+									return false;
+								});*/
 							});
 						</script>
 						<form id="seleccionFechasForm" action="javascript:alert( 'successOMG!' );">
