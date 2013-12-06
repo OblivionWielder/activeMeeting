@@ -217,12 +217,8 @@
 							calendario.push(fechas);
 							
 							$(function() {
-								$( ".fechaEleccion" ).datepicker( { dateFormat: 'yy-mm-dd' } );
-							});
-			
-							$(function() {
 								var scntDiv = $('#fechas');
-								var i = $('#fechas p').size() + 1;			
+								var i = $('#fechas p').size();			
 								
 								$(document).on('click', '.remove', function(){
 									var $this = $(this);
@@ -234,7 +230,7 @@
 								})
 								
 								$('#agregafecha').on('click', function() {
-									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fechaEleccion" required/>'
+									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
 										+	'<option value="1:00">1:00</option>'
