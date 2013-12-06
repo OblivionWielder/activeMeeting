@@ -229,6 +229,8 @@
 									i--;
 								})
 								
+								$('.fecha').on('click', function(){ $('.fecha').datepicker('yy-mm-dd');});
+								
 								$('#agregafecha').on('click', function() {
 									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
@@ -283,9 +285,7 @@
 										+	'<option value="22:00">22:00</option>'
 										+	'<option value="23:00">23:00</option>'
 										+'</select>'
-										+'<script> $(function() {$( ".fecha" ).datepicker( { dateFormat: "yy-mm-dd"} );});</script>'
 										+'<button type="button" href="#" id="borrafecha" class="remove">Borrar Fecha</button></p>').appendTo(scntDiv);
-									$('.fecha').datePicker();
 									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 									calendario.push(fechas);
 									i++;
