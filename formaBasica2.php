@@ -223,7 +223,7 @@
 								
 								$('#borrafecha').on('click', function(){
 									if(i>2){
-										$("#fechas > p:last-child").remove();
+										$("#fechas > p").last().remove();
 										/*var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 										var indice = calendario.indexOf(fechaBorrar);
 										calendario.splice(indice,1);*/
