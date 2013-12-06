@@ -599,9 +599,9 @@
 							function mostrarNumVotos() {
 								var refInv = document.getElementById("participantesDist");
 								var seleccionado = refInv.selectedIndex;
-								var refPos = document.getElementById("NumPos");
-								var refNeg = document.getElementById("NumNeg");
-								var refVetos = document.getElementById("NumVetos");
+								var refPos = document.getElementById("numPos");
+								var refNeg = document.getElementById("numNeg");
+								var refVetos = document.getElementById("numVetos");
 								
 								if(seleccionado != null) {
 									if( typeof(votos[seleccionado]) == 'undefined' )
