@@ -501,12 +501,12 @@
 									}
 									
 									if(esta == 0){
-									var email = document.createElement("option"); // Crear un option nuevo
-									email.text = inputEmail.value; // Asignarle de value al option el string del mail a agregar
-									var email2 = document.createElement("option"); // Crear un option nuevo
-									email2.text = inputEmail.value; // Asignarle de value al option el string del mail a agregar
-									listaParticipantes.add(email, null); // Agregar el option al final de la lista
-									distPart.add(email2, null); // Agregar el option al final de la lista del otro div
+										var email = document.createElement("option"); // Crear un option nuevo
+										email.text = inputEmail.value; // Asignarle de value al option el string del mail a agregar
+										var email2 = document.createElement("option"); // Crear un option nuevo
+										email2.text = inputEmail.value; // Asignarle de value al option el string del mail a agregar
+										listaParticipantes.add(email, null); // Agregar el option al final de la lista
+										distPart.add(email2, null); // Agregar el option al final de la lista del otro div
 									
 									// Al ponerlo asi no funciona, aunque no deberia de haber problemas D=
 									/*try
@@ -519,10 +519,11 @@
 										listaParticipantes.add(email, null);
 									}*/
 
-									inputEmail.value = ""; // Borrar el campo de mail
+										inputEmail.value = ""; // Borrar el campo de mail
 									}
 									else{
 										alert("E-mail repetido");
+										esta = 0;
 										return false;
 									}
 								}
