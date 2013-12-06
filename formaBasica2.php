@@ -221,12 +221,13 @@
 								var i = $('#fechas p').size()+1;			
 								
 								$('#borrafecha').on('click', function(){
-									var $this = $(this);
-									$(this).parents('p').last().remove();
-									var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
-									var indice = calendario.indexOf(fechaBorrar);
-									calendario.splice(indice,1);
-									i--;
+									if(i>2){
+										$('div p:last-child').remove();
+										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
+										var indice = calendario.indexOf(fechaBorrar);
+										calendario.splice(indice,1);
+										i--;
+									}
 								})
 								
 								$('#agregafecha').on('click', function() {
@@ -411,7 +412,7 @@
 								</div>
 								<br />
 								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
-								<button type="button" href="#" id="borrafecha" class="remove">Borrar Fecha</button>
+								<button type="button" href="#" id="borrafecha">Borrar Fecha</button>
 								<br />
 							</fieldset>
 							<button type="button" onclick="loadCreacionJunta()">Anterior</button>
