@@ -149,6 +149,9 @@ $_SESSION["votosDeInvitados"] = array(	0 => 	array(	"invitado" 	=>	$_SESSION["op
 														"negativos"	=>	get_random_string("0123456789", 2),
 														"vetos"		=>	get_random_string("0123456789", 1))
 									);
+									
+									
+									$_SESSION['juntaActiva'] = 1;
  echo "<br/>"; 
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
  echo "<br/>"; 
@@ -402,6 +405,7 @@ $timeslotsActivos = array();
 //$query = "SELECT  *  FROM `timeslot` WHERE `junta_idjunta` like '" . $_SESSION['juntaActiva'] . "';";
 
 /*
+//ESTE TRAE LOS QUE TENGAN VETO
 SELECT TI.idtimeslot, TI.tiempoInicio, TI.tiempoFin, VO.modifier
 FROM  `timeslot`  `TI` ,  `vote`  `VO` ,  `veto`  `VE` 
 WHERE TI.idtimeslot = VO.timeslot_idtimeslot
@@ -410,8 +414,24 @@ AND VO.timeslot_idtimeslot = VE.timeslot_idtimeslot
 AND TI.junta_idjunta = VO.timeslot_junta_idjunta
 AND TI.junta_idjunta = VE.timeslot_junta_idjunta
 AND VO.timeslot_junta_idjunta = VE.timeslot_junta_idjunta
+AND TI.junta_idjunta like '" . $_SESSION['juntaActiva'] . "'
+
+//ESTE TRAE TODOS
+SELECT TI.idtimeslot, TI.tiempoInicio, TI.tiempoFin, VO.modifier
+FROM  `timeslot`  `TI` ,  `vote`  `VO`
+WHERE TI.idtimeslot = VO.timeslot_idtimeslot
+AND TI.junta_idjunta = VO.timeslot_junta_idjunta
 */
 $query = "SELECT  *  FROM `timeslot` WHERE `junta_idjunta` like '" . 81 . "';";
+$query = "SELECT TI.idtimeslot, TI.tiempoInicio, TI.tiempoFin, VO.modifier
+FROM  `timeslot`  `TI` ,  `vote`  `VO` ,  `veto`  `VE` 
+WHERE TI.idtimeslot = VO.timeslot_idtimeslot
+AND TI.idtimeslot = VE.timeslot_idtimeslot
+AND VO.timeslot_idtimeslot = VE.timeslot_idtimeslot
+AND TI.junta_idjunta = VO.timeslot_junta_idjunta
+AND TI.junta_idjunta = VE.timeslot_junta_idjunta
+AND VO.timeslot_junta_idjunta = VE.timeslot_junta_idjunta
+AND TI.junta_idjunta like '" . $_SESSION['juntaActiva'] . "';";
 $result = $mysqli->query($query);
 
 $counter = 0;
@@ -421,7 +441,7 @@ echo "<pre>";
 print_r($row);
 echo "</pre>";
 
-$timeslotsActivos[$counter]
+//$timeslotsActivos[$counter]
 
 $counter = $counter +1;
 }
