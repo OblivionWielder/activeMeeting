@@ -285,7 +285,7 @@
 										+'</select>'
 										+'<button type="button" href="#" id="borrafecha" class="remove">Borrar Fecha</button></p>').appendTo(scntDiv);
 									$(function() { 
-										$(".fecha").datepicker({ dateFormat: 'yy-mm-dd'});
+										//$(".fecha").datepicker({ dateFormat: 'yy-mm-dd'});
 										$(".fecha").removeClass('hasDatepicker').datepicker();
 									});
 									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
