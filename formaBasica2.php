@@ -125,7 +125,7 @@
 					<div id="creacionJunta" hidden>
 						<p>Soy creacionJunta</p>
 						<script type="text/javascript">
-							/*function validateForm(){
+							function validateForm(){
 								var x=document.forms["creacionJuntaForm"]["emailCreador"].value;
 								var atpos=x.indexOf("@");
 								var dotpos=x.lastIndexOf(".");
@@ -133,7 +133,7 @@
 									alert("E-mail no valido");
 									return false;
 								}
-							}*/
+							}
 						</script>
 						<!--<form id="creacionJuntaForm" method="post">-->
 						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );" onsubmit="return validateForm();">
@@ -184,15 +184,6 @@
 						</form>
 						<span></span>
 						<script>
-							$(function(){
-							var x=document.forms["creacionJuntaForm"]["emailCreador"].value;
-								var atpos=x.indexOf("@");
-								var dotpos=x.lastIndexOf(".");
-								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-									alert("E-mail no valido");
-									return false;
-								}
-								else{
 							$( "#creacionJuntaForm" ).submit(function(event) {
 							    //agregado para que pueda votar el creador
 								var inputEmail = document.getElementById("emailCreador");
@@ -217,8 +208,6 @@
 									}
 								});
 								loadSeleccionFechas();
-							});
-							}
 							});
 						</script>
 					</div>
