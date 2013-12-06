@@ -82,6 +82,13 @@
 				$("#juntaCreada").show();
 			}
 		</script>
+		
+		
+		<script>
+			$(function() {
+				$( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd' } );
+			});
+		</script>
 	</head>
 
 	<body onload="loadCreacionJunta()">
@@ -118,10 +125,7 @@
 					<h3>Generar Junta</h3>
 					<div id="creacionJunta" hidden>
 						<p>Soy creacionJunta</p>
-						<script>
-							$(function() {
-								$( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd' } );
-							});
+						<script type="text/javascript">
 						</script>
 						<!--<form id="creacionJuntaForm" method="post">-->
 						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );">
@@ -214,15 +218,11 @@
 							calendario.push(fechas);
 							
 							$(function() {
-								$( ".fechaElegir" ).datepicker( { dateFormat: 'yy-mm-dd' } );
-							});
-							
-							$(function() {
 								var scntDiv = $('#fechas');
 								var i = $('#fechas p').size() + 1;			
 								
 								$('#agregafecha').click(function() {
-									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fechaElegir" required/>'
+									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
 										+	'<option value="1:00">1:00</option>'
@@ -282,7 +282,7 @@
 									return false;
 								});
 					
-								$('#borrafecha').live('click', function() { 
+								$('#borrafecha').click(function() { 
 									if( i > 3 ) {
 										$(this).parents('p').remove();
 										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
@@ -302,7 +302,7 @@
 								<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
 								<div id="fechas">
 									<p>
-										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1" class="fechaElegir" required/>
+										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1" class="fecha" required/>
 										<select name="horaInicio1" id="horaInicio1" size="1">
 											<option value="0:00">0:00</option>
 											<option value="1:00">1:00</option>
@@ -357,7 +357,7 @@
 										</select>
 									</p>
 									<p>
-										<input type="text" id="fechaElegir2" size="20" name="fechaElegir2" class="fechaElegir" required/>
+										<input type="text" id="fechaElegir2" size="20" name="fechaElegir2" class="fecha" required/>
 										<select name="horaInicio2" id="horaInicio2" size="1">
 											<option value="0:00">0:00</option>
 											<option value="1:00">1:00</option>
