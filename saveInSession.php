@@ -449,7 +449,8 @@ $timeslotsActivos[$counter] = array( 'idTimeslot' => $row['idtimeslot'],
 					'tiempoInicio' => $row['tiempoInicio'],
 					'tiempoFin' => $row['tiempoFin'],
 					'votosHechosPorUsuario' => $row['modifier'],
-					'votosTotales' => $row['votosTotales']
+					'votosTotales' => $row['votosTotales'],
+					'vetado' => $row['vetado']
 	);
 
 
@@ -459,16 +460,10 @@ echo "<pre>";
 print_r($timeslotsActivos);
 echo "</pre>";
 
-
-
-
-
-//cargar los timeslots de la junta sobre los que votaremos
-
-
-//cargar cuales de los timeslots tienen veto
-
 //cargar nuestros puntos positivos, negativos y vetos
+
+
+
 
 //preparar las variables
 
