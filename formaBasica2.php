@@ -201,25 +201,24 @@
 									alert("E-mail no valido");
 									return false;
 								}
-								else
-								{
-								email.text = inputEmail.value;
-								distPart.add(email, null);
+								else {
+									email.text = inputEmail.value;
+									distPart.add(email, null);
 								
-								$.ajax({
-									type: "POST",
-									dataType: "json",
-									url: "saveInSession.php",
-									//data: {myData:JSON.stringify($( this ).serializeArray() )},
-									data: {myData:$( this ).serializeArray() },
-									success: function(data){
-										alert('Llegue!');
-									},
-									error: function(e){
-										console.log(e.message);
-									}
-								});
-								loadSeleccionFechas();
+									$.ajax({
+										type: "POST",
+										dataType: "json",
+										url: "saveInSession.php",
+										//data: {myData:JSON.stringify($( this ).serializeArray() )},
+										data: {myData:$( this ).serializeArray() },
+										success: function(data){
+											alert('Llegue!');
+										},
+										error: function(e){
+											console.log(e.message);
+										}
+									});
+									loadSeleccionFechas();
 								}
 							});
 						</script>
@@ -495,7 +494,7 @@
 								{
 									/* Validar que el inputEmail sea una email valido */
 									/* Validar que el email que se trata de agregar no exista en la lista de participantes */
-
+									if(!listaParticipantes.indexOf(x)){
 									var email = document.createElement("option"); // Crear un option nuevo
 									email.text = inputEmail.value; // Asignarle de value al option el string del mail a agregar
 									var email2 = document.createElement("option"); // Crear un option nuevo
@@ -515,6 +514,9 @@
 									}*/
 
 									inputEmail.value = ""; // Borrar el campo de mail
+									}
+									else
+										alert("E-mail no valido");
 								}
 							}
 
