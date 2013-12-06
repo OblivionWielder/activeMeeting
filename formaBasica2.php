@@ -482,9 +482,11 @@
 								var listaParticipantes = document.getElementById("participantes"); // Obtener la referencia del select
 								var distPart = document.getElementById("participantesDist"); // Lista para el siguiente div
 								var inputEmail = document.getElementById("emailParticipante"); // Obtener la referencia del mail que se recibe como input
+								
 								var x=inputEmail.value;
 								var atpos=x.indexOf("@");
 								var dotpos=x.lastIndexOf(".");
+								
 								var esta=0;
 								
 								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
@@ -495,11 +497,11 @@
 								{
 									/* Validar que el inputEmail sea una email valido */
 									/* Validar que el email que se trata de agregar no exista en la lista de participantes */
-									for(var i=0; listaParticipantes.length; i++){
+									/*for(var i=0; listaParticipantes.length; i++){
 										if(listaParticipantes.options[i].text === x)
 											esta = 1;
 									}
-									
+									*/
 									if(esta == 0){
 										var email = document.createElement("option"); // Crear un option nuevo
 										email.text = inputEmail.value; // Asignarle de value al option el string del mail a agregar
