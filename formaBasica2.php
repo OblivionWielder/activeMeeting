@@ -125,7 +125,7 @@
 					<div id="creacionJunta" hidden>
 						<p>Soy creacionJunta</p>
 						<script type="text/javascript">
-							function validateForm(){
+						/*	function validateForm(){
 								var x=document.forms["creacionJuntaForm"]["emailCreador"].value;
 								var atpos=x.indexOf("@");
 								var dotpos=x.lastIndexOf(".");
@@ -133,10 +133,10 @@
 									alert("E-mail no valido");
 									return false;
 								}
-							}
+							}*/
 						</script>
 						<!--<form id="creacionJuntaForm" method="post">-->
-						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );" onsubmit="return validateForm();">
+						<form id="creacionJuntaForm" action="javascript:alert( 'successOMG!' );">
 						  <fieldset>
 							<label for="nombreJunta">Nombre De La Junta: </label>
 							<input type="text" name="nombreJunta" id="nombreJunta" required/>
@@ -189,6 +189,14 @@
 								var inputEmail = document.getElementById("emailCreador");
 								var distPart = document.getElementById("participantesDist");
 								
+								var x=document.forms["creacionJuntaForm"]["emailCreador"].value;
+								var atpos=x.indexOf("@");
+								var dotpos=x.lastIndexOf(".");
+								if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+									alert("E-mail no valido");
+									return false;
+								}
+								else{
 								if(inputEmail.value != "") {
 									var email = document.createElement("option");
 									email.text = inputEmail.value;
@@ -211,6 +219,7 @@
 									}
 								});
 								loadSeleccionFechas();
+								}
 							});
 						</script>
 					</div>
