@@ -216,12 +216,13 @@
 					<div id="seleccionFechas" hidden>
 						<p> Soy seleccionFechas</p>
 						<script type="text/javascript">
-							/*var fechas = new Array();
+							var fechas = new Array();
 							var calendario = new Array();
 								
-							fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1"),
-							document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")];
-							calendario.push(fechas);*/
+							fechas[0] = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")]
+							calendario.push(fechas[0]);
+							fechas[1] = [document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")];
+							calendario.push(fechas[1]);
 							
 							$(function() {
 								var scntDiv = $('#fechas');
@@ -230,9 +231,9 @@
 								$('#borrafecha').on('click', function(){
 									if(i>2){
 										$("#fechas > p").last().remove();
-										/*var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
-										var indice = calendario.indexOf(fechaBorrar);
-										calendario.splice(indice,1);*/
+										//var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
+										var indice = calendario.indexOf(fechas[i-1]);
+										calendario.splice(indice,1);
 										i--;
 									}
 								})
@@ -294,8 +295,8 @@
 										+'</select>'
 										+'</p>').appendTo(scntDiv);
 									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
-									//fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
-									//calendario.push(fechas);
+									fechas[i-1] = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
+									calendario.push(fechas[i-1]);
 									
 									return false;
 								});
@@ -549,23 +550,23 @@
 							var votos = new Array();
 		
 							function mostrarNumVotos() {
-								var seleccionado = document.getElementById("participantesDist").selectedIndex;
-								var refPos = document.getElementById("numPos");
-								var refNeg = document.getElementById("numNeg");
-								var refVetos = document.getElementById("numVetos");
-			
+								var refInv = document.getElementById("participantesDist");
+								var seleccionado = refInv.selectedIndex;
+								var refPos = document.getElementById("NumPos");
+								var refNeg = document.getElementById("NumNeg");
+								var refVetos = document.getElementById("NumVetos");
+								
 								if(seleccionado != null) {
 									if( typeof(votos[seleccionado]) == 'undefined' )
-										votos[seleccionado] = {positivos:1, negativos:1, vetos:0};
-				
+										votos[seleccionado] = {invitado:refInv.value, positivos:1, negativos:1, vetos:0};
+									
 									refPos.disabled = false;
 									refNeg.disabled = false;
 									refVetos.disabled = false;
 									refPos.value = votos[seleccionado].positivos;
 									refNeg.value = votos[seleccionado].negativos;
 									refVetos.value = votos[seleccionado].vetos;
-								}
-								else {
+								} else {
 									refPos.disabled = true;
 									refNeg.disabled = true;
 									refVetos.disabled = true;
