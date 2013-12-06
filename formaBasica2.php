@@ -282,7 +282,7 @@
 								});
 					
 								$('#borrafecha').on('click', function() { 
-									if( i > 3 ) {
+									if( i > 2 ) {
 										$(this).parents('p').remove();
 										var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 										var indice = calendario.indexOf(fechaBorrar);
