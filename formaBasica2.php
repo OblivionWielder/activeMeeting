@@ -496,7 +496,7 @@
 									/* Validar que el inputEmail sea una email valido */
 									/* Validar que el email que se trata de agregar no exista en la lista de participantes */
 									for(var i=0; listaParticipantes.length; i++){
-										if(listaParticipantes.indexOf(x) == i)
+										if(listaParticipantes.options[i].text === x)
 											esta = 1;
 									}
 									
