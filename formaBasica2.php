@@ -213,7 +213,8 @@
 							var fechas = new Array();
 							var calendario = new Array();
 								
-							fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")];
+							fechas = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1"),
+							document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")];
 							calendario.push(fechas);
 							
 							$(function() {
