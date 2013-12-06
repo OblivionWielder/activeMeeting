@@ -218,7 +218,7 @@
 							
 							$(function() {
 								var scntDiv = $('#fechas');
-								var i = $('#fechas p').size()+1;			
+								var i = $('#fechas p').size();			
 								
 								$(document).on('click', '.remove', function(){
 									var $this = $(this);
@@ -284,10 +284,10 @@
 										+	'<option value="23:00">23:00</option>'
 										+'</select>'
 										+'<button type="button" href="#" id="borrafecha" class="remove">Borrar Fecha</button></p>').appendTo(scntDiv);
-									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
 									fechas = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 									calendario.push(fechas);
 									i++;
+									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
 									return false;
 								});
 							});
