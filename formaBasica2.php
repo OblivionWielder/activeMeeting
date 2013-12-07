@@ -230,13 +230,12 @@
 						<script type="text/javascript">
 							var fechas = new Array();
 							var calendario = new Array();
+							var lista;
 							
 							fechas[0] = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")]
 							calendario.push(fechas[0]);
 							fechas[1] = [document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")];
 							calendario.push(fechas[1]);
-							
-							document.getElementbyId("opcionesDeHorario").value = calendario;
 							
 							$(function() {
 								var scntDiv = $('#fechas');
@@ -250,7 +249,6 @@
 										calendario.splice(indice,1);
 										i--;
 									}
-									document.getElementbyId("opcionesDeHorario").value = calendario;
 								})
 								
 								$('#agregafecha').on('click', function() {
@@ -313,10 +311,12 @@
 									fechas[i-1] = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
 									calendario.push(fechas[i-1]);
 									
-									document.getElementbyId("opcionesDeHorario").value = calendario;
-									
 									return false;
 								});
+								
+								lista = calendario.toString();
+								
+								document.getElementById("opcionesDeHorario").value=lista;
 							});
 						</script>
 						<form id="seleccionFechasForm" action="javascript:alert( 'successOMG!' );">
