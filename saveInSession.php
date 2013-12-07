@@ -120,6 +120,7 @@ $_SESSION["fechaDeCierre"] = randomDate("2013-11-01 01:01","2013-12-30 23:30");
 $_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 50); //nombre de la junta
 
 //segunda seccion - detalles de diferentes horas de eleccion
+//$_SESSION["opcionesDeHorario"] = $_POST["fechas"];
 $_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
 													"horaInicio"=> getUno(),
 													"horaFin"	=> getDos()),
@@ -143,6 +144,7 @@ $_SESSION["opcionesDeInvitados"] = array(	0 => $_SESSION["emailCreador"],
 										);
 
 //cuarta seccion - detalles de  invitados y votos
+//$_SESSION["votosDeInvitados"] = $_POST["votos"];
 $_SESSION["votosDeInvitados"] = array(	0 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][0],
 														"positivos"	=>	get_random_string("0123456789", 2),
 														"negativos"	=>	get_random_string("0123456789", 2),
