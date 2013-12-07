@@ -27,7 +27,11 @@
 			function loadCreacionJunta()
 			{
 				var distPart = document.getElementById("participantesDist");
-				distPart.remove(0);
+				var part = document.getElementById("participantes");
+				for(var i=0; i<distPart.length; i++){
+					part.remove(i)
+					distPart.remove(i);
+				}
 				
 				$("#creacionJunta").show();
 				$("#seleccionFechas").hide();
@@ -192,7 +196,9 @@
 								//agregado para que pueda votar el creador
 								var inputEmail = document.getElementById("emailCreador");
 								var distPart = document.getElementById("participantesDist");
+								var part = document.getElementById("participantes");
 								var email = document.createElement("option");
+								var email2 = document.createElement("option");
 								var x=inputEmail.value;
 								var atpos=x.indexOf("@");
 								var dotpos=x.lastIndexOf(".");
@@ -203,7 +209,9 @@
 								}
 								else {
 									email.text = inputEmail.value;
+									email2.text = inputEmail.value;
 									distPart.add(email, null);
+									part.add(email2, null);
 								
 									$.ajax({
 										type: "POST",
