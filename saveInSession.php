@@ -1,7 +1,7 @@
 <?php
 session_start();
 $testing = 1;
-
+//forzando push"
 //Parte magica que agrega lo del post a la sesion
 for($i=0;$i<count($_POST['myData']);$i++){ 
 $_SESSION[$_POST['myData'][$i]["name"]]=$_POST['myData'][$i]["value"];
