@@ -27,7 +27,8 @@
 			function loadCreacionJunta()
 			{
 				var distPart = document.getElementById("participantesDist");
-				distPart.remove(0);
+				for(var i=0; i<distPart.lenght; i++)
+					distPart.remove(i);
 				
 				$("#creacionJunta").show();
 				$("#seleccionFechas").hide();
@@ -230,8 +231,8 @@
 						<script type="text/javascript">
 							var fechas = new Array();
 								
-							fechas[0] = {document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")};
-							fechas[1] = {document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")};
+							//fechas[0] = {document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")};
+							//fechas[1] = {document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")};
 							
 							$(function() {
 								var scntDiv = $('#fechas');
@@ -240,9 +241,9 @@
 								$('#borrafecha').on('click', function(){
 									if(i>2){
 										$("#fechas > p").last().remove();
-										var indice = fechas.indexOf(fechas[i-1]);
-										fechas.splice(indice,1);
-										i--;
+										//var indice = fechas.indexOf(fechas[i-1]);
+										//fechas.splice(indice,1);
+										//i--;
 									}
 								})
 								
@@ -303,7 +304,7 @@
 										+'</select>'
 										+'</p>').appendTo(scntDiv);
 									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
-									fechas[i-1] = {document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)};
+									//fechas[i-1] = {document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)};
 									
 									return false;
 								});
@@ -700,7 +701,7 @@
 							console.log( JSON.stringify($( this ).serializeArray() ));
 							event.preventDefault();
 							
-							//$.post("saveInSession.php", { "votos": votos });
+							$.post("saveInSession.php", { "votos": votos });
 							
 							$.ajax({
 								type: "POST",
