@@ -231,8 +231,8 @@
 						<script type="text/javascript">
 							var fechas = new Array();
 								
-							fechas[0] = {document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")};
-							fechas[1] = {document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")};
+							fechas[0] = {fecha: document.getElementById("fechaElegir1"), horaInicio: document.getElementById("horaInicio1"), horaFin: document.getElementById("horaFin1")};
+							fechas[1] = {fecha: document.getElementById("fechaElegir2"), horaInicio: document.getElementById("horaInicio2"), horaFin: document.getElementById("horaFin2")};
 							
 							$(function() {
 								var scntDiv = $('#fechas');
@@ -304,7 +304,7 @@
 										+'</select>'
 										+'</p>').appendTo(scntDiv);
 									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
-									fechas[i-1] = {document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)};
+									fechas[i-1] = {fecha: document.getElementById("fechaElegir"+i), horaInicio: document.getElementById("horaInicio"+i), horaFin: document.getElementById("horaFin"+i)};
 									
 									return false;
 								});
