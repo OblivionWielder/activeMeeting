@@ -27,10 +27,8 @@
 			function loadCreacionJunta()
 			{
 				var distPart = document.getElementById("participantesDist");
-				for(var i=0; i<distPart.length; i++){
-					distPart.remove(i);
-				}
-
+				distPart.remove(0);
+				
 				$("#creacionJunta").show();
 				$("#seleccionFechas").hide();
 				$("#seleccionInvitados").hide();
