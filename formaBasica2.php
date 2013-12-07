@@ -229,13 +229,9 @@
 						<p> Soy seleccionFechas</p>
 						<script type="text/javascript">
 							var fechas = new Array();
-							var calendario = new Array();
-							var lista;
-							
-							fechas[0] = [document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")]
-							calendario.push(fechas[0]);
-							fechas[1] = [document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")];
-							calendario.push(fechas[1]);
+								
+							fechas[0] = {document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")};
+							fechas[1] = {document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")};
 							
 							$(function() {
 								var scntDiv = $('#fechas');
@@ -244,9 +240,8 @@
 								$('#borrafecha').on('click', function(){
 									if(i>2){
 										$("#fechas > p").last().remove();
-										//var fechaBorrar = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
-										var indice = calendario.indexOf(fechas[i-1]);
-										calendario.splice(indice,1);
+										var indice = fechas.indexOf(fechas[i-1]);
+										fechas.splice(indice,1);
 										i--;
 									}
 								})
@@ -308,15 +303,10 @@
 										+'</select>'
 										+'</p>').appendTo(scntDiv);
 									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
-									fechas[i-1] = [document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)];
-									calendario.push(fechas[i-1]);
+									fechas[i-1] = {document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)};
 									
 									return false;
 								});
-								
-								lista = calendario.toString();
-								
-								document.getElementById("opcionesDeHorario").value=lista;
 							});
 						</script>
 						<form id="seleccionFechasForm" action="javascript:alert( 'successOMG!' );">
@@ -435,7 +425,6 @@
 											<option value="23:00">23:00</option>
 										</select>
 									</p>
-									<input type="text" name="opcionesDeHorario" id="opcionesDeHorario"/>
 								</div>
 								<br />
 								<button type="button" href="#" id="agregafecha">Agregar Fecha</button>
@@ -449,6 +438,8 @@
 							$( "#seleccionFechasForm" ).submit(function(event) {
 								console.log( JSON.stringify($( this ).serializeArray() ));
 								event.preventDefault();
+					
+								$.post( "saveInSession.php", { "fechas": fechas });
 					
 								$.ajax({
 									type: "POST",
