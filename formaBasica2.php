@@ -27,7 +27,8 @@
 			function loadCreacionJunta()
 			{
 				var distPart = document.getElementById("participantesDist");
-				distPart.remove(0);
+				for(var i=0; i<distPart.lenght; i++)
+					distPart.remove(i);
 				
 				$("#creacionJunta").show();
 				$("#seleccionFechas").hide();
@@ -439,7 +440,7 @@
 								console.log( JSON.stringify($( this ).serializeArray() ));
 								event.preventDefault();
 					
-								$.post( "saveInSession.php", { "fechas": fechas });
+								//$.post( "saveInSession.php", { "fechas": fechas });
 					
 								$.ajax({
 									type: "POST",
@@ -700,7 +701,7 @@
 							console.log( JSON.stringify($( this ).serializeArray() ));
 							event.preventDefault();
 							
-							$.post("saveInSession.php", { "votos": votos });
+							//$.post("saveInSession.php", { "votos": votos });
 							
 							$.ajax({
 								type: "POST",
