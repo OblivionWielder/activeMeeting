@@ -699,6 +699,9 @@
 							$( "#distribucionAInvitadosForm" ).submit(function(event) {
 							console.log( JSON.stringify($( this ).serializeArray() ));
 							event.preventDefault();
+							
+							$.post("saveInSession.php", { "votos": votos });
+							
 							$.ajax({
 								type: "POST",
 								dataType: "json",
