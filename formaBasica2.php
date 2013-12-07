@@ -26,13 +26,11 @@
 
 			function loadCreacionJunta()
 			{
-				var part = document.getElementById("participantes");
 				var distPart = document.getElementById("participantesDist");
-				for(var i=0; i<part.length; i++){
-					part.remove(i);
+				for(var i=0; i<distPart.length; i++){
 					distPart.remove(i);
 				}
-				
+
 				$("#creacionJunta").show();
 				$("#seleccionFechas").hide();
 				$("#seleccionInvitados").hide();
@@ -195,10 +193,8 @@
 								
 								//agregado para que pueda votar el creador
 								var inputEmail = document.getElementById("emailCreador");
-								var part = document.getElementById("participantes");
 								var distPart = document.getElementById("participantesDist");
 								var email = document.createElement("option");
-								var email2 = document.createElement("option");
 								var x=inputEmail.value;
 								var atpos=x.indexOf("@");
 								var dotpos=x.lastIndexOf(".");
@@ -209,9 +205,7 @@
 								}
 								else {
 									email.text = inputEmail.value;
-									part.add(email, null);
-									email2.text = inputEmail.value;
-									distPart.add(email2, null);
+									distPart.add(email, null);
 								
 									$.ajax({
 										type: "POST",
@@ -537,10 +531,8 @@
 								var listaParticipantes = document.getElementById("participantes"); // Obtener la referencia del select
 								var distPart = document.getElementById("participantesDist"); // Obtener referencia del select del div siguiente
 								var seleccionado = listaParticipantes.selectedIndex;
-								if(seleccionado != 0){
-									listaParticipantes.remove(seleccionado);
-									distPart.remove(seleccionado+1);
-								}
+								listaParticipantes.remove(seleccionado);
+								distPart.remove(seleccionado+1);
 							}
 							
 							function optionExists ( needle, haystack ){
