@@ -1,6 +1,6 @@
 <?php
 session_start();
-$testing = 0;
+$testing = 1;
 
 //Parte magica que agrega lo del post a la sesion
 for($i=0;$i<count($_POST['myData']);$i++){ 
