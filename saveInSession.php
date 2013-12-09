@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 $testing = 0;
@@ -7,6 +6,8 @@ $testing = 0;
 for($i=0;$i<count($_POST['myData']);$i++){ 
 $_SESSION[$_POST['myData'][$i]["name"]]=$_POST['myData'][$i]["value"];
 }
+
+
 if(isset($_POST["opcionesDeHorario"])){
 $postedData = $_POST["opcionesDeHorario"];
 $tempData = str_replace("\\", "",$postedData);
@@ -235,12 +236,14 @@ switch ($_SESSION["accion"]) {
         //$_SESSION["opcionesDeHorario"] = $_POST["opcionesDeHorario"];//las opciones que selecciono, vean el dummy data en la seccion de testing
         //$_SESSION["opcionesDeInvitados"] = $_POST["opcionesDeInvitados"]; /*la lista que incluye al creador de la junta y todos sus invitados*/
         //$_SESSION["votosDeInvitados"] = $_POST["votosDeInvitados"];//la lista con todos los invitados y los puntos
-        
+        echo "ENTREEE!! :D";
         crearJunta();
+        $_SESSION["accion"] = 0;
         break;
     case 2:
         /*No lo usan ustedes, yo lo uso para enviar los correos con los hashes*/
         sendEMail('test@lethedwellers.com', "This is the default message");
+        $_SESSION["accion"] = 0;
         break;
     case 3:
     /*
@@ -248,12 +251,17 @@ switch ($_SESSION["accion"]) {
     Por el momento si quieren ver hashes, los toman directamente de base de datos
     */
         loadSession();
+        $_SESSION["accion"] = 0;
+
         break;
         case 4:
         /*
         necesita $_SESSION['usuarioActivo'] que se obtiene de loadSession
         */  
+
+
         cargarOpciones();
+        $_SESSION["accion"] = 0;
         break;
         case 5:
         /*
@@ -266,6 +274,7 @@ switch ($_SESSION["accion"]) {
     $_SESSION['votosAsignados']; = se obtiene de la llamada
         */
         votarJunta();
+        $_SESSION["accion"] = 0;
         break;
         case 6:
         /*
@@ -276,6 +285,7 @@ switch ($_SESSION["accion"]) {
     $_SESSION['juntaActiva']; = se obtiene de loadSession
         */
         vetarTimeSlot();
+        $_SESSION["accion"] = 0;
         break;
         case 7:
          /*
@@ -286,16 +296,21 @@ switch ($_SESSION["accion"]) {
     $_SESSION['juntaActiva']; = se obtiene de loadSession
         */
         quitarVeto();
+        $_SESSION["accion"] = 0;
         break;
         //UNUSED
         case 8:
         echo "UNUSED";
+        $_SESSION["accion"] = 0;
+
         break;
         case 9:
         echo "UNUSED";
+        $_SESSION["accion"] = 0;
         break;
         case 10:
         echo "UNUSED";
+        $_SESSION["accion"] = 0;
         break;
         
 }
@@ -448,7 +463,7 @@ sendEMail($value, $message);
 }
 function sendEMail($who, $what)
 {
-    /*
+    //*
     
     require_once "Mail.php";
 
@@ -479,9 +494,11 @@ if (PEAR::isError($mail)) {
     echo('<p>Message successfully sent!</p>');
 }
 // */
+/*
 $f = fopen("correos.txt", "a"); 
 fwrite($f,  date('Y-m-d H:i:s') . "Correo No enviado. Mail sending apagado El mensaje esta a continuacion: " . $who . "####" . $what . "\n"); 
 fclose($f); 
+//*/
 }
 
 function loadSession()
@@ -497,12 +514,12 @@ if ($mysqli->connect_errno) {
     
 $query = "SELECT   *  FROM `asistente` WHERE `hash` like '" . $hash . "';";
 $result = $mysqli->query($query);
-//echo "%%%%%%%%";
-//echo $query;
-//echo "<br/>";
+echo "%%%%%%%%";
+echo $query;
+echo "<br/>";
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-//printf ($row['idasistente'], $row['junta_idjunta']);
-//printf ($row['junta_idjunta']);
+printf ($row['idasistente'], $row['junta_idjunta']);
+printf ($row['junta_idjunta']);
 $_SESSION['usuarioActivo'] = $row['idasistente'] ;
 $_SESSION['juntaActiva'] = $row['junta_idjunta'];
 $_SESSION['nombreActivo'] = $row['email'];
@@ -596,8 +613,16 @@ $todosLosTimeslots[$counter] = array( 'idTimeslot' => $row['idtimeslot'],
 $counter = $counter +1;
 }
 
-
-
+//Traer los votos
+$votosDisponibles = array();
+$query = "SELECT * FROM `tools` WHERE `asistente_idasistente` = '" . $_SESSION['usuarioActivo'] . "' AND `junta_idjunta` = '" . $_SESSION['juntaActiva'] . "';";
+$result = $mysqli->query($query);
+//echo $query;
+$row = $result->fetch_array();
+$votosDisponibles['positivos'] = $row['votesPlus'];
+$votosDisponibles['negativos'] = $row['votesMinus'];
+$votosDisponibles['vetos'] = $row['vetos'];
+$_SESSION['votosDisponibles'] = $votosDisponibles;
 //echo "<pre>";
 //print_r($timeslotsActivos);
 //echo "</pre>";
