@@ -27,8 +27,10 @@
 			function loadCreacionJunta()
 			{
 				var distPart = document.getElementById("participantesDist");
-				distPart.remove(0);
-				
+				for(var i=0; i<distPart.length; i++){
+					if(document.getElementById("participantesDist")[i].value == document.getElementById("emailCreador").value)
+						distPart.remove(i);
+				}
 				$("#creacionJunta").show();
 				$("#seleccionFechas").hide();
 				$("#seleccionInvitados").hide();
@@ -38,6 +40,10 @@
 			}
 			function loadSeleccionFechas()
 			{
+				var fElige = document.getElementById("fElegir");
+				for(var i=0; i<fElige.length; i++){
+					fElige.remove(i);
+				}
 				$("#creacionJunta").hide();
 				$("#seleccionFechas").show();
 				$("#seleccionInvitados").hide();
@@ -84,8 +90,30 @@
 		</script>
 			
 		<script>
-			$(function() {
-				$( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );
+			$(document).ready(function () {
+				$("#cierreVotacion").datepicker({
+					dateFormat: 'yy-mm-dd',
+					minDate: 0,
+					onSelect: function (date) {
+						var date2 = $('#cierreVotacion').datepicker('getDate');
+						date2.setDate(date2.getDate() + 1);
+						$('.fecha2').datepicker('setDate', date2);
+						//sets minDate to dt1 date + 1
+						$('.fecha2').datepicker('option', 'minDate', date2);
+					}
+				});
+				$('.fecha2').datepicker({
+					dateFormat: 'yy-mm-dd',
+					onClose: function () {
+						var dt1 = $('#cierreVotacion').datepicker('getDate');
+						console.log(dt1);
+						var dt2 = $('.fecha2').datepicker('getDate');
+						if (dt2 <= dt1) {
+							var minDate = $('.fecha2').datepicker('option', 'minDate');
+							$('.fecha2').datepicker('setDate', minDate);
+						}
+					}
+				});
 			});
 		</script>
 	</head>
@@ -101,7 +129,7 @@
 			<div id="topnav">
 			  <ul>
 				<li><a href="index.php">Inicio</a></li>
-				<li><a href="style-demo.html">Crear Junta</a></li>
+				<li><a href="formaBasica2.php">Crear Junta</a></li>
 				<li><a href="#">Link 1</a></li>
 				<li><a href="#">Link 2</a></li>
 				<li><a href="#">DropDown</a>
@@ -178,7 +206,7 @@
 							<textarea name="descripcionJunta" id="descripcionJunta" rows="4" cols="50">
 							</textarea>
 						  </fieldset>
-						  <input type ="hidden" value=1 id="accion" name ="accion"/>
+						 
 							<button type="submit">Siguiente</button>
 						<!--<input type="submit" id="creacionJuntaFormButton" name="Submit" value="Siguiente (Fechas)" />-->
 						</form>
@@ -205,6 +233,12 @@
 									email.text = inputEmail.value;
 									distPart.add(email, null);
 								
+									document.getElementById("nJunta").value = document.getElementById("nombreJunta").value;
+									document.getElementById("eCreador").value = inputEmail.value;
+									document.getElementById("cVotacion").value = document.getElementById("cierreVotacion").value 
+									+', '+ document.getElementById("horaCierreVotacion").value;
+									document.getElementById("dJunta").value = document.getElementById("descripcionJunta").value;
+									
 									$.ajax({
 										type: "POST",
 										dataType: "json",
@@ -228,10 +262,7 @@
 					<div id="seleccionFechas" hidden>
 						<p> Soy seleccionFechas</p>
 						<script type="text/javascript">
-							var fechas = new Array();
-								
-							fechas[0] = {document.getElementById("fechaElegir1"), document.getElementById("horaInicio1"), document.getElementById("horaFin1")};
-							fechas[1] = {document.getElementById("fechaElegir2"), document.getElementById("horaInicio2"), document.getElementById("horaFin2")};
+							var fechas = [];
 							
 							$(function() {
 								var scntDiv = $('#fechas');
@@ -244,11 +275,13 @@
 										fechas.splice(indice,1);
 										i--;
 									}
-								})
+									else
+										alert("Debes tener al menos 2 fechas");
+								});
 								
 								$('#agregafecha').on('click', function() {
 									i++;
-									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha" required/>'
+									$('<p><input type="text" id="fechaElegir' + i +'" size="20" name="fechaElegir' + i +'" class="fecha2" required/> '
 										+'<select name="horaInicio'+ i +'" id="horaInicio'+ i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
 										+	'<option value="1:00">1:00</option>'
@@ -274,10 +307,10 @@
 										+	'<option value="21:00">21:00</option>'
 										+	'<option value="22:00">22:00</option>'
 										+	'<option value="23:00">23:00</option>'
-										+'</select>'
+										+'</select> '
 										+'<select name="horaFin' + i +'" id="horaFin' + i +'" size="1">'
 										+	'<option value="0:00">0:00</option>'
-										+	'<option value="1:00">1:00</option>'
+										+	'<option value="1:00" selected="selected">1:00</option>'
 										+	'<option value="2:00">2:00</option>'
 										+	'<option value="3:00">3:00</option>'
 										+	'<option value="4:00">4:00</option>'
@@ -302,21 +335,48 @@
 										+	'<option value="23:00">23:00</option>'
 										+'</select>'
 										+'</p>').appendTo(scntDiv);
-									$(function() { $( ".fecha" ).datepicker( { dateFormat: 'yy-mm-dd'} );});
-									fechas[i-1] = {document.getElementById("fechaElegir"+i), document.getElementById("horaInicio"+i), document.getElementById("horaFin"+i)};
+										
+									var indi = i - 1;
+							
+									fechas[indi] = {};	
+									fechas[indi].fecha = document.getElementById("fechaElegir"+i).value; 
+									fechas[indi].horaInicio = document.getElementById("horaInicio"+i).value;
+									fechas[indi].horaFin = document.getElementById("horaFin"+i).value;
 									
+									$("#fechaElegir"+i).datepicker({ dateFormat: "yy-mm-dd" });
+									var dti = $('.fecha2').datepicker('getDate');
+									
+									$("#fechaElegir"+i).datepicker('setDate', dti);
+									var dtt2 = $('#cierreVotacion').datepicker('getDate');
+									dtt2.setDate(dtt2.getDate() + 1);
+									$("#fechaElegir"+i).datepicker('option', 'minDate', dtt2);
+									
+									//alert(document.getElementById("fechaElegir1").value);
+									//alert(document.getElementById("fechaElegir3").value);
+								
 									return false;
 								});
+								
+								fechas[0] = {};	
+								fechas[0].fecha = document.getElementById("fechaElegir1").value; 
+								fechas[0].horaInicio = document.getElementById("horaInicio1").value;
+								fechas[0].horaFin = document.getElementById("horaFin1").value;
+		
+								fechas[1] = {};
+								fechas[1].fecha = document.getElementById("fechaElegir2").value; 
+								fechas[1].horaInicio = document.getElementById("horaInicio2").value;
+								fechas[1].horaFin = document.getElementById("horaFin2").value;
+								
 							});
 						</script>
-						<form id="seleccionFechasForm" action="javascript:alert( 'successOMG!' );">
+						<form id="seleccionFechasForm">
 							<fieldset>
 								<b>Fechas a elegir:</b>
 								<br /><br />
 								<label for="fechaDeJunta">Fecha de junta</label> <label for="horaDeInicio">Hora de Inicio</label> <label for="HoraDeFin">Hora de Conclusi&oacute;n</label>
 								<div id="fechas">
 									<p>
-										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1" class="fecha" required/>
+										<input type="text" id="fechaElegir1" size="20" name="fechaElegir1" class="fecha2" required/>
 										<select name="horaInicio1" id="horaInicio1" size="1">
 											<option value="0:00">0:00</option>
 											<option value="1:00">1:00</option>
@@ -345,7 +405,7 @@
 										</select>
 										<select name="horaFin1" id="horaFin1" size="1">
 											<option value="0:00">0:00</option>
-											<option value="1:00">1:00</option>
+											<option value="1:00" selected="selected">1:00</option>
 											<option value="2:00">2:00</option>
 											<option value="3:00">3:00</option>
 											<option value="4:00">4:00</option>
@@ -371,7 +431,7 @@
 										</select>
 									</p>
 									<p>
-										<input type="text" id="fechaElegir2" size="20" name="fechaElegir2" class="fecha" required/>
+										<input type="text" id="fechaElegir2" size="20" name="fechaElegir2" class="fecha2" required/>
 										<select name="horaInicio2" id="horaInicio2" size="1">
 											<option value="0:00">0:00</option>
 											<option value="1:00">1:00</option>
@@ -400,7 +460,7 @@
 										</select>
 										<select name="horaFin2" id="horaFin2" size="1">
 											<option value="0:00">0:00</option>
-											<option value="1:00">1:00</option>
+											<option value="1:00" selected="selected">1:00</option>
 											<option value="2:00">2:00</option>
 											<option value="3:00">3:00</option>
 											<option value="4:00">4:00</option>
@@ -431,30 +491,81 @@
 								<button type="button" href="#" id="borrafecha">Borrar Fecha</button>
 								<br />
 							</fieldset>
+							<input type ="hidden" value=0 id="accion" name ="accion"/>
 							<button type="button" onclick="loadCreacionJunta()">Anterior</button>
 							<button type="submit">Siguiente</button>
 						</form>
 						<script>
 							$( "#seleccionFechasForm" ).submit(function(event) {
-								console.log( JSON.stringify($( this ).serializeArray() ));
+								//console.log( JSON.stringify($( this ).serializeArray() ));
 								event.preventDefault();
-					
-								//$.post( "saveInSession.php", { "fechas": fechas });
-					
-								$.ajax({
-									type: "POST",
-									dataType: "json",
-									url: "saveInSession.php",
-									//data: {myData:JSON.stringify($( this ).serializeArray() )},
-									data: {myData:$( this ).serializeArray() },
-									success: function(data){
-										alert('Llegue!');
-									},
-									error: function(e){
-										console.log(e.message);
+								
+								var fElige = document.getElementById("fElegir");
+								
+								var otraFechas = [];
+								var cont = 1;
+								for(var i=0; i < fechas.length; i++) {
+									otraFechas[i] = {};
+									otraFechas[i].fecha = document.getElementById("fechaElegir"+cont).value;
+									otraFechas[i].horaInicio = document.getElementById("horaInicio"+cont).value;
+									otraFechas[i].horaFin = document.getElementById("horaFin"+cont).value;
+									cont++;
+								}
+								
+								var pasa = true;
+								var menor = true;
+								for(var i=0; i<otraFechas.length; i++){
+									for(var j=0; j<otraFechas.length; j++){
+										if(i!=j){
+											var st = otraFechas[i].horaInicio; 
+											var et = otraFechas[i].horaFin;
+											var st2 = otraFechas[j].horaInicio; 
+											var et2 = otraFechas[j].horaFin;
+											var f1 = otraFechas[i].fecha;
+											var f2 = otraFechas[j].fecha;
+											if(st==st2 && et==et2 && f1==f2){
+												pasa=false;
+											}
+											if(parseInt(st.replace(':', ''), 10) >= parseInt(et.replace(':', ''), 10) 
+											|| parseInt(st2.replace(':', ''), 10)>= parseInt(et2.replace(':', ''), 10)){
+												menor=false;
+											}
+										}
 									}
-								});
-								loadSeleccionInvitados();
+								}
+								
+								if(pasa){
+									if(menor){
+										for(var i=0; i<otraFechas.length; i++){
+											var opcion = otraFechas[i].fecha+' de '+otraFechas[i].horaInicio+' a '+otraFechas[i].horaFin;
+											var o = document.createElement("option");
+											o.text = opcion;
+											fElige.add(o, null);
+										}
+										console.log( JSON.stringify(otraFechas));
+										//$.post( "saveInSession.php", { opcionesDeHorario : JSON.stringify(otraFechas)});
+							
+										$.ajax({
+											type: "POST",
+											dataType: "json",
+											url: "saveInSession.php", 
+											//data: {myData:JSON.stringify($( this ).serializeArray() )},
+											data: {opcionesDeHorario:JSON.stringify(otraFechas) },
+											success: function(data){
+												alert('Llegue!');
+											},
+											error: function(e){
+												console.log(e.message);
+											}
+										}); //*/
+										loadSeleccionInvitados();
+									}
+									else
+										alert("Hay una hora de inicio mayor que la hora de fin");
+								}
+								else
+									alert("Horario identico prohibido.")
+								
 							});
 						</script>
 					</div>
@@ -478,6 +589,7 @@
 							{
 								var listaParticipantes = document.getElementById("participantes"); // Obtener la referencia del select
 								var distPart = document.getElementById("participantesDist"); // Lista para el siguiente div
+								
 								var inputEmail = document.getElementById("emailParticipante"); // Obtener la referencia del mail que se recibe como input
 								
 								var x=inputEmail.value;
@@ -503,7 +615,7 @@
 										email2.text = inputEmail.value; // Asignarle de value al option el string del mail a agregar
 										listaParticipantes.add(email, null); // Agregar el option al final de la lista
 										distPart.add(email2, null); // Agregar el option al final de la lista del otro div
-									
+										
 									// Al ponerlo asi no funciona, aunque no deberia de haber problemas D=
 									/*try
 									{
@@ -529,8 +641,14 @@
 								var listaParticipantes = document.getElementById("participantes"); // Obtener la referencia del select
 								var distPart = document.getElementById("participantesDist"); // Obtener referencia del select del div siguiente
 								var seleccionado = listaParticipantes.selectedIndex;
+								
+								for(var i=0; i<distPart.length; i++){
+									if(document.getElementById("participantesDist")[i].value == document.getElementById("participantes")[seleccionado].value)
+										distPart.remove(i);
+								}
+								
 								listaParticipantes.remove(seleccionado);
-								distPart.remove(seleccionado+1);
+								
 							}
 							
 							function optionExists ( needle, haystack ){
@@ -692,6 +810,7 @@
 								<input type="text" id="numVetos" name="numVetos" size="1" value="-" onchange="modificarNumVetos()" disabled />
 								<button type="button" onclick="incrementa(3)">+</button>
 							</fieldset>
+							<input type ="hidden" value=0 id="accion" name ="accion"/> 
 							<button type="button" onclick="loadSeleccionInvitados()">Anterior</button>
 							<button type="submit">Siguiente</button>
 						</form>
@@ -700,22 +819,50 @@
 							console.log( JSON.stringify($( this ).serializeArray() ));
 							event.preventDefault();
 							
-							$.post("saveInSession.php", { "votos": votos });
+							var invitadosO = [];
 							
-							$.ajax({
-								type: "POST",
-								dataType: "json",
-								url: "saveInSession.php",
-							  //data: {myData:JSON.stringify($( this ).serializeArray() )},
-								data: {myData:$( this ).serializeArray() },
-								success: function(data){
-									alert('Llegue!');
-								},
-								error: function(e){
-									console.log(e.message);
+							var refInv = document.getElementById("participantesDist");
+							var pasaI = true;
+							
+							for(var i=0; i<refInv.length; i++){
+								if( typeof(votos[i]) == 'undefined' )
+									pasaI=false;
+							}
+							
+							if(!pasaI){
+								alert("Recuerda asignar votos a todos los invitados");
+							}
+							else{
+								var votoIn = document.getElementById("lVInvitados");
+								for(var i=0; i<votos.length; i++){
+									var opcion = votos[i].invitado+', +:'+votos[i].positivos+', -:'+votos[i].negativos+', X:'+votos[i].vetos;
+									var o = document.createElement("option");
+									o.text = opcion;
+									votoIn.add(o, null);
 								}
-							});
-							loadConfirmacionInformacion();
+								
+								for(var j=0; j<votos.length; j++){
+									invitadosO[j] = votos[j].invitado;
+								}
+								
+								$.post("saveInSession.php", { opcionesDeInvitados: JSON.stringify(invitadosO)});
+								$.post("saveInSession.php", { votosDeInvitados: JSON.stringify(votos) });
+								/*
+								$.ajax({
+									type: "POST",
+									dataType: "json",
+									url: "saveInSession.php",
+								  data: {myData:JSON.stringify($( this ).serializeArray() )},
+									//data: {myData:$( this ).serializeArray() },
+									success: function(data){
+										alert('Llegue!');
+									},
+									error: function(e){
+										console.log(e.message);
+									}
+								});//*/
+								loadConfirmacionInformacion();
+							}
 							});
 						</script>
 					</div>
@@ -726,19 +873,30 @@
 						<form id="confirmacionInformacionForm">
 							<fieldset>
 								<label for="nJunta">Nombre De La Junta: </label>
-								<br />
-								<label for="eCreador">Email: </label>
+								<input type="text" id="nJunta" name="nJunta" disabled />
+								<label for="eCreador" style="margin-left:50px">Email: </label>
+								<input type="text" id="eCreador" name="eCreador" disabled />
 								<br />
 								<label for="cVotacion">Fecha De Cierre De Votacion: </label>
+								<input type="text" id="cVotacion" name="cVotacion" disabled />
 								<br />
 								<label for="dJunta">Descripcion: </label>
 								<br />
-								<label for="fElegir">Fechas a elegir: </label>
+								<textarea id="dJunta" name="dJunta" rows="4" cols="50" disabled>
+								</textarea>
 								<br />
-								<label for="lInvitados">Invitados: </label>
+								<label for="fElegir">Fechas a elegir: </label>
+								<label for="lVInvitados" style="margin-left:100px">Votos Invitados: </label>
+								<br />
+								<select name="fElegir" id="fElegir" multiple="multiple" size="3" disabled>
+								</select>
+								<select name="lVInvitados" id="lVInvitados" multiple="multiple" size="3" style="margin-left:50px" disabled>
+								</select>
+								<br />
 							</fieldset>
 						<button type="button" onclick="loadDistribucionAInvitados()">Anterior</button>
 						<button type="button" onclick="loadJuntaCreada()">Terminar</button>
+
 						</form>
 					</div>
 

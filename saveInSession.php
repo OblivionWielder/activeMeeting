@@ -1,13 +1,38 @@
+
 <?php
 session_start();
-$testing = 1;
+$testing = 0;
 //forzando push"
 //Parte magica que agrega lo del post a la sesion
 for($i=0;$i<count($_POST['myData']);$i++){ 
 $_SESSION[$_POST['myData'][$i]["name"]]=$_POST['myData'][$i]["value"];
 }
+if(isset($_POST["opcionesDeHorario"])){
+$postedData = $_POST["opcionesDeHorario"];
+$tempData = str_replace("\\", "",$postedData);
+$cleanData = json_decode($tempData, true);
+$_SESSION["opcionesDeHorario"] = $cleanData;
+var_dump($cleanData);
+//$_POST["opcionesDeHorario"];
+}
+if(isset($_POST["opcionesDeInvitados"])){
+$postedData = $_POST["opcionesDeInvitados"];
+$tempData = str_replace("\\", "",$postedData);
+$cleanData = json_decode($tempData, true);
+$_SESSION["opcionesDeInvitados"] = $cleanData;
+var_dump($cleanData);
+//$_POST["opcionesDeHorario"];
+}
+if(isset($_POST["votosDeInvitados"])){
+$postedData = $_POST["votosDeInvitados"];
+$tempData = str_replace("\\", "",$postedData);
+$cleanData = json_decode($tempData, true);
+$_SESSION["votosDeInvitados"] = $cleanData;
+var_dump($cleanData);
+//$_POST["opcionesDeHorario"];
+}
 
-
+//var_dump($cleanData);
 
 /*
 ESTA VARIABLE INDICA SI ALGO SE CUMPLIO SATISFACTORIAMENTE
@@ -16,12 +41,14 @@ CUALQUIER OTRA COSA ES QUE ALGO SALIO MAL!
 */
 $_SESSION["respuesta"] = 0;
 
-if($testing == 1)
+if($testing == 0)
 {
-echo "<pre>";
+echo "<pre>"; 
 print_r($_SESSION);
 echo "</pre>";
 }
+
+echo $_SESSION['votosDeInvitados'][1]['invitado']; 
 
 ///TESTING Methods///
 function get_random_string($valid_chars, $length)
@@ -121,54 +148,57 @@ $_SESSION["descripcionJunta"] = get_random_string("abcdefghijklmnopqrstuvwxyz", 
 
 //segunda seccion - detalles de diferentes horas de eleccion
 //$_SESSION["opcionesDeHorario"] = $_POST["fechas"];
-$_SESSION["opcionesDeHorario"] = array(	0 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
-													"horaInicio"=> getUno(),
-													"horaFin"	=> getDos()),
-										1 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
-													"horaInicio"=> getUno(),
-													"horaFin"	=> getDos()),
-										2 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
-													"horaInicio"=> getUno(),
-													"horaFin"	=> getDos()),
-										3 => array(	"fecha" 	=> randomDay("2013-11-15 01:01","2013-12-30 23:30"),
-													"horaInicio"=> getUno(),
-													"horaFin"	=> getDos())
-										);
+//$_SESSION["opcionesDeHorario"] = $_POST["opcionesDeHorario"];
+$_SESSION["opcionesDeHorario"] = array( 0 => array( "fecha"     => randomDay("2013-11-15 01:01","2013-12-30 23:30"),
+                                                    "horaInicio"=> getUno(),
+                                                    "horaFin"   => getDos()),
+                                        1 => array( "fecha"     => randomDay("2013-11-15 01:01","2013-12-30 23:30"),
+                                                    "horaInicio"=> getUno(),
+                                                    "horaFin"   => getDos()),
+                                        2 => array( "fecha"     => randomDay("2013-11-15 01:01","2013-12-30 23:30"),
+                                                    "horaInicio"=> getUno(),
+                                                    "horaFin"   => getDos()),
+                                        3 => array( "fecha"     => randomDay("2013-11-15 01:01","2013-12-30 23:30"),
+                                                    "horaInicio"=> getUno(),
+                                                    "horaFin"   => getDos())
+                                        );
 
 //tercera seccion - detalles de diferentes invitados
-$_SESSION["opcionesDeInvitados"] = array(	0 => $_SESSION["emailCreador"],
-											1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 10)."@yopmail.com",
-											2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 10)."@yopmail.com",
-											3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 10)."@yopmail.com",
-											4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 10)."@yopmail.com"
-										);
+//$_SESSION["opcionesDeInvitados"] = $_POST["invitados"];
+//$_SESSION["opcionesDeInvitados"] = $_POST["opcionesDeInvitados"];
+$_SESSION["opcionesDeInvitados"] = array(   0 => $_SESSION["emailCreador"],
+                                            1 => get_random_string("abcdefghijklmnopqrstuvwxyz", 10)."@yopmail.com",
+                                            2 => get_random_string("abcdefghijklmnopqrstuvwxyz", 10)."@yopmail.com",
+                                            3 => get_random_string("abcdefghijklmnopqrstuvwxyz", 10)."@yopmail.com",
+                                            4 => get_random_string("abcdefghijklmnopqrstuvwxyz", 10)."@yopmail.com"
+                                        );
 
 //cuarta seccion - detalles de  invitados y votos
 //$_SESSION["votosDeInvitados"] = $_POST["votos"];
-$_SESSION["votosDeInvitados"] = array(	0 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][0],
-														"positivos"	=>	get_random_string("0123456789", 2),
-														"negativos"	=>	get_random_string("0123456789", 2),
-														"vetos"		=>	get_random_string("0123456789", 1)),
-										1 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][1],
-														"positivos"	=>	get_random_string("0123456789", 2),
-														"negativos"	=>	get_random_string("0123456789", 2),
-														"vetos"		=>	get_random_string("0123456789", 1)),
-										2 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][2],
-														"positivos"	=>	get_random_string("0123456789", 2),
-														"negativos"	=>	get_random_string("0123456789", 2),
-														"vetos"		=>	get_random_string("0123456789", 1)),
-										3 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][3],
-														"positivos"	=>	get_random_string("0123456789", 2),
-														"negativos"	=>	get_random_string("0123456789", 2),
-														"vetos"		=>	get_random_string("0123456789", 1)),
-										4 => 	array(	"invitado" 	=>	$_SESSION["opcionesDeInvitados"][4],
-														"positivos"	=>	get_random_string("0123456789", 2),
-														"negativos"	=>	get_random_string("0123456789", 2),
-														"vetos"		=>	get_random_string("0123456789", 1))
-									);
-									
-									
-									$_SESSION['juntaActiva'] = 1;
+//$_SESSION["votosDeInvitados"] = $_POST["votosDeInvitados"];
+$_SESSION["votosDeInvitados"] = array(  0 =>    array(  "invitado"  =>  $_SESSION["opcionesDeInvitados"][0],
+                                                        "positivos" =>  get_random_string("0123456789", 2),
+                                                        "negativos" =>  get_random_string("0123456789", 2),
+                                                        "vetos"     =>  get_random_string("0123456789", 1)),
+                                        1 =>    array(  "invitado"  =>  $_SESSION["opcionesDeInvitados"][1],
+                                                        "positivos" =>  get_random_string("0123456789", 2),
+                                                        "negativos" =>  get_random_string("0123456789", 2),
+                                                        "vetos"     =>  get_random_string("0123456789", 1)),
+                                        2 =>    array(  "invitado"  =>  $_SESSION["opcionesDeInvitados"][2],
+                                                        "positivos" =>  get_random_string("0123456789", 2),
+                                                        "negativos" =>  get_random_string("0123456789", 2),
+                                                        "vetos"     =>  get_random_string("0123456789", 1)),
+                                        3 =>    array(  "invitado"  =>  $_SESSION["opcionesDeInvitados"][3],
+                                                        "positivos" =>  get_random_string("0123456789", 2),
+                                                        "negativos" =>  get_random_string("0123456789", 2),
+                                                        "vetos"     =>  get_random_string("0123456789", 1)),
+                                        4 =>    array(  "invitado"  =>  $_SESSION["opcionesDeInvitados"][4],
+                                                        "positivos" =>  get_random_string("0123456789", 2),
+                                                        "negativos" =>  get_random_string("0123456789", 2),
+                                                        "vetos"     =>  get_random_string("0123456789", 1))
+                                    );
+                                                                
+                                    $_SESSION['juntaActiva'] = 1;
  echo "<br/>"; 
 echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
  echo "<br/>"; 
@@ -179,11 +209,11 @@ echo "SESSION IS BEING OVERWRITTEN RIGHT NOW WITHIN SAVEINSESSION";
 echo "<pre>";
 print_r($_SESSION);
 echo "</pre>";
-
+/*
 for($i=0;$i<count($_POST['myData']);$i++){ 
 $_SESSION[$_POST['myData'][$i]["name"]]=$_POST['myData'][$i]["value"];
 }
-
+*/
 
 
 }
@@ -193,67 +223,67 @@ switch ($_SESSION["accion"]) {
         echo "none";
         break;
     case 1:
-    	/*
-    	craerJunta es el que mas cosas requiere
-    	$_SESSION['nombreJunta'] = nombre de la junta
-    	$_SESSION['emailCreador'] = creador de la junta (su email)
-    	$_SESSION['cierreVotacion']; //2012-12
-    	$horaDeCierre = $_SESSION['horaCierreVotacion']; //19:56
-    	$_SESSION['descripcionJunta']
-    	
-    	
-    	$_SESSION["opcionesDeHorario"] = las opciones que selecciono, vean el dummy data en la seccion de testing
-    	$_SESSION["opcionesDeInvitados"] = la lista que incluye al creador de la junta y todos sus invitados
-    	$_SESSION["votosDeInvitados"]; = la lista con todos los invitados y los puntos
-    	*/
+        /*
+        craerJunta es el que mas cosas requiere
+        $_SESSION['nombreJunta'] = nombre de la junta
+        $_SESSION['emailCreador'] = creador de la junta (su email)
+        $_SESSION['cierreVotacion']; //2012-12
+        $horaDeCierre = $_SESSION['horaCierreVotacion']; //19:56
+        $_SESSION['descripcionJunta']
+        
+        */
+        //$_SESSION["opcionesDeHorario"] = $_POST["opcionesDeHorario"];//las opciones que selecciono, vean el dummy data en la seccion de testing
+        //$_SESSION["opcionesDeInvitados"] = $_POST["opcionesDeInvitados"]; /*la lista que incluye al creador de la junta y todos sus invitados*/
+        //$_SESSION["votosDeInvitados"] = $_POST["votosDeInvitados"];//la lista con todos los invitados y los puntos
+        
         crearJunta();
         break;
     case 2:
-    	/*No lo usan ustedes, yo lo uso para enviar los correos con los hashes*/
+        /*No lo usan ustedes, yo lo uso para enviar los correos con los hashes*/
         sendEMail('test@lethedwellers.com', "This is the default message");
         break;
-	case 3:
-	/*
-	$_SESSION["sessionHash"] = hash que se envia en el enlace que mande. Necesitan hacer un php que lea el hash y lo guarde aqui. 
-	Por el momento si quieren ver hashes, los toman directamente de base de datos
-	*/
+    case 3:
+    /*
+    $_SESSION["sessionHash"] = hash que se envia en el enlace que mande. Necesitan hacer un php que lea el hash y lo guarde aqui. 
+    Por el momento si quieren ver hashes, los toman directamente de base de datos
+    */
         loadSession();
         break;
         case 4:
         /*
         necesita $_SESSION['usuarioActivo'] que se obtiene de loadSession
-        */	
+        */  
         cargarOpciones();
         break;
         case 5:
-       	/*
-       	TIENEN QUE EJECUTAR ESTE POR CADA UNO DE LOS SLOTS DE LA JUNTA. ES NECESARIO QUE HABLEN VARIAS VEES, 
-       	NECESITAN MODIFICAR TIMESLOTAVOTAR Y VOTOS ASIGNADOS EN CADA ITERACION
-       	
-       	$_SESSION['usuarioActivo']; = se obtiene de loadSession
-	$_SESSION['timeSlotAVotar']; = se obtiene de la llamada
-	$_SESSION['juntaActiva']; = se obtiene de loadSession
-	$_SESSION['votosAsignados']; = se obtiene de la llamada
+        /*
+        TIENEN QUE EJECUTAR ESTE POR CADA UNO DE LOS SLOTS DE LA JUNTA. ES NECESARIO QUE HABLEN VARIAS VEES, 
+        NECESITAN MODIFICAR TIMESLOTAVOTAR Y VOTOS ASIGNADOS EN CADA ITERACION
+        
+        $_SESSION['usuarioActivo']; = se obtiene de loadSession
+    $_SESSION['timeSlotAVotar']; = se obtiene de la llamada
+    $_SESSION['juntaActiva']; = se obtiene de loadSession
+    $_SESSION['votosAsignados']; = se obtiene de la llamada
         */
         votarJunta();
         break;
         case 6:
         /*
         TIENEN QUE EJECUTAR ESTE POR CADA UNO DE LOS SLOTS DE LA JUNTA a VETAR!. ES NECESARIO QUE HABLEN VARIAS VECES, 
-       	NECESITAN MODIFICAR TIMESLOTAVOTAR
-	$_SESSION['usuarioActivo']; = se obtiene de loadSession
-	$_SESSION['timeSlotAVotar'];  
-	$_SESSION['juntaActiva']; = se obtiene de loadSession
+        NECESITAN MODIFICAR TIMESLOTAVOTAR
+    $_SESSION['usuarioActivo']; = se obtiene de loadSession
+    $_SESSION['timeSlotAVotar'];  
+    $_SESSION['juntaActiva']; = se obtiene de loadSession
         */
         vetarTimeSlot();
         break;
         case 7:
          /*
         TIENEN QUE EJECUTAR ESTE POR CADA UNO DE LOS SLOTS DE LA JUNTA a VETAR!. ES NECESARIO QUE HABLEN VARIAS VECES, 
-       	NECESITAN MODIFICAR TIMESLOTAVOTAR
-	$_SESSION['usuarioActivo']; = se obtiene de loadSession
-	$_SESSION['timeSlotAVotar'];  
-	$_SESSION['juntaActiva']; = se obtiene de loadSession
+        NECESITAN MODIFICAR TIMESLOTAVOTAR
+    $_SESSION['usuarioActivo']; = se obtiene de loadSession
+    $_SESSION['timeSlotAVotar'];  
+    $_SESSION['juntaActiva']; = se obtiene de loadSession
         */
         quitarVeto();
         break;
@@ -278,42 +308,42 @@ function echo1($var = 'default'){
 
 function crearJunta(){ 
 
-	$nombreDeJunta = filter_var($_SESSION['nombreJunta'], FILTER_SANITIZE_SPECIAL_CHARS); 
-	$emailDelCreador = filter_var($_SESSION['emailCreador'], FILTER_SANITIZE_EMAIL); //FILTER_SANITIZE_EMAIL
-	$fechaDeCierre = $_SESSION['cierreVotacion']; //2012-12-23
-	$horaDeCierre = $_SESSION['horaCierreVotacion']; //19:56
-	$descipcionDeJunta = filter_var($_SESSION['descripcionJunta'], FILTER_SANITIZE_SPECIAL_CHARS); //blablabla
-	
-	
-	$fechaDeCierre = $fechaDeCierre . " " . $horaDeCierre;
-	//variable de la segunda pantalla
-	/*
-	Tenemos que revisar:
-	1. QUe la fecha exista
-	2, Que las horas existan
-	3. QUe la hora maxima sea 23.59.59
-	4. QUe la hora minima sea 0.0.1
-	5. QUe el inicio sea menor al final
-	*/
-	$horariosSeleccionados = $_SESSION["opcionesDeHorario"]; //sobre este habra nombres de numero
-	//sobre cada opcion que nos venga, asignamos 3 campos: fecha, horaInicial y horaFinal.
-	//variable de la tercera pantalla
-	/*
-	Tenemos que verificar que:
-	1. Haya dos invitados o mas
-	2. Uno de los invitados tiene que ser el creador de la Junta
-	3. Los correos tienen que ser correctos en forma
-	4. No es posible eliminar el creador
-	*/
-	$listaDeInvitados = $_SESSION["opcionesDeInvitados"]; 
-	//variable de la distribucion de puntos
-	/*
-	Usamos listaDeInvitados como llaves
-	podemos usar luego eso con array(0 => 'zero_a', 2 => 'two_a', 3 => 'three_a'); para asignar votos positivos,
-	negativos y vetos
-	*/
-	$pointDistribution = $_SESSION["votosDeInvitados"];
-//CONEXION	
+    $nombreDeJunta = filter_var($_SESSION['nombreJunta'], FILTER_SANITIZE_SPECIAL_CHARS); 
+    $emailDelCreador = filter_var($_SESSION['emailCreador'], FILTER_SANITIZE_EMAIL); //FILTER_SANITIZE_EMAIL
+    $fechaDeCierre = $_SESSION['cierreVotacion']; //2012-12-23
+    $horaDeCierre = $_SESSION['horaCierreVotacion']; //19:56
+    $descipcionDeJunta = filter_var($_SESSION['descripcionJunta'], FILTER_SANITIZE_SPECIAL_CHARS); //blablabla
+    
+    
+    $fechaDeCierre = $fechaDeCierre . " " . $horaDeCierre;
+    //variable de la segunda pantalla
+    /*
+    Tenemos que revisar:
+    1. QUe la fecha exista
+    2, Que las horas existan
+    3. QUe la hora maxima sea 23.59.59
+    4. QUe la hora minima sea 0.0.1
+    5. QUe el inicio sea menor al final
+    */
+    $horariosSeleccionados = $_SESSION["opcionesDeHorario"]; //sobre este habra nombres de numero
+    //sobre cada opcion que nos venga, asignamos 3 campos: fecha, horaInicial y horaFinal.
+    //variable de la tercera pantalla
+    /*
+    Tenemos que verificar que:
+    1. Haya dos invitados o mas
+    2. Uno de los invitados tiene que ser el creador de la Junta
+    3. Los correos tienen que ser correctos en forma
+    4. No es posible eliminar el creador
+    */
+    $listaDeInvitados = $_SESSION["opcionesDeInvitados"]; 
+    //variable de la distribucion de puntos
+    /*
+    Usamos listaDeInvitados como llaves
+    podemos usar luego eso con array(0 => 'zero_a', 2 => 'two_a', 3 => 'three_a'); para asignar votos positivos,
+    negativos y vetos
+    */
+    $pointDistribution = $_SESSION["votosDeInvitados"];
+//CONEXION  
 $mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
 if ($mysqli->connect_errno) {
     echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
@@ -332,8 +362,8 @@ $idJunta = $mysqli->insert_id;
 
 $query = "";
 $invitadoAndID = array();
-foreach ($_SESSION["opcionesDeInvitados"] as &$valor) {
-	$query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES (NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "');";
+foreach ($_SESSION["opcionesDeInvitados"] as $valor) {
+    $query = "INSERT INTO `lethedw2_aMeet`.`asistente` (`idasistente` ,`email` ,`passcode` ,`nombre` ,`junta_idjunta`) VALUES (NULL, '" . $valor . "', NULL, NULL, '" . $idJunta . "');";
 if (!$mysqli->query($query)) {
     echo "bbb Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
@@ -368,7 +398,7 @@ despues asignamos los persmisos de los asistentes
 */
 $query = "";
 foreach ($_SESSION["votosDeInvitados"] as &$valor) {
-	$query = "INSERT INTO `lethedw2_aMeet`.`tools` (`asistente_idasistente`, `junta_idjunta`, `votesPlus`, `votesMinus`, `vetos`)
+    $query = "INSERT INTO `lethedw2_aMeet`.`tools` (`asistente_idasistente`, `junta_idjunta`, `votesPlus`, `votesMinus`, `vetos`)
 VALUES (" . 
 "(SELECT  `idasistente` 
 FROM  `asistente` 
@@ -385,22 +415,22 @@ despues agregamos los timeslots a la junta
 */
 $query = "";
 foreach ($_SESSION["opcionesDeHorario"] as &$valor) {
-	$query = "INSERT INTO `lethedw2_aMeet`.`timeslot` (`idtimeslot`, `tiempoInicio`, `tiempoFin`, `junta_idjunta`) 
-	VALUES (NULL, '" . $valor['fecha'] . " " . $valor['horaInicio'] . "', '" . $valor['fecha'] . " " . $valor['horaFin'] . "', '". $idJunta  ."');";
+    $query = "INSERT INTO `lethedw2_aMeet`.`timeslot` (`idtimeslot`, `tiempoInicio`, `tiempoFin`, `junta_idjunta`) 
+    VALUES (NULL, '" . $valor['fecha'] . " " . $valor['horaInicio'] . "', '" . $valor['fecha'] . " " . $valor['horaFin'] . "', '". $idJunta  ."');";
 if (!$mysqli->query($query)) {
     echo "eee Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
     echo "<br/>";
 }
 }
 /*
-por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, idDeJunta	
-	procedemos a crear los hashes que serviran para setear a los usuarios
-	esto se hace con hash('ripemd160', 'The quick brown fox jumped over the lazy dog.');
-	*/
+por ultimo generamos los enlaces con un hash del idDeUsuario, emailDeUsuario, idDeJunta 
+    procedemos a crear los hashes que serviran para setear a los usuarios
+    esto se hace con hash('ripemd160', 'The quick brown fox jumped over the lazy dog.');
+    */
 $query = "";
-foreach ($invitadoAndID as $key => $value){
-	$hash = hash('sha256', $key . $value . $idJunta );
-	$query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" . $hash . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
+foreach ($invitadoAndID as $key => &$value){
+    $hash = hash('sha256', $key . $value . $idJunta );
+    $query = "UPDATE  `lethedw2_aMeet`.`asistente` SET  `hash` =  '" . $hash . "' WHERE  `asistente`.`idasistente` = " . $key . " AND  `asistente`.`junta_idjunta` =". $idJunta . " ;
 ";
 if (!$mysqli->query($query)) {
     echo "fff Falló la insercion de la tabla: (" . $mysqli->errno . ") " . $mysqli->error;
@@ -418,9 +448,9 @@ sendEMail($value, $message);
 }
 function sendEMail($who, $what)
 {
-	/*
-	
-	require_once "Mail.php";
+    /*
+    
+    require_once "Mail.php";
 
 $from = '<from.gmail.com>';
 $to = $who;
@@ -456,15 +486,15 @@ fclose($f);
 
 function loadSession()
 {
-	
+    
 $hash = $_SESSION["sessionHash"];
-//CONEXION	
+//CONEXION  
 $mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
 if ($mysqli->connect_errno) {
     echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}	
-	
-	
+}   
+    
+    
 $query = "SELECT   *  FROM `asistente` WHERE `hash` like '" . $hash . "';";
 $result = $mysqli->query($query);
 //echo "%%%%%%%%";
@@ -482,7 +512,7 @@ $_SESSION['nombreActivo'] = $row['email'];
 
 function cargarOpciones()
 {
-	//CONEXION	
+    //CONEXION  
 $mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
 if ($mysqli->connect_errno) {
     echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
@@ -536,12 +566,12 @@ while($row = $result->fetch_array())
 
 
 $timeslotsActivos[$counter] = array( 'idTimeslot' => $row['idtimeslot'],
-					'tiempoInicio' => $row['tiempoInicio'],
-					'tiempoFin' => $row['tiempoFin'],
-					'votosHechosPorUsuario' => $row['modifier'],
-					'votosTotales' => $row['votosTotales'],
-					'vetado' => $row['vetado']
-	);
+                    'tiempoInicio' => $row['tiempoInicio'],
+                    'tiempoFin' => $row['tiempoFin'],
+                    'votosHechosPorUsuario' => $row['modifier'],
+                    'votosTotales' => $row['votosTotales'],
+                    'vetado' => $row['vetado']
+    );
 
 
 $counter = $counter +1;
@@ -559,9 +589,9 @@ $result = $mysqli->query($query);
 while($row = $result->fetch_array())
 {
 $todosLosTimeslots[$counter] = array( 'idTimeslot' => $row['idtimeslot'],
-					'tiempoInicio' => $row['tiempoInicio'],
-					'tiempoFin' => $row['tiempoFin']
-
+                    'tiempoInicio' => $row['tiempoInicio'],
+                    'tiempoFin' => $row['tiempoFin']
+                    );
 
 $counter = $counter +1;
 }
@@ -590,17 +620,17 @@ $timeslot = $_SESSION['timeSlotAVotar'];
 $junta = $_SESSION['juntaActiva'];
 $modificador = $_SESSION['votosAsignados'];
 
-	//CONEXION	
+    //CONEXION  
 $mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
 if ($mysqli->connect_errno) {
     echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     $_SESSION["respuesta"] = 1;
-}	
+}   
 
 
 $query = "";
 
-	$query = "INSERT INTO  `lethedw2_aMeet`.`vote` (
+    $query = "INSERT INTO  `lethedw2_aMeet`.`vote` (
 `asistente_idasistente` ,
 `timeslot_idtimeslot` ,
 `timeslot_junta_idjunta` ,
@@ -629,11 +659,11 @@ $asistente = $_SESSION['usuarioActivo'];
 $timeslot = $_SESSION['timeSlotAVotar'];
 $junta = $_SESSION['juntaActiva'];
 //$modificador = $_SESSION['votosAsignados'];
-	//CONEXION	
+    //CONEXION  
 $mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
 if ($mysqli->connect_errno) {
     echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}	
+}   
 
 $query = "INSERT INTO  `lethedw2_aMeet`.`veto` (
 `asistente_idasistente` ,
@@ -657,11 +687,11 @@ function quitarVeto($asistente, $timeslot, $junta)
 $asistente = $_SESSION['usuarioActivo'];
 $timeslot = $_SESSION['timeSlotAVotar'];
 $junta = $_SESSION['juntaActiva'];
-	//CONEXION	
+    //CONEXION  
 $mysqli = new mysqli('localhost', 'lethedw2_aMeet', 'pesViS7g', "lethedw2_aMeet");
 if ($mysqli->connect_errno) {
     echo "Falló la conexión con MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}	
+}   
 
 $query = " DELETE FROM `lethedw2_aMeet`.`veto` WHERE `veto`.`asistente_idasistente` = ".$asistente." AND 
  `veto`.`timeslot_idtimeslot` = ".$timeslot." AND
